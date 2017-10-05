@@ -17,25 +17,32 @@ function divide(arr,n){
 
 class ProjectCard extends React.Component{
   render(){
-    return <div className="card">
-    <div className="card-image">
+    let mediaContent;
+    console.log(typeof this.props.imgurl !== 'undefined');
+    if(typeof this.props.imgurl !== 'undefined'){
+      mediaContent = <div className="card-image">
       <figure className="image is-4by3">
-        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"/>
+        <img src={__PATH_PREFIX__ + '/img/'+this.props.imgurl+'.png'} alt={this.props.name}/>
       </figure>
     </div>
+    }
+
+    return <div className="card">
+    {mediaContent}
     <div className="card-content">
       <div className="media">
         <div className="media-content">
           <p className="title is-4">{this.props.name}</p>
-          <p className="subtitle is-6">@johnsmith</p>
+          <p className="subtitle is-6">{this.props.subtitle}</p>
         </div>
       </div>
       <div className="content">
         {this.props.description}<br/> {this.props.technologies.map((tech)=>{
-          return <a>#{tech}</a>
+          return <a>#{tech} </a>
         })} 
+        <br/><br/>
+        <a className="sitelink" style={{float:'right', color:'#ccc',display:'inline-block', height:'30px'}} href={this.props.url}> Link to Site </a>
         <br/>
-        <time dateTime={this.props.date}>{this.props.date}</time>
       </div>
     </div>
   </div>

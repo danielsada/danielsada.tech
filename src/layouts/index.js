@@ -22,10 +22,10 @@ class Header extends React.Component {
   render(){
   var navigation =[{  
     url:'/',
-    name:'Inicio'
+    name:'Home'
   },{
-    url:'/proyectos',
-    name:'Proyectos'
+    url:'http://danielsada.posthaven.com',
+    name:'Blog'
   },  ] 
   return (
   <nav className="navbar" role="navigation" aria-label="main navigation">
