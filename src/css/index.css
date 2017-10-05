@@ -1,0 +1,71 @@
+/* Navbar */
+
+.navbar{
+  position: relative;
+  background-color: rgba(0,0,0,0);
+}
+
+.navbar-menu{
+  background-color: rgba(0,0,0,0);
+}
+
+.navbar-brand{
+  font-family:'Helvetica';
+  color: #55d39f;
+}
+
+.logosada{
+  font-size: 30px !important;
+
+}
+
+.navbar-item{
+  /* color:white; */
+  color: #55d39f;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.navbar-burger span:nth-child(2) {
+  margin-top:0;
+}
+
+.navbar-burger span {
+  background-color:black;
+}
+
+
+/* Hero elements */
+
+.background-brand{
+  background-color: #55d39f;
+}
+
+.white{
+  color:white;
+}
+
+.panoramic{
+    background-image: url('../img/coffee.jpg');
+    height: 600px;
+    background-size: cover;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover; 
+}
+
+.card{
+  margin: 10px;  
+}
+
+.columns{
+  margin:0 50px;
+}
+
+.content figure {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+}
