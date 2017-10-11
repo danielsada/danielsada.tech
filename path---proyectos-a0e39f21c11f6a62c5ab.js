@@ -1,0 +1,2 @@
+webpackJsonp([0x6411598874b3],{"./node_modules/json-loader/index.js!./.cache/json/proyectos.json":function(o,e){o.exports={pathContext:{}}}});
+//# sourceMappingURL=path---proyectos-a0e39f21c11f6a62c5ab.js.map
