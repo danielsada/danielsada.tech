@@ -10,10 +10,14 @@ import './navbarScript.js'
 import '../css/fa.min.css'
 
 const NavBarItems = (props) => {
+    let link;
+    if(props.ext){
+      link = <a href={props.url}>{props.name}</a>
+    } else {
+      link = <Link to={props.url}>{props.name}</Link>
+    }
     return <div className='navbar-item'>
-      <Link to={props.url} >
-        {props.name}
-      </Link>
+      {link}
     </div>
 }
 
@@ -22,10 +26,12 @@ class Header extends React.Component {
   render(){
   var navigation =[{  
     url:'/',
-    name:'Home'
+    name:'Home',
+    ext:false
   },{
     url:'http://danielsada.posthaven.com',
-    name:'Blog'
+    name:'Blog',
+    ext:true
   },  ] 
   return (
   <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -68,7 +74,7 @@ class Header extends React.Component {
           <i className="fa fa-lg fa-linkedin"></i>
         </span>
       </a>
-        {navigation.map((x)=>{return <NavBarItems key={x.url} url={x.url} name={x.name}/>})  }
+        {navigation.map((x)=>{return <NavBarItems key={x.url} url={x.url} name={x.name} ext={x.ext} />})  }
       </div>
     </div>
   </nav>

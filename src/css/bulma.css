@@ -155,7 +155,7 @@ body {
 }
 
 a {
-  color: #00d1b2;
+  color: #00bcd4;
   cursor: pointer;
   text-decoration: none;
 }
@@ -1755,13 +1755,13 @@ a.box:active {
 }
 
 .button.is-primary {
-  background-color: #00d1b2;
+  background-color: #55d39f;
   border-color: transparent;
   color: #fff;
 }
 
 .button.is-primary:hover, .button.is-primary.is-hovered {
-  background-color: #00c4a7;
+  background-color: #55d39f;
   border-color: transparent;
   color: #fff;
 }
@@ -4581,7 +4581,7 @@ a.box:active {
 }
 
 .tag:not(body).is-primary {
-  background-color: #00d1b2;
+  background-color: #00bcd4;
   color: #fff;
 }
 
