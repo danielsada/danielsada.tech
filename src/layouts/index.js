@@ -6,7 +6,6 @@ import Helmet from 'react-helmet'
 
 import '../css/bulma.css'
 import '../css/index.css'
-import './navbarScript.js'
 import '../css/fa.min.css'
 
 const NavBarItems = (props) => {
@@ -29,7 +28,7 @@ class Header extends React.Component {
     name:'Home',
     ext:false
   },{
-    url:'http://danielsada.posthaven.com',
+    url:'http://blog.posthaven.com',
     name:'Blog',
     ext:true
   },  ] 
@@ -85,17 +84,23 @@ class Header extends React.Component {
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="Daniel Sada Caraveo. Software Developer"
+      title="Daniel Sada Caraveo | Software Engineer | MX "
       meta={[
-        { name: 'description', content: 'Daniel Sada Caraveo. Software Developer, Entrepreneur, Photographer.' },
-        { name: 'keywords', content: 'daniel sada caraveo, daniel sada, software developer, portfolio' },
+        { name: 'description', content: 'Daniel Sada Caraveo is a Software Developer, Computer Engineer who studies in Monterrey Tech. He is the Co-Founder of Sadeira.' },
+        { name: 'keywords', content: 'daniel sada caraveo, daniel sada, software developer, portfolio, tec de monterrey, microsoft' },
       ]}
     />
+    
+
     <Header />
     <div className='content'>
       {children()}
     </div>
-    <script src="navbarScript.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43424010-7"></script>
+    <script async src="/img/navbarScript.js"></script>
+<script>
+
+</script>
   </div>
 )
 
