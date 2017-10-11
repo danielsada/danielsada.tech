@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  {{ partial "header.html" . }}
+  <body>
+    {{ partial "body-top" . }}
+    <main>
+
+      <section class="container">
+          <section class="content">
+              <h1>{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}</h1>
+
+              <div class="sub-header">
+                  {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · {{ .ReadingTime }} minute read
+              </div>
+
+              <article class="entry-content">
+                  {{ .Content }}
+              </article>
+
+              <div class="pagination">
+                  {{ if .PrevInSection }}
+                      <a href="{{ .PrevInSection.Permalink }}">&laquo; {{ .PrevInSection.Title }}</a>
+                  {{ end }}
+                  {{ if .NextInSection }}
+                      <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &raquo;</a>
+                  {{ end }}
+              </div>
+          </section>
+          <br>
+          {{ partial "disqus" . }}
+      </section>
+
+    </main>
+    {{ partial "footer.html" . }}
+    {{ partial "body-bottom" . }}
+  </body>
+</html>
