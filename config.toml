@@ -5,18 +5,8 @@ languageCode = "en-US"
 config = "config.toml"
 theme = "osprey"
 canonifyURLS = true
-<<<<<<< HEAD
-<<<<<<< HEAD
 googleAnalytics = "UA-43424010-8"
 disqusShortname = "danielsada"
-=======
-googleAnalytics = ""
-disqusShortname = ""
->>>>>>> c01267c... Removing gatsby, adding hugo
-=======
-googleAnalytics = "UA-43424010-8"
-disqusShortname = "danielsada"
->>>>>>> 89d645f... Added ADS
 disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use "tag" and "category" taxonomies
 
 [permalinks]
