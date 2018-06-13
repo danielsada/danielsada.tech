@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "{{ .Site.Params.author }}",
+      "url": "https://danielsada.mx",
+      "jobTitle": "Software Development Engineer Intern",
+      "alumniOf": "Tec de Monterrey",
+      "gender": "male",
+      "image": "https://danielsada.mx/images/danielsada.png",
+      "sameAs": [
+          "https://www.linkedin.com/in/danielsadac",
+          "https://stackoverflow.com/users/6670802/daniel-sada",
+          "https://github.com/danielsada",
+          "https://twitter.com/danielsadamx"
+      ]
+  }  
+  </script>
   {{ partial "header.html" . }}
   <body>
     {{ partial "body-top" . }}

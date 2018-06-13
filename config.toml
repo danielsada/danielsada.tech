@@ -1,6 +1,6 @@
 title = "Daniel Sada | Software, Notes & Quantum"
 baseURL = "https://danielsada.mx"
-tags = ["portfolio", "developer", "blog"]
+tags = ["portfolio", "developer", "blog", "danielsada", "tec de monterrey", "microsoft"]
 languageCode = "en-US"
 config = "config.toml"
 theme = "osprey"
@@ -15,7 +15,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
 [Params]
     tagline = "Software, Notes & Quantum"
     author = "Daniel Sada"
-    description = "Full-stack web developer and UI/UX enthusiast based in San Diego, CA."
+    description = "Computing Engineer, coffee enthusiast, productivity lover, quantum aprentice.I help people be more productive."
     logoBig = "/images/DanielSadaLogo.png"
     logoSmall = "/images/SadaLogo.png"
     favicon = "favicon.ico"
@@ -28,11 +28,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
     googleTagManager = ""
     highlightJS = true
     copyright = true
-    credit = false
+    credit = true
     customCSS = true
     cacheBustCSS = false
     cacheBustJS = false
-    ajaxFormspree = true
 
 [[menu.main]]
     name = "About"

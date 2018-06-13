@@ -1,5 +1,28 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}",
+        "url": "{{ .Permalink }}",
+        "datePublished": "{{ .Date }}",
+        "dateCreated": "{{ .Date }}",
+        "dateModified": "{{ .Date }}",
+        "articleBody": "{{ .PlainWords }}",
+        "keywords":"{{ .Params.tags }}"
+        "author": {
+            "@type": "Person",
+            "name": "{{ .Site.Params.author }}",
+            "url": "https://danielsada.mx"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "{{ .Site.Params.author }}",
+            "url": "https://danielsada.mx"
+        }
+    }
+  </script>
   {{ partial "header.html" . }}
   <body>
     {{ partial "body-top" . }}
