@@ -14,6 +14,7 @@ categories = [
     "software",
     "engineering",
 ]
+draft = "true"
 +++
 
 After reading the [article from Edward Guiness with examples on how SOLID is implemented](http://webcem01.cem.itesm.mx:8005/s201811/tc3049/solid.html), I've come to want to add some things to SOLID myself, that were learned from my adventures in functional programming.
