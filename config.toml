@@ -1,5 +1,5 @@
 title = "Daniel Sada | Software, Notes & Quantum"
-baseURL = "https://danielsada.mx"
+baseURL = "https://danielsada.tech"
 tags = ["portfolio", "developer", "blog", "danielsada", "tec de monterrey", "microsoft"]
 languageCode = "en-US"
 config = "config.toml"
