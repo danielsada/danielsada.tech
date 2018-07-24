@@ -1,0 +1,9 @@
+# Redirect domain aliases to primary domain
+https://www.sadacaraveo.com/* https://danielsada.tech/:splat 301!
+https://sadacaraveo.com/* https://danielsada.tech/:splat 301!
+https://www.danielsada.tech/* https://danielsada.tech/:splat 301!
+https://www.danielsada.mx/* https://danielsada.tech/:splat 301!
+https://danielsada.mx/* https://danielsada.tech/:splat 301!
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://thirsty-cori-60d1f4.netlify.com/* https://danielsada.tech/:splat 301!
