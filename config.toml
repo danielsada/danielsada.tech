@@ -1,5 +1,5 @@
 title = "Daniel Sada | Software, Notes & Quantum"
-baseURL = "https://danielsada.mx"
+baseURL = "https://danielsada.tech"
 tags = ["portfolio", "developer", "blog", "danielsada", "tec de monterrey", "microsoft"]
 languageCode = "en-US"
 config = "config.toml"
@@ -20,7 +20,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
     logoSmall = "/images/SadaLogo.png"
     favicon = "favicon.ico"
     opengraphImage = "/images/osprey.png"
-    twitter = "Danielsadamx"
+    twitter = "Danielsadac"
     linkedin = "danielsadac"
     github = "danielsada"
     facebook = "danielsada"
