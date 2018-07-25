@@ -84,7 +84,7 @@ Keep a journal, it's surprisingly easy to forget what you did two weeks ago. Let
 
 ## It's surprising how open Microsoft is.
 
-I had lunch with lots of Microsoft CVPs: I've met Scott Guthrie, Scott Hunter, Kathleen Hogan, chatted with Rajesh Jha, enjoyed the company of Chris Capossela and more. It's amazing how I can approach people throughout my management chain, and be open for new opportunities. They listen, they reflect, and share. This is something I can't say of other companies.
+I had lunch with lots of Microsoft C-Suite: I've met Scott Guthrie, Scott Hunter, chatted with Rajesh Jha, enjoyed the company of Chris Capossela and more. It's amazing how I can approach people throughout my management chain, and be open for new opportunities. They listen, they reflect, and share. This is something I can't say of other companies.
 
 ## I'm surprised how good the Microsoft Internship experience is.
 
