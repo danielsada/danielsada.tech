@@ -1,5 +1,5 @@
 +++
-title = "Learnings after three internships at Microsoft."
+title = "What I learned after three internships at Microsoft."
 description = "I have interned for Microsoft three times, this is what I learned from it. From Project to OneNote."
 tags = [
     "microsoft",
