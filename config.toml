@@ -13,6 +13,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
   post = "/:title/"
 
 [Params]
+    ajaxFormspree = true
     tagline = "Software, Notes & Quantum"
     author = "Daniel Sada"
     description = "Computing Engineer, coffee enthusiast, productivity lover, quantum aprentice.I help people be more productive."
