@@ -19,7 +19,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
     description = "Computing Engineer, coffee enthusiast, productivity lover, quantum aprentice.I help people be more productive."
     logoBig = "/images/DanielSadaLogo.png"
     logoSmall = "/images/SadaLogo.png"
-    favicon = "favicon.ico"
+    favicon = "/favicon.ico"
     opengraphImage = "/images/DanielSadaLogo.png"
     twitter = "danielsadac"
     linkedin = "danielsadac"
@@ -48,6 +48,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
     url  = "/#blog"
     weight = 3
 [[menu.main]]
+    name = "Notas"
+    url  = "/notas"
+    weight = 4
+[[menu.main]]
     name = "Contact"
     url  = "/#contact"
-    weight = 4
+    weight = 5
