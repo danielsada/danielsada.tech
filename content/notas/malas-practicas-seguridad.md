@@ -65,6 +65,8 @@ Por un lado, entiendo que se evitan que la gente copie y pegue su contraseña en
 
 Me gusta mucho que varios bancos han pasado a tener su autenticación de dos factores en el celular, sin embargo, creo que sería mejor que hubiese la opción de entrar con la autenticación de dos factores, y que además fuera en otra plataforma aparte que la aplicación *in-house* de Santander.
 
+Cabe mencionar que Santander si tiene super token, pero no esta en un estandard internacional de claves de un uso (OTP) y no solo Santander, si no que Banamex y Bancomer también.
+
 ## Mis recomendaciones:
 
 ### 1. Permitir poner 8 o más caracteres.
