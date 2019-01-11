@@ -1,6 +1,6 @@
 // Font styles
 strong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 del,
@@ -26,6 +26,11 @@ a {
   }
 }
 
+// superscript
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
 
 // Code
 pre {
@@ -99,28 +104,27 @@ q {
 
 %blockquote {
   color: $accent;
-  font-family: $font-header;
-  font-size: 35px;
+  font-family: $font-quote;
+  font-size: 65px;
   content: '\201C';
 }
 
 blockquote {
-  padding: 25px;
-  font-family: $font-header;
+  padding: 5px;
+  font-family:$font-quote;
   text-align: center;
 
   p {
     display: inline-block;
-    font-style: italic;
+    font-size: 35px;
   }
 
   &::before {
-    @extend %blockquote;
+    // content: '\03A8';
   }
 
   &::after {
-    @extend %blockquote;
-    content: '\201D';
+    // content: '\03A9';
   }
 }
 

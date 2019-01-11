@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik|Bitter");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400|Rubik|Playfair+Display");
 @import "flexboxgrid";
 @import "colors";
 @import "typography";
@@ -109,10 +109,15 @@ p {
     font-family: $font-code;
   }
 }
+.content > h1:nth-child(1){
+  text-align: center;
+}
 h1, h2, h3 {
   font-family: $font-header;
   margin-top: $vertical-rhythm;
-  letter-spacing: 2px;
+  letter-spacing: -1px;
+  line-height: $vertical-rhythm*1.6;
+  margin-bottom: $vertical-rhythm;
   a {
     text-decoration: none;
   }
@@ -122,6 +127,7 @@ h1, h2, h3 {
   margin: 0 0 $vertical-rhythm;
 }
 .sub-header, time {
+  text-align: center;
   @include size(p);
   color: $storm;
   margin-bottom: $vertical-rhythm;

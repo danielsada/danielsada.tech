@@ -10,25 +10,25 @@ categories = [
 ]
 +++
 
-No suelo quejarme mucho, sin embargo, varias cosas me han irritado en cómo los bancos que proclaman ser tan conocedores en ciberseguridad tienden a ser los que más caen en falsedades que solo *aparentan* seguridad. Mas aún, sus malas prácticas suelen llegar al punto que, en lugar de hacer los sistemas más seguros, los hacen más inseguros. No me malinterpreten, – **Santander es de los mejores bancos con los que he tratado y la mayoría de estas críticas no son exclusivas de Santander.** – Sin embargo, del querer ver algo mejor llega la crítica.
+No suelo quejarme mucho, sin embargo, varias cosas me han irritado en cómo los bancos que proclaman ser tan conocedores en ciberseguridad tienden a ser los que más caen en falsedades que solo *aparentan* seguridad. Mas aún, sus malas prácticas suelen llegar al punto que, en lugar de hacer los sistemas más seguros, los hacen más inseguros. No me malinterpreten, – **Santander es de los mejores bancos con los que he tratado y la mayoría de estas críticas no son exclusivas de Santander** – Sin embargo, del querer ver algo mejor llega la crítica.
 
->"Las críticas no serán agradables, pero son necesarias." - Winston Churchill
+> "Las críticas no serán agradables, pero son necesarias." - Winston Churchill
 
-## 1. Contraseñas limitadas a EXACTAMENTE 8 caracteres.
-
-.
+## 1. Contraseñas limitadas a **Exactamente** 8 caracteres.
 
 Esto es de lo peor que he visto en el mundo de los bancos. Te forzan a usar una contraseña de **exactamente** 8 dígitos en la cual no se repitan números secuencialmente.
 
 La clave está en el **exactamente** ni menos de 8 ni más de 8. Es pésimo, reduces el rango de ataque de contraseñas a algo trivial. Veamos las políticas de contraseñas.
 
-    Longitud de 8 caracteres alfanuméricos, por ejemplo, SbCg3508.
-    No se aceptan caracteres especiales tales como _ñ:/+á*
-    Evitar el uso de datos personales como fecha de nacimiento, número de tarjeta, código de cliente, número telefónico, etc.
+
+- Longitud de 8 caracteres alfanuméricos, por ejemplo, SbCg3508.
+- No se aceptan caracteres especiales tales como _ñ:/+á*
+- Evitar el uso de datos personales como fecha de nacimiento, número de tarjeta, código de cliente, número telefónico, etc.
 
 Bueno, calculando 26 letras mayúsculas, 26 letras minúsculas, y 10 dígitos, tenemos 
 
-62^8 −[ 36ˆ8 + 36^8 +52^8 ] + [ 26ˆ8 + 26^8 + 10ˆ8 ] = 159,655,911,367,680 contraseñas posibles
+62<sup>8</sup> − [ 36<sup>8</sup> + 36<sup>8</sup> +52<sup>8</sup> ] + [ 26<sup>8</sup> + 26<sup>8</sup> + 10<sup>8</sup> ] = 
+**159,655,911,367,680 contraseñas posibles**
 
 Y me preguntarán: Daniel, ¿Por qué 159 billones de contraseñas es malo? Bueno una empresa llamada [BetterBuys](https://www.betterbuys.com/estimating-password-cracking-times/), generó un pequeño estudio de cuanto tiempo tardaría en romperse una contraseña.
 
