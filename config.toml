@@ -49,7 +49,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
     weight = 3
 [[menu.main]]
     name = "Notas"
-    url  = "/notas"
+    url  = "/#notas"
     weight = 4
 [[menu.main]]
     name = "Contact"

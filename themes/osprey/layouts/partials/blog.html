@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" id="notas">
     <div class="row center-xs">
       <div class="col-xs-12"><h1>Posts en español</h1></div>
     </div>
@@ -30,7 +30,7 @@
           <article>
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             <div class=sub-header>
-              {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · Te tarda {{ .ReadingTime }} minutos para leerlo 
+              {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · Te tarda {{ .ReadingTime }} minutos leerlo 
             </div>
           </article>
         {{ end }}

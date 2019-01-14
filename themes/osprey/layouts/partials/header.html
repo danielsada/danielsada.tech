@@ -16,11 +16,11 @@
     {{ else if .Params.heading }}
         {{ .Params.heading }}
     {{ else }}
-        {{ .Title }} | {{ .Site.Title }}
+       Daniel Sada Caraveo – {{ .Title }} – Software, Notes & Quantum 
     {{ end }}
   </title>
 
-  <meta name="title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if .Params.heading }}{{ .Params.heading }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end}}">
+  <meta name="title" content="{{ if .IsHome }}{{ else if .Params.heading }}{{ .Params.heading }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end}}">
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
