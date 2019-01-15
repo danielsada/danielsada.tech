@@ -130,7 +130,7 @@ Lo que uses, lo que compres que vaya de acuerdo a lo que conectas a tu PC.
 
 Esta es mi recomendación para que escojas un buen equipo. Te invito a que dejes tus comentarios aquí abajo, si tienes cualquier duda, asimismo, si tienes preguntas más específicas, siempre me puedes mandar un email a hola@danielsada.tech
 
-Muchas gracias a Anapaula por ayudarme con la redacción y a Daniel y Michael por la retroalimentación.
+Muchas gracias a Anapaula y Eli por ayudarme con la redacción y a Daniel y Michael por la retroalimentación.
 
 Recuerda que este blog es código abierto, por lo que te invito a [reportar fallas gramaticales y ortográficas en el sitio de github.](https://github.com/danielsada/danielsada.tech)
 
