@@ -125,7 +125,7 @@ We send out first a really small test to see whether our N+1 deployment is worki
 
 ![](/images/blog/cloud/nn1-2.png)
 
-Finally, we have a set of automated checks that we end up verifying until our rollout is complete. If you want to be *really really* careful, you can also keep your N deployment "forever" for a quick rollback given a bad regresion.
+Finally, we have a set of automated checks that we end up verifying until our rollout is complete. If you want to be *really really* careful, you can also keep your N deployment "forever" for a quick rollback given a bad regression.
 
 ![](/images/blog/cloud/nn1-3.png)
 
@@ -133,7 +133,7 @@ If you want to even go into a deeper level, have everything in the blue-green de
 
 ## Anomaly Detection and automatic mitigations.
 
-Given that you have centrlized logging, and some good log collection, flights all the elements above. We can now be proactive about catching failures. On our monitors, and on our logs, we feed our features and different charts and we are able to be proactive to when something is going to fail.
+Given that you have centralized logging, and some good log collection, flights all the elements above. We can now be proactive about catching failures. On our monitors, and on our logs, we feed our features and different charts and we are able to be proactive to when something is going to fail.
 
 ![](/images/blog/cloud/anomaly-detection.png)
 
@@ -141,11 +141,11 @@ With anomaly detection you start looking into some of the "tells" of the service
 
 Once you have those analytics, you can scale on any dimension, proactively and reactively change machines, databases, connections or other resources. 
 
-This requieres a really good system, or ML prowness, which then makes it more interesting in the sense that the investment is really high, and the return is high on a massive scale.
+This requires a really good system, or ML prowess, which then makes it more interesting in the sense that the investment is really high, and the return is high on a massive scale.
 
 # This is it!
 
- I'm certainly not an expert in any of these, and I'm starting my carreer, but this list of priorities per stages would have saved me a lot of headaches in the past.
+ I'm certainly not an expert in any of these, and I'm starting my career, but this list of priorities per stages would have saved me a lot of headaches in the past.
 
  I'm really interested in hearing from you: what would you add to this list? Comment down below or in HN.
 
