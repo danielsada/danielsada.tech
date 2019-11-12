@@ -137,7 +137,7 @@ Given that you have centrlized logging, and some good log collection, flights al
 
 ![](/images/blog/cloud/anomaly-detection.png)
 
-With anomaly detection you start looking into some of the "tells" of hte service, whether a spike in CPU will let you know when your hard drive is going to fail, or a spike in request # means you need to scale up. Those kinds of statistical insights will empower your service to be proactive.
+With anomaly detection you start looking into some of the "tells" of the service, whether a spike in CPU will let you know when your hard drive is going to fail, or a spike in request # means you need to scale up. Those kinds of statistical insights will empower your service to be proactive.
 
 Once you have those analytics, you can scale on any dimension, proactively and reactively change machines, databases, connections or other resources. 
 
