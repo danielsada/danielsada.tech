@@ -23,7 +23,7 @@ These steps are relatively easy to implement but yield high return on investment
 
 ##  Infrastructure as Code.
 
-The first part of guranteeing sleep in having Infrastructure as Code. That means that you have a way of deploying your entire infrastruscture. It sounds fancy, but in reality, we are saying in code:
+The first part of guranteeing sleep in having Infrastructure as Code. That means that you have a way of deploying your entire infrastructure. It sounds fancy, but in reality, we are saying in code:
 ```
 Deploy 100 VMs
 - with ubuntu
