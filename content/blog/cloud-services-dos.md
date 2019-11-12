@@ -113,7 +113,7 @@ These are actually hard, somewhat difficult to implement, you probably need a bi
 
 This is what I call the "Erlang" way of deploying. When Erlang started being used more widespread, back when telephone companies started communicating people together, there was a point where software switchboards were used to route phonecalls. The main concern about the software in these switchboards was not to ever drop calls while upgrading the system. Erlang has a beautiful way of loading a module without ever dropping the previous one.
 
-This step depends on you having a load balancer. Let's imagine you have a specific version N of your software, then you want to deploy version N+1. You **could** just stop the service and deploy the next version "in theory" in a convinient time for your users and get some downtime, but in general, let's say you have **really** strict SLAs. A 4 9's means you can *only* have 6 minutes down a year.
+This step depends on you having a load balancer. Let's imagine you have a specific version N of your software, then you want to deploy version N+1. You **could** just stop the service and deploy the next version "in theory" in a convinient time for your users and get some downtime, but in general, let's say you have **really** strict SLAs. A 4 9's means you can *only* have 52 minutes down a year.
 
 If you really want to achieve that, you need to have two deployments at the same time, the one you have right now (N) and your next version (N+1). You point the load balancer to redirect a percentage of the traffic to the new version (N+1) while you actively monitor for regressions.
 
