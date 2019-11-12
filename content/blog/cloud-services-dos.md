@@ -14,7 +14,7 @@ categories = [
 ]
 +++
 
-Over my work in different scales of services, I've noticed that there is a common pattern in some of these services that makes them easier to approach and cause less headaches to the engineers that handle them. When we deal with millions of users making requests all the time across the world. I've noted that there are a few things that help a lot for people to sleep at night confortably. This is a quick guide on how to [be web scale [meme]](https://www.youtube.com/watch?v=b2F-DItXtZs).
+Over my work in different scales of services, I've noticed that there is a common pattern in some of these services that makes them easier to approach and cause less headaches to the engineers that handle them. When we deal with millions of users making requests all the time across the world. I've noted that there are a few things that help a lot for people to sleep at night comfortably. This is a quick guide on how to [be web scale [meme]](https://www.youtube.com/watch?v=b2F-DItXtZs).
 
 This is not a comprehensive list, but the things I've seen that actually **help** or have helped me in the past.
 
