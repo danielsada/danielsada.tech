@@ -14,7 +14,7 @@ categories = [
 ]
 +++
 
-Over my work in different scales of services, I've noticed that there is a common pattern in some of these services that makes them easier to approach and cause less headaches to the engineers that handle them. When we deal with millions of users making requests all the time across the world. I've noted that there are a few things that help a lot for people to sleep at night confortably. This is a quick guide on how to [be web scale [meme]](https://www.youtube.com/watch?v=b2F-DItXtZs).
+Over my work in different scales of services, I've noticed that there is a common pattern in some of these services that makes them easier to approach and cause less headaches to the engineers that handle them. When we deal with millions of users making requests all the time across the world. I've noted that there are a few things that help a lot for people to sleep at night comfortably. This is a quick guide on how to [be web scale [meme]](https://www.youtube.com/watch?v=b2F-DItXtZs).
 
 This is not a comprehensive list, but the things I've seen that actually **help** or have helped me in the past.
 
@@ -23,7 +23,7 @@ These steps are relatively easy to implement but yield high return on investment
 
 ##  Infrastructure as Code.
 
-The first part of guranteeing sleep in having Infrastructure as Code. That means that you have a way of deploying your entire infrastruscture. It sounds fancy, but in reality, we are saying in code:
+The first part of guranteeing sleep in having Infrastructure as Code. That means that you have a way of deploying your entire infrastructure. It sounds fancy, but in reality, we are saying in code:
 ```
 Deploy 100 VMs
 - with ubuntu
@@ -113,7 +113,7 @@ These are actually hard, somewhat difficult to implement, you probably need a bi
 
 This is what I call the "Erlang" way of deploying. When Erlang started being used more widespread, back when telephone companies started communicating people together, there was a point where software switchboards were used to route phonecalls. The main concern about the software in these switchboards was not to ever drop calls while upgrading the system. Erlang has a beautiful way of loading a module without ever dropping the previous one.
 
-This step depends on you having a load balancer. Let's imagine you have a specific version N of your software, then you want to deploy version N+1. You **could** just stop the service and deploy the next version "in theory" in a convinient time for your users and get some downtime, but in general, let's say you have **really** strict SLAs. A 4 9's means you can *only* have 6 minutes down a year.
+This step depends on you having a load balancer. Let's imagine you have a specific version N of your software, then you want to deploy version N+1. You **could** just stop the service and deploy the next version "in theory" in a convinient time for your users and get some downtime, but in general, let's say you have **really** strict SLAs. A 4 9's means you can *only* have 52 minutes down a year.
 
 If you really want to achieve that, you need to have two deployments at the same time, the one you have right now (N) and your next version (N+1). You point the load balancer to redirect a percentage of the traffic to the new version (N+1) while you actively monitor for regressions.
 
@@ -125,7 +125,7 @@ We send out first a really small test to see whether our N+1 deployment is worki
 
 ![](/images/blog/cloud/nn1-2.png)
 
-Finally, we have a set of automated checks that we end up verifying until our rollout is complete. If you want to be *really really* careful, you can also keep your N deployment "forever" for a quick rollback given a bad regresion.
+Finally, we have a set of automated checks that we end up verifying until our rollout is complete. If you want to be *really really* careful, you can also keep your N deployment "forever" for a quick rollback given a bad regression.
 
 ![](/images/blog/cloud/nn1-3.png)
 
@@ -133,19 +133,19 @@ If you want to even go into a deeper level, have everything in the blue-green de
 
 ## Anomaly Detection and automatic mitigations.
 
-Given that you have centrlized logging, and some good log collection, flights all the elements above. We can now be proactive about catching failures. On our monitors, and on our logs, we feed our features and different charts and we are able to be proactive to when something is going to fail.
+Given that you have centralized logging, and some good log collection, flights all the elements above. We can now be proactive about catching failures. On our monitors, and on our logs, we feed our features and different charts and we are able to be proactive to when something is going to fail.
 
 ![](/images/blog/cloud/anomaly-detection.png)
 
-With anomaly detection you start looking into some of the "tells" of hte service, whether a spike in CPU will let you know when your hard drive is going to fail, or a spike in request # means you need to scale up. Those kinds of statistical insights will empower your service to be proactive.
+With anomaly detection you start looking into some of the "tells" of the service, whether a spike in CPU will let you know when your hard drive is going to fail, or a spike in request # means you need to scale up. Those kinds of statistical insights will empower your service to be proactive.
 
 Once you have those analytics, you can scale on any dimension, proactively and reactively change machines, databases, connections or other resources. 
 
-This requieres a really good system, or ML prowness, which then makes it more interesting in the sense that the investment is really high, and the return is high on a massive scale.
+This requires a really good system, or ML prowess, which then makes it more interesting in the sense that the investment is really high, and the return is high on a massive scale.
 
 # This is it!
 
- I'm certainly not an expert in any of these, and I'm starting my carreer, but this list of priorities per stages would have saved me a lot of headaches in the past.
+ I'm certainly not an expert in any of these, and I'm starting my career, but this list of priorities per stages would have saved me a lot of headaches in the past.
 
  I'm really interested in hearing from you: what would you add to this list? Comment down below or in HN.
 
