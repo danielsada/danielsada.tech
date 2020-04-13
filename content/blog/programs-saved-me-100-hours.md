@@ -17,6 +17,11 @@ categories = [
 ]
 +++
 
+*Since I wrote this, there has been two HN threads on this blog, they contain super useful links and programs, go see them! Thank you for reading!*
+https://news.ycombinator.com/item?id=13887237
+https://news.ycombinator.com/item?id=22849208
+
+
 Along the year I've been working on several web platforms where repetitive tasks are usually the norm. From batch optimizing a thousand images, to changing from this obscure format to csv or json. What if you need to critically update a file in your client's and you aren't fancy enough to use some kind of continuous integration tool I'll give you some tips and tricks to be productive.
 
 # 1\. PhotoBulk
