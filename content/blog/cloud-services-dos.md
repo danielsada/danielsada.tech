@@ -35,7 +35,7 @@ And you can track changes to the infrastructure and revert quickly via source co
 
 Now, the modernist in me will say "We can use kubernetes/docker to do everything on this list!" You are correct, but for now, I'm going to err on the side of an easy explanation on this blog.
 
-If you are interested in this you can check out [Chef](https://www.chef.io/), [Puppet](https://puppet.com/) or [Terraform](https://www.terraform.io/)
+If you are interested in this you can check out [Chef](https://www.chef.io/), [Puppet](https://puppet.com/), [Salt](https://www.saltstack.com/), [Ansible](https://www.ansible.com/), or [Terraform](https://www.terraform.io/)
 ## Continuous Integration/Delivery
 
 Having a build, and test pass run against each one of your pull requests is essential to building a scalable service. Even if the testpass is basic, it will at least guarantee that the code you are deploying compiles.
