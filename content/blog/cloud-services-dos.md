@@ -14,7 +14,7 @@ categories = [
 ]
 +++
 
-Over my work in different scales of services, I've noticed that there is a common pattern in some of these services that makes them easier to approach and cause less headaches to the engineers that handle them. When we deal with millions of users making requests all the time across the world. I've noted that there are a few things that help a lot for people to sleep at night comfortably. This is a quick guide on how to [be web scale [meme]](https://www.youtube.com/watch?v=b2F-DItXtZs).
+Over my work in different scales of services, I've noticed that there is a common pattern in some of these services that makes them easier to approach and cause less headaches to the engineers that handle them. When we deal with millions of users making requests all the time across the world, I've noted that there are a few things that help a lot of people to sleep at night comfortably. This is a quick guide on how to [be web scale [meme]](https://www.youtube.com/watch?v=b2F-DItXtZs).
 
 This is not a comprehensive list, but the things I've seen that actually **help** or have helped me in the past.
 
@@ -23,11 +23,11 @@ These steps are relatively easy to implement but yield high return on investment
 
 ##  Infrastructure as Code.
 
-The first part of guranteeing sleep in having Infrastructure as Code. That means that you have a way of deploying your entire infrastructure. It sounds fancy, but in reality, we are saying in code:
+The first part of guranteeing sleep is having Infrastructure as Code. That means that you have a way of deploying your entire infrastructure. It sounds fancy, but in reality, we are saying in code:
 ```
 Deploy 100 VMs
 - with ubuntu
-- each one with 2GB Ram
+- each one with 2GB RAM
 - they'll have this code
 - with these parameters
 ```
@@ -35,7 +35,7 @@ And you can track changes to the infrastructure and revert quickly via source co
 
 Now, the modernist in me will say "We can use kubernetes/docker to do everything on this list!" You are correct, but for now, I'm going to err on the side of an easy explanation on this blog.
 
-If you are interested in this you can check out [Chef](https://www.chef.io/), [Puppet](https://puppet.com/) or [Terraform](https://www.terraform.io/)
+If you are interested in this you can check out [Chef](https://www.chef.io/), [Puppet](https://puppet.com/), [Salt](https://www.saltstack.com/), [Ansible](https://www.ansible.com/), or [Terraform](https://www.terraform.io/)
 ## Continuous Integration/Delivery
 
 Having a build, and test pass run against each one of your pull requests is essential to building a scalable service. Even if the testpass is basic, it will at least guarantee that the code you are deploying compiles.
@@ -43,7 +43,7 @@ Having a build, and test pass run against each one of your pull requests is esse
 What you have to answer everytime you do this step, relates to the question **Is my build going to compile, pass the tests I've set up, and it's valid?**, this might seem like a low bar, but this catches a myriad of issues you wouldn't imagine.
 
 ![](/images/blog/cloud/all-passed.png)
-Nothing more beautiful that seeing those checkmarks.
+Nothing more beautiful than seeing those checkmarks.
 
 For this technology you can check out [Github](https://github.com/), [CircleCI](https://circleci.com/) or [Jenkins](https://jenkins.io/)
 
@@ -63,13 +63,13 @@ Have you ever got an error in an application that tells you something along the 
 
 ![](/images/blog/cloud/ray-id.jpg)
 
-An **unique ID, correlation ID, RayID or any of its variations, is a unique identifier which allows you to trace a request through its lifecycle**, therefore allowing someone to see the entire path of the request in the logs.
+A **unique ID, correlation ID, RayID or any of its variations, is a unique identifier which allows you to trace a request through its lifecycle**, therefore allowing someone to see the entire path of the request in the logs.
 
 ![](/images/blog/cloud/rays-1.png)
 
 As you can see in the image above, the user makes a request to system A, A then talks to B, B talks to C, saves to X and then returns to A. 
 
-If you were to remote into the VMs and try to trace the path, (and manually correlate which calls belong), you'd go crazy. having the unique identifier makes your life a lot easier, this is one of the easier things you can do in your service, that will save you a lot of time as your service grows.
+If you were to remote into the VMs and try to trace the path, (and manually correlate which calls belong), you'd go crazy. Having the unique identifier makes your life a lot easier, this is one of the easier things you can do in your service, that will save you a lot of time as your service grows.
 
 # Medium Level
 
@@ -79,7 +79,7 @@ These are usually more complicated than the previous ones, but if you grab the r
 
 Congratulations! You deployed 100 VMs. The next day, the CEO comes with an error he had while testing the service. He gives you the above correlation ID, but then you have to scramble to look in the 100 machines which one was the one that failed. And it has to be solved before the presentation tomorrow.
 
-While that sounds like a fun endeavor; make sure to get one place to search your logs from. The way I've centralized my logs before, is with [ELK stack](https://www.elastic.co/what-is/elk-stack) Having log collection and searchability s is going to really improve your experience searching for that one unexpected log. Extra points if you can also generate charts and fun things like that.
+While that sounds like a fun endeavor; make sure to get one place to search your logs from. The way I've centralized my logs before, is with [ELK stack](https://www.elastic.co/what-is/elk-stack). Having log collection and searchability is going to really improve your experience searching for that one unexpected log. Extra points if you can also generate charts and fun things like that.
 
 ![](/images/blog/cloud/elk-stack.png)
 
@@ -93,11 +93,11 @@ I personally recommend [Postman](https://www.getpostman.com/) for small to mediu
 
 ## Automatic Autoscaling based on load
 
-This one is simple. If you have 1 VM serving requests, and it's getting close to >80% memory, you might to either grow the vm or add more VMs to your cluster. Having these operations done automatically is great for being elastic under load. But you always have to be careful in how much money you spend and set sensible limits. 
+This one is simple. If you have 1 VM serving requests, and it's getting close to >80% memory, you might want to either grow the VM or add more VMs to your cluster. Having these operations done automatically is great for being elastic under load. But you always have to be careful in how much money you spend and set sensible limits. 
 
 ![](/images/blog/cloud/auto-scaling.png)
 
-You can configure auto-scaling in most cloud services, via more machines, vm or more powerful machines.
+You can configure auto-scaling in most cloud services, via more machines, VM or more powerful machines.
 
 ## Experiment system
 
@@ -113,7 +113,7 @@ These are actually hard, somewhat difficult to implement, you probably need a bi
 
 This is what I call the "Erlang" way of deploying. When Erlang started being used more widespread, back when telephone companies started communicating people together, there was a point where software switchboards were used to route phonecalls. The main concern about the software in these switchboards was not to ever drop calls while upgrading the system. Erlang has a beautiful way of loading a module without ever dropping the previous one.
 
-This step depends on you having a load balancer. Let's imagine you have a specific version N of your software, then you want to deploy version N+1. You **could** just stop the service and deploy the next version "in theory" in a convinient time for your users and get some downtime, but in general, let's say you have **really** strict SLAs. A 4 9's means you can *only* have 52 minutes down a year.
+This step depends on you having a load balancer. Let's imagine you have a specific version N of your software, then you want to deploy version N+1. You **could** just stop the service and deploy the next version "in theory" in a convenient time for your users and get some downtime, but in general, let's say you have **really** strict SLAs. A 4 9's means you can *only* have 52 minutes down a year.
 
 If you really want to achieve that, you need to have two deployments at the same time, the one you have right now (N) and your next version (N+1). You point the load balancer to redirect a percentage of the traffic to the new version (N+1) while you actively monitor for regressions.
 
@@ -149,5 +149,5 @@ This requires a really good system, or ML prowess, which then makes it more inte
 
  I'm really interested in hearing from you: what would you add to this list? Comment down below or in HN.
 
-This article is open source, feel free to make a[ PR in GitHub](https://github.com/danielsada/danielsada.tech).
+This article is open source, feel free to make a [PR in GitHub](https://github.com/danielsada/danielsada.tech).
 
