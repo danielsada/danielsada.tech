@@ -1,5 +1,3 @@
-+++ title = "Telegram vs Whatsapp" description = "Cuando los bancos que son muy seguros, ya no lo son tanto." tags = [ "spanish" ] date = "2018-12-27" categories = [ "spanish" ] +++
-
 +++
 title = "Telegram vs Whatsapp vs Signal"
 description = "Soy un usuario promedio, ¿Cuál debería usar?"
