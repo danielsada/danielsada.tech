@@ -4,13 +4,12 @@ description = "Soy un usuario promedio, ¿Cuál debería usar?"
 tags = [
     "spanish"
 ]
-date = "2021-1-13"
+date = "2021-1-12"
 categories = [
     "spanish"
 ]
 +++
 
-# Telegram vs Whatsapp vs Signal
 > Soy un usuario promedio: ¿Que app debería usar?
 
 Ideal:
