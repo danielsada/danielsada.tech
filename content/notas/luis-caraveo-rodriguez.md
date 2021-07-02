@@ -56,7 +56,7 @@ Después de terminar el colegio militar, donde estuvo en el batallón de artille
 
 En la escuela de ingenieros, mi abuelo sacó una de las únicas Medallas de Excelencia que ha emitido la Escuela Militar de Ingenieros, manteniendo un promedio mayor a 95.
 
-Mientras continuaba su carrera militar, mi abuelo trabajó en Philips de México, con el Dr. Gertsmann Manero, desde donde hacía el control de inventario de entradas y salidas de todas las partes que venía Philips (mínimos, máximos etcétera). Creo que fue de las empresas favoritas en las que pudo participar mi abuelo. 
+Mientras continuaba su carrera militar, mi abuelo trabajó en Philips de México, con el Dr. Hellmans, desde donde hacía el control de inventario de entradas y salidas de todas las partes que venía Philips (mínimos, máximos etcétera). Creo que fue de las empresas favoritas en las que pudo participar mi abuelo. 
 
 Poco tiempo después, como quiso dedicarse a la industria, tramitó con el ejercito su salida, por lo que su último rango fue el de teniente. El ejército condicionó su salida a una misión en especifico: desechar una cantidad bárbara de pólvora que estaba en mal estado (por lo que es fácil que estalle). Y cuenta la historia del tiempo que tuvo que ir a Veracruz a tomar un barco de la marina para poder desechar la pólvora seguramente, y de cómo iba sudando frío en cada paso de ese encargo.
 
