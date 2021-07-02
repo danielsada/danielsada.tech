@@ -12,7 +12,7 @@ Algunas personas tienen una urna, otras un sepulcro, otras quieren su nombre tal
 
 > –
 
-Una de las cosas más características de nuestra relación es que siempre nos hablamos en tercera persona: “Señor, ¿cómo está?” – “Bien ¿y usted?” Y siempre fue de cariño, desde que era chiquito hasta que fuimos grandes. El ocasional chaparro se escuchaba de vez en cuando, pero siempre en tercera persona. 
+Una de las cosas más características de nuestra relación es que siempre nos hablamos en formal: “Señor, ¿cómo está?” – “Bien ¿y usted?” Y siempre fue de cariño, desde que era chiquito hasta que fuimos grandes. El ocasional chaparro se escuchaba de vez en cuando, pero siempre en tercera persona. 
 
 > –
 
@@ -40,7 +40,7 @@ Para mí, poder haber aprendido un poco de todo esto, leer, escuchar y procesar 
 
 > –
 
-En la universidad de California, conoció a Carl Rogers, el padre de la Gestalt, así como a Osho (¡el del documental de Netflix Wild West Country jaja!), que en ese momento daba conferencias en University of California.
+En la universidad de California, conoció a Carl Rogers, el padre de la Gestalt, así como a Osho (¡el del documental de Netflix Wild Wild Country jaja!), que en ese momento daba conferencias en University of California.
 
 > –
 
