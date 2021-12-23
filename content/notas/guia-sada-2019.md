@@ -1,13 +1,13 @@
 +++
-title = "¿Siempre te es muy confuso comprar computadora? Guía Sada 2019 para comprar computadoras."
-description = "Guia de Daniel Sada 2019 para comprar computadora. Cuando sales de la tienda, y no estás seguro si hiciste una buena decisión."
+title = "¿Siempre te es muy confuso comprar computadora? Guía Sada 2021 para comprar computadoras."
+description = "Guia de Daniel Sada 2021 para comprar computadora. Cuando sales de la tienda, y no estás seguro si hiciste una buena decisión."
 tags = [
     "spanish",
     "notas",
     "computadoras",
-    "como","comprar","laptop","guia","sada", "guia sada", "2019"
+    "como","comprar","laptop","guia","sada", "guia sada", "2021"
 ]
-date = "2019-01-14"
+date = "2021-01-14"
 categories = [
     "spanish",
     "notas",
@@ -30,7 +30,7 @@ La versión corta: cómprate un disco duro de estado sólido. Evita comprar disc
 > Disco duro > Procesador > RAM > Video > Pantalla > Puertos 
 
 # 1. Disco duro
- La gente no se imagina esto, pero lo primordial para comprar una computadora en 2019, es **escoger un buen disco duro**. 
+ La gente no se imagina esto, pero lo primordial para comprar una computadora en 2021, es **escoger un buen disco duro**. 
 
 Hay dos tipos de discos duros, los magnéticos o de platos (comúnmente abreviados HDD), y los de estado sólido (comúnmente abreviados SSD).
 
@@ -55,7 +55,7 @@ El siguiente elemento más importante. Para el procesador, tienes que decidir co
 
 La verdad, los procesadores AMD están saliendo excelentes este año, en este caso es muy fácil escoger un procesador AMD. Los núcleos y los modelos, y la velocidad, están bien especificados, y solo tienen que escoger el número más grande.
 
-Existen tres procesadores **AMD para escoger, Ryzen 3, Ryzen 5 y Ryzen 7.** Escojan el más alto que les dé su presupuesto y estarán en excelentes manos con AMD. Felicidades AMD.
+Existen tres procesadores **AMD para escoger, Ryzen 3, Ryzen 5,  Ryzen 7 y Ryzen 9** Escojan el más alto que les dé su presupuesto y estarán en excelentes manos con AMD. Felicidades AMD.
 
 > Tip de experto: Con un procesador AMD, escoger es muy fácil, compra el **procesador Ryzen** más alto que tu presupuesto permita. Tendrás poder y de sobra. No hay confusiones ni problemas.
 
