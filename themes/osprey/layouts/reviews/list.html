@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "header.html" . }}
+
+<body>
+  {{ partial "body-top" . }}
+  <main>
+    <section class="blog" id="blog">
+      <div class="container">
+        <div class="row center-xs">
+          <div class="col-xs-12">
+            <h1>{{ humanize .Type }}</h1>
+          </div>
+        </div>
+        <div class="row">
+          {{ range .Data.Pages }}
+          <div class="col-xs-12 posts-list">
+            
+            <article>
+              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+              
+              <div class=sub-header>
+                {{.Description}}
+                <br><br>
+                {{range (seq .Params.stars)}}
+                ⭐️
+                {{end}}
+                {{ if eq (printf "%T" .Params.stars) "float64" }}
+                &#189;
+                {{ end }} ·
+                {{.Params.stars}} stars
+                <br>
+                Last Modified {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }}
+              </div>
+            </article>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+    {{ partial "mailinglist.html" . }}
+
+
+  </main>
+  {{ partial "footer.html" . }}
+  {{ partial "body-bottom" . }}
+</body>
+
+</html>

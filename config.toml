@@ -39,17 +39,17 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
     url  = "/#about"
     weight = 1
     color = "#aaff00"
-# [[menu.main]]
-#     name = "Work"
-#     url  = "/#work"
-#     weight = 2
 [[menu.main]]
     name = "Blog"
     url  = "/#blog"
-    weight = 3
+    weight = 2
 [[menu.main]]
     name = "Notas"
     url  = "/#notas"
+    weight = 3
+[[menu.main]]
+    name = "Reviews"
+    url  = "/reviews"
     weight = 4
 [[menu.main]]
     name = "Contact"
