@@ -14,7 +14,7 @@ categories = [
 ]
 +++
 
-Five years ago (how fast time flies) [I made a blog post about programs that have saved me 100+ hours](https://danielsada.tech/blog/programs-saved-me-100-hours/), after uploading my article to [HackerNews](https://news.ycombinator.com/) a lot of people responded with their favorite programs that have saved them 100+ hours. I went out and took the best ones and compiled them into this list.
+Five years ago (how time flies) [I made a blog post about programs that have saved me 100+ hours](https://danielsada.tech/blog/programs-saved-me-100-hours/), after uploading my article to [HackerNews](https://news.ycombinator.com/) [Thread 1](https://news.ycombinator.com/item?id=13887237) [Thread 2](https://news.ycombinator.com/item?id=22849208) a lot of people responded with their favorite programs that have saved them 100+ hours. I went out and took the best ones and compiled them into this list.
 
 # AutoHotKey
 
@@ -166,6 +166,52 @@ Randall Munroe ([xkcd.com](https://xkcd.com/224/))
 # Beyond Compare
 
 Some [HNers like peapicker](https://news.ycombinator.com/item?id=13896374) and friends of mine (Hi Arturo!) swear by [Beyond Compare](https://www.scootersoftware.com/) which lets you compare [tables, pictures, files, folders, folder structures, hex files, mp3s, and executables](https://www.scootersoftware.com/features.php?zz=features_multifaceted). It's power seems truly limitless.
+
+# Charles Proxy or Fiddler
+For people who don't know about them, [Charles Proxy (OSX)](https://www.charlesproxy.com/) and [Fiddler (Windows)](https://www.telerik.com/download/fiddler) intercept all of your local traffic and allows you to debug it, similar to the Network tab on the browser dev tools. (But even for things that don't have electron!)
+
+As [lintuxvi comments](https://news.ycombinator.com/item?id=22861695): *" Charles Proxy (paid version) No need to insert logging into legacy codebases with frontend, service, and monolithic backend apps while on local. Just load up Charles and reconfigure provider URLs to route through the proxy, add a filter or two, and boom, all comms are visible in one place, easily searchable, exportable, replayable."*
+
+Most of my work would crumble without Fiddler.
+
+# Emmet
+[Emmet](https://emmet.io/) is a plugin for most popular text editors for HTML and CSS developers that lets you speed your workflow.
+
+You can type the following into your editor:
+```
+#page>div.logo+ul#navigation>li*5>a{Item $}
+```
+And hit tab, and Emmet will expand it to:
+```
+<div id="page">
+    <div class="logo"></div>
+    <ul id="navigation">
+        <li><a href="">Item 1</a></li>
+        <li><a href="">Item 2</a></li>
+        <li><a href="">Item 3</a></li>
+        <li><a href="">Item 4</a></li>
+        <li><a href="">Item 5</a></li>
+    </ul>
+</div>
+```
+And save you hours of typing that pesky HTML.
+
+# Winget/Chocolately (Windows) Homebrew (OSX)
+When you come from linux, sometimes you might give apt or pacman for granted. Where would we be without our trusty package managers? [Winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) and [Chocolately](https://chocolatey.org/) (Windows) and [Homebrew](https://brew.sh/) (OSX) let you install packages for your system way faster than trying to find them on the internet.
+
+It's as easy as:
+
+```
+brew install nodejs
+```
+```
+choco install nodejs
+```
+```
+winget install nodejs
+```
+
+To get Node.Js installed in your system and getting started on your task.
 
 # Some extra software of mine
 
