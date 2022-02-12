@@ -217,9 +217,9 @@ To get Node.Js installed in your system and getting started on your task.
 
 Finally, I wanted to list some of the new ones that are saving me hundreds of hours on specific platforms:
 
-# Spectacle on OSX
+# Rectangle on OSX
 
-One of the **most jarring things missing in OSX** is being able to snap windows to the sides or in quarters, similar to what Win + arrow keys does in Windows. [Spectacle](https://www.spectacleapp.com/) does this by providing you shortcuts on OSX to do this.
+One of the **most jarring things missing in OSX** is being able to snap windows to the sides or in quarters, similar to what Win + arrow keys does in Windows. [Rectangle](https://rectangleapp.com/) ~~[Spectacle](https://www.spectacleapp.com/)~~ (Edit: Seems like Spectacle is no longer being developed, [as mentioned by lioeters](https://news.ycombinator.com/item?id=30317246))does this by providing you shortcuts on OSX to do this.
 
 ![](https://www.spectacleapp.com/images/right.jpg)
 
