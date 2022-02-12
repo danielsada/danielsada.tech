@@ -36,8 +36,6 @@ Photobulk lets you resize, watermark, optimize and rename images in bulk, or in 
 
 The same client, not happy that you took 4 hours to do the shenanigans to the images and upload them, goes and asks you to add a palette of 200 colors, given in an php array, to complete the migration of their color palette to javascript.
 
-<iframe src="https://giphy.com/embed/j2xXLmnnN8N2g" width="480" height="192" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/j2xXLmnnN8N2g">via GIPHY</a></p>
-
 Regex is so powerful to create fast changes in massive data, that i've saved countless hours of conversions or friend's tasks that it is worth learning. I never understood the power of regex, until I used it in a text editor. Really amazing.
 
 # 3\. Coda or KomodoIDE
