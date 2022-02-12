@@ -64,7 +64,7 @@ They also mention: "It's also really practical for programs that don't even supp
 # Standard Unix Utils
 
 Most of the comments on HN, mentioned at least one Unix util. And I agree, having a good repertoire of Unix magic spells to become the ultimate Unix wizard can save you (or lose you!) hundreds of hours. 
-> "I'd have to throw most of the standard Unix utils in there: grep, awk, cut, sed, sort, uniq, and of course, vim. Outside of the tech world, people seem to think that grabbing some columns out of a file and rearranging them or pasting them somewhere else is some kind of sorcery."
+> I'd have to throw most of the standard Unix utils in there: grep, awk, cut, sed, sort, uniq, and of course, vim. Outside of the tech world, people seem to think that grabbing some columns out of a file and rearranging them or pasting them somewhere else is some kind of sorcery.
 > -[AdmiralAsshat](https://news.ycombinator.com/item?id=13887932) 
 
 I'm definitely not qualified to give you an explanation of each tool, [which is a good moment to remind my audience that this blog post is under GNU GPL 3.0 and I accept PRs to correct me](https://github.com/danielsada/danielsada.tech) Let's go into it then.
