@@ -168,7 +168,7 @@ Randall Munroe ([xkcd.com](https://xkcd.com/224/))
 Some [HNers like peapicker](https://news.ycombinator.com/item?id=13896374) and friends of mine (Hi Arturo!) swear by [Beyond Compare](https://www.scootersoftware.com/) which lets you compare [tables, pictures, files, folders, folder structures, hex files, mp3s, and executables](https://www.scootersoftware.com/features.php?zz=features_multifaceted). It's power seems truly limitless.
 
 # Charles Proxy or Fiddler
-For people who don't know about them, [Charles Proxy (OSX)](https://www.charlesproxy.com/) and [Fiddler (Windows)](https://www.telerik.com/download/fiddler) intercept all of your local traffic and allows you to debug it, similar to the Network tab on the browser dev tools. (But even for things that don't have electron!)
+For people who don't know about them, [Charles Proxy (macOS)](https://www.charlesproxy.com/) and [Fiddler (Windows)](https://www.telerik.com/download/fiddler)/[Fiddler Everywhere (macOS/etc)](https://www.telerik.com/download/fiddler-everywhere) intercept all of your local traffic and allows you to debug it, similar to the Network tab on the browser dev tools. (But even for things that don't have electron!)
 
 As [lintuxvi comments](https://news.ycombinator.com/item?id=22861695): *" Charles Proxy (paid version) No need to insert logging into legacy codebases with frontend, service, and monolithic backend apps while on local. Just load up Charles and reconfigure provider URLs to route through the proxy, add a filter or two, and boom, all comms are visible in one place, easily searchable, exportable, replayable."*
 
