@@ -1,9 +1,10 @@
 +++
 title = "About me"
-date = "2022-02-10T17:39:21-07:00"
+date = "2023-01-02T17:39:21-07:00"
 draft = false
 
 +++
-Hello! I'm Daniel Sada. I like to write in danielsada.tech. I work on the OneNote Sync and Storage team, where I get to do fun distributed stuff with all the different OneNote clients. I'm specially passionate about improving and having good cultures on teams. I've been lucky to have worked on: OneNote, Microsoft Project Desktop and Server, Chromium edge, Windows 10X, Surface Neo. As well as for eCommerce platforms as QSwimwear, Tommy Hilfiger Mexico, Home Depot Mexico, and Office Depot Mexico. I founded [Sadeira](http://sadeira.com) which was a consulting firm in Mexico that specialized in marketing and software.
+Hello! I'm Daniel Sada. I like to write here. 
+I like to sleep at night knowing [my services are OK](https://danielsada.tech/blog/cloud-services-dos/), I've written blog posts about software that [saves me more than 100 hours of time](https://danielsada.tech/blog/programs-that-have-saved-hn-100hours/) and I used to be a OneNote Services developer. I've tried every coffee shop in a 25 mile radius around my house. I write in English and Spanish. I work at Snowflake improving Developer Productivity.
 
 You can also see my latest conference talk for GitHub in Spanish: [¿Como dormir en las noches teniendo un servicio en la nube?](https://youtu.be/l8bLDR89qHA?t=2153)
