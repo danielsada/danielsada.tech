@@ -1,4 +1,4 @@
-title = "Daniel Sada Caraveo | Sync, Notes & Culture"
+title = "Daniel Sada Caraveo | Developer Productivity & Culture"
 baseURL = "https://danielsada.tech"
 tags = ["portfolio", "developer", "blog", "danielsada", "tec de monterrey", "microsoft"]
 languageCode = "en-US"
@@ -14,7 +14,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use 
 
 [Params]
     ajaxFormspree = true
-    tagline = "Sync, Notes & Culture"
+    tagline = "Developer Productivity & Culture"
     author = "Daniel Sada"
     description = "Software Development Engineer, I work on sync technologies and storage solutions for services that have millions of users. I empower people to be more productive."
     logoBig = "/images/DanielSadaLogo.png"
