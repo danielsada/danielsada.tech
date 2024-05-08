@@ -4,13 +4,10 @@ description = "I like to sleep, but more importantly, I like to sleep while my c
 tags = [
     "cloud services",
     "software engineering",
-    "",
-    "software"
 ]
 date = "2019-11-12"
 categories = [
-    "reflection",
-    "culture"
+    "cloud"
 ]
 +++
 

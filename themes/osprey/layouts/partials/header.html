@@ -28,7 +28,6 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer-when-downgrade">
-  <meta name="generator" content="{{ .Hugo.Generator }}">
   <!-- <base href="{{ .Site.BaseURL }}"> -->
 
   {{ if .Description }}
@@ -71,10 +70,6 @@
   {{ end }}
 
   <link rel="canonical" href="{{ .Permalink }}">
-
-  {{ if .RSSLink }}
-    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
-  {{ end }}
 
   <link rel="stylesheet preload" as="style" href="{{ .Site.BaseURL }}/styles/{{ if .Site.Params.cacheBustCSS }}{{ index .Site.Data.cachedAssets "main.css" }}{{ else }}main.css{{ end }}" type="text/css">
 

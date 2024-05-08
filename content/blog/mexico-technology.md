@@ -2,12 +2,13 @@
 title = "Mexico uses asymmetric encryption for university diplomas and taxes."
 description = "It's really interesting that it is not well known that Mexico uses asymmetric  encryption"
 tags = [
-    "software",
+    "infosec",
     "mexico",
     "asymmetric encription"
 ]
 date = "2020-11-25"
 categories = [
+    "infosec",
 ]
 +++
 

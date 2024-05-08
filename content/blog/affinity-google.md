@@ -2,12 +2,11 @@
 title = "Affinity Designer Google Display Ads Template."
 description = "Have to create a lot of Affinity Designer Display Google Ads? Here's a template for all of them. "
 tags = [
-    "seo",
-    "google",
-    "affinity designer"
+    "design"
 ]
 date = "2020-08-31"
 categories = [
+    "design"
 ]
 +++
 

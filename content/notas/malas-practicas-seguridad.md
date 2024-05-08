@@ -1,12 +1,12 @@
 +++
 title = "Malas prácticas de seguridad en bancos: Banco Santander"
 description = "Cuando los bancos que son muy seguros, ya no lo son tanto."
-tags = [
-    "spanish"
+etiquetas = [
+    "seguridad"
 ]
 date = "2018-12-27"
-categories = [
-    "spanish"
+categorias = [
+    "rants", "seguridad"
 ]
 +++
 

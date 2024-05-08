@@ -7,11 +7,15 @@ theme = "osprey"
 canonifyURLS = true
 googleAnalytics = "UA-43424010-8"
 disqusShortname = "danielsada"
-disableKinds = ["taxonomy", "taxonomyTerm"] # This theme does not currently use "tag" and "category" taxonomies
+[taxonomies]
+    categoria            = 'categorias'
+    category            = 'categories'
+    tags            = 'tags'
+    etiqueta            = 'etiquetas'
 
 [permalinks]
   post = "/:title/"
-
+  categories =  "/:section/:slug"
 [Params]
     ajaxFormspree = true
     tagline = "Developer Productivity & Culture"

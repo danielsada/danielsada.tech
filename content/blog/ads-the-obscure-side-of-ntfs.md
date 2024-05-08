@@ -8,7 +8,6 @@ tags = [
 date = "2018-06-12"
 categories = [
     "infosec",
-    "software",
 ]
 +++
 

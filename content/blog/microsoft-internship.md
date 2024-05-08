@@ -11,8 +11,7 @@ tags = [
 ]
 date = "2016-04-02"
 categories = [
-    "microsoft",
-    "internship",
+    "career",
 ]
 +++
 Being my dream to work for one of the Big 4, since an early age I stated to learn the skill-set I'd need in order to be interviewed in Microsoft. This blog intends to be a little recap of the things you can do to make your  possibility of entering a Big 4, far greater.  

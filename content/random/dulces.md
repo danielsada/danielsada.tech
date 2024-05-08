@@ -2,6 +2,7 @@
 title = "Dulces Mexicanos"
 date = "2022-05-19T17:39:21-07:00"
 draft = false
+categorias = "personal"
 +++
 
 I'm writing here to list some of the mexican candy I've given, as well as allergens and a little bit of context about em.

@@ -5,12 +5,10 @@ aliases = [
 ]
 description = ""
 tags = [
-    "history",
     "stories",
 ]
 date = "2018-01-15"
 categories = [
-    "reflect",
     "stories",
 ]
 +++

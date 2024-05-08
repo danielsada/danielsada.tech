@@ -1,8 +1,7 @@
 +++
 title = "Luis H. Caraveo Rodríguez (1940-2021)"
 description = "In memoriam."
-tags = [
-]
+categorias = ["personal"]
 date = "2021-07-01"
 +++
 

@@ -6,13 +6,9 @@ aliases = [
 description = ""
 tags = [
     "cloud",
-    "on prem",
-    "migrate",
-    "milk-as-a-service",
 ]
 date = "2015-06-04"
 categories = [
-    "cloud",
     "stories",
 ]
 +++

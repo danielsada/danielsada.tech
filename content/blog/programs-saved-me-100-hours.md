@@ -13,7 +13,6 @@ tags = [
 date = "2017-03-15"
 categories = [
     "productivity",
-    "automation",
 ]
 +++
 
