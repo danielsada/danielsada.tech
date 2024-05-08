@@ -2,7 +2,7 @@
 title = "How cynicism can grow or destroy software organizations."
 description = "A reflection on cynicism and how software organizations must be weary on how they approach problems with this."
 tags = [
-    "cynicism",
+    "culture",
     "software engineering",
     "enterprise culture",
     "software"
