@@ -12,10 +12,12 @@ disqusShortname = "danielsada"
     category            = 'categories'
     tags            = 'tags'
     etiqueta            = 'etiquetas'
+    series            = 'series'
 
 [permalinks]
   post = "/:title/"
   categories =  "/:section/:slug"
+  
 [Params]
     ajaxFormspree = true
     tagline = "Developer Productivity & Culture"
@@ -43,10 +45,6 @@ disqusShortname = "danielsada"
     url  = "/#about"
     weight = 1
     color = "#aaff00"
-# [[menu.main]]
-#     name = "Work"
-#     url  = "/#work"
-#     weight = 2
 [[menu.main]]
     name = "Blog"
     url  = "/#blog"
@@ -59,3 +57,34 @@ disqusShortname = "danielsada"
     name = "Contact"
     url  = "/#contact"
     weight = 5
+
+
+[related]
+  includeNewer = false
+  threshold = 10
+  toLower = false
+  [[related.indices]]
+    applyFilter = false
+    cardinalityThreshold = 0
+    name = 'keywords'
+    pattern = ''
+    toLower = false
+    type = 'basic'
+    weight = 10
+  [[related.indices]]
+    applyFilter = false
+    cardinalityThreshold = 0
+    name = 'date'
+    pattern = ''
+    toLower = false
+    type = 'basic'
+    weight = 10
+  [[related.indices]]
+    applyFilter = false
+    cardinalityThreshold = 0
+    name = 'tags'
+    pattern = ''
+    toLower = false
+    type = 'basic'
+    weight = 100
+

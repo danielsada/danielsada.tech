@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+{{ partial "header.html" . }}
+
+<body>
+    {{ partial "body-top" . }}
+    <main>
+
+        <section class="container">
+            <section class="content">
+                <h1>{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}</h1>
+                {{ with .Site.Taxonomies.series }}
+
+                <ul>
+                    {{ range $term, $weightedPages := . }}
+                    <li>
+                        <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+                        <ul>
+                            {{ range $weightedPages }}
+                            <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+                            {{ end }}
+                        </ul>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                {{ end }}
+
+
+                </ul>
+
+            </section>
+            <br>
+            {{ partial "mailinglist.html" . }}
+            {{ partial "disqus" . }}
+        </section>
+
+    </main>
+    {{ partial "footer.html" . }}
+    {{ partial "body-bottom" . }}
+</body>
+
+</html>

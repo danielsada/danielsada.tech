@@ -28,14 +28,21 @@
     {{ partial "body-top" . }}
     <main>
 
+        
       <section class="container">
           <section class="content">
               <h1>{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}</h1>
 
               <div class="sub-header">
                   {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · {{ .ReadingTime }} minute read
-              </div>
 
+                <br>
+                    {{ $taxonomy := "categories" }}{{ $terms := .GetTerms $taxonomy }}{{$n := len $terms }}{{if gt $n 0}}{{ with .GetTerms $taxonomy }}{{ (site.GetPage $taxonomy).LinkTitle }}: {{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>  {{ end }}{{ end }}{{end}}
+                    {{ $taxonomy := "tags" }}{{ $terms := .GetTerms $taxonomy }}{{$n := len $terms }}{{if gt $n 0}}{{ with .GetTerms $taxonomy }}{{ (site.GetPage $taxonomy).LinkTitle }}: {{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>  {{ end }}{{ end }}{{end}}
+                    {{ $taxonomy := "categorias" }}{{ $terms := .GetTerms $taxonomy }}{{$n := len $terms }}{{if gt $n 0}}{{ with .GetTerms $taxonomy }}{{ (site.GetPage $taxonomy).LinkTitle }}: {{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>  {{ end }}{{ end }}{{end}}
+                    {{ $taxonomy := "etiquetas" }}{{ $terms := .GetTerms $taxonomy }}{{$n := len $terms }}{{if gt $n 0}}{{ with .GetTerms $taxonomy }}{{ (site.GetPage $taxonomy).LinkTitle }}: {{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>  {{ end }}{{ end }}{{end}}
+                    {{ $taxonomy := "series" }}{{ $terms := .GetTerms $taxonomy }}{{$n := len $terms }}{{if gt $n 0}}<br/><br/>{{ with .GetTerms $taxonomy }}{{ (site.GetPage $taxonomy).LinkTitle }}: {{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>  {{ end }}{{ end }}{{end}}
+            </div>
               <article class="entry-content">
                   {{ .Content }}
               </article>
@@ -48,12 +55,13 @@
                       <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &raquo;</a>
                   {{ end }}
               </div>
+            <div class="recommended">
+                {{ partial "recomended" .}}
+            </div>
+            {{ partial "mailinglist" . }}
           </section>
-          <br>
-          {{ partial "mailinglist.html" . }}
           {{ partial "disqus" . }}
       </section>
-
     </main>
     {{ partial "footer.html" . }}
     {{ partial "body-bottom" . }}
