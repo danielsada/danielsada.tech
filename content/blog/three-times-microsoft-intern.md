@@ -3,16 +3,10 @@ title = "What I learned after three internships at Microsoft."
 description = "I have interned for Microsoft three times, this is what I learned from it. From Project to OneNote."
 tags = [
     "microsoft",
-    "internship",
-    "intern",
-    "three"
 ]
 date = "2018-06-23"
 categories = [
-    "microsoft",
-    "internship",
-    "intern",
-    "three"
+    "carreer"
 ]
 +++
 

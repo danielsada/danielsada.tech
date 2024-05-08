@@ -5,12 +5,13 @@ aliases = [
 ]
 description = ""
 tags = [
-    "node",
+    "node_modules",
     "rsync",  
+    "javascript",  
 ]
 date = "2018-01-23"
 categories = [
-    "software",
+    "how-to",
 ]
 +++
 

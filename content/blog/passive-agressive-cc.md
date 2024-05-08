@@ -6,13 +6,11 @@ aliases = [
 description = "A really nice quote on passive agressive CC'ing"
 tags = [
     "managers",
-    "passive agressive",
-    "cc",
+    "enterprise"
 ]
 date = "2016-04-16"
 categories = [
-    "reddit",
-    "stories",
+    "culture"
 ]
 +++
 

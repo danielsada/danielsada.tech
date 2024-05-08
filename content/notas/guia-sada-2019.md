@@ -1,17 +1,12 @@
 +++
 title = "¿Siempre te es muy confuso comprar computadora? Guía Sada 2021 para comprar computadoras."
 description = "Guia de Daniel Sada 2021 para comprar computadora. Cuando sales de la tienda, y no estás seguro si hiciste una buena decisión."
-tags = [
-    "spanish",
-    "notas",
-    "computadoras",
-    "como","comprar","laptop","guia","sada", "guia sada", "2021"
+etiquetas = [
+    "hardware",
 ]
 date = "2021-01-14"
-categories = [
-    "spanish",
-    "notas",
-    "computadoras"
+categorias = [
+    "consejos",
 ]
 +++
 

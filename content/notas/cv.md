@@ -1,15 +1,12 @@
 +++
 title = "¿Cómo hacer mi CV para una empresa multinacional?"
 description = "Ahora que vivimos en una sociedad global, hay ciertas caracteristicas de tu curriculum que hay que actualizar."
-tags = [
-    "curriculum",
-    "vitae",
-    "español",
-    "carrera"
+etiquetas = [
+    "curriculum vitae",
 ]
 date = "2020-02-22"
-categories = [
-    "notas",
+categorias = [
+    "consejos",
 ]
 +++
 

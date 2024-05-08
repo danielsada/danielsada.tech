@@ -1,12 +1,12 @@
 +++
 title = "Telegram vs Whatsapp vs Signal"
 description = "Soy un usuario promedio, ¿Cuál debería usar?"
-tags = [
-    "spanish"
+etiquetas = [
+    "seguridad"
 ]
-date = "2021-1-12"
-categories = [
-    "spanish"
+date = "2021-01-12"
+categorias = [
+    "seguridad"
 ]
 +++
 

@@ -7,12 +7,9 @@ aliases = [
 description = ""
 tags = [
     "clients",
-    "on prem",
-    "bofh",
 ]
 date = "2016-01-05"
 categories = [
-    "reflect",
     "stories",
 ]
 +++
