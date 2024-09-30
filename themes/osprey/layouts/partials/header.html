@@ -81,7 +81,7 @@
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   {{ end }}
 
-  {{ if .Site.GoogleAnalytics }}
+  {{ if .Site.Config.Services.GoogleAnalytics.ID }}
     {{ template "_internal/google_analytics.html" . }}
   {{ end }}
 </head>

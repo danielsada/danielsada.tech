@@ -5,8 +5,11 @@ languageCode = "en-US"
 config = "config.toml"
 theme = "osprey"
 canonifyURLS = true
-googleAnalytics = "UA-43424010-8"
-disqusShortname = "danielsada"
+[serivces]
+    [GoogleAnalytics]
+        ID = "UA-43424010-8"
+    [Discus]
+        Shortname = "danielsada" 
 [taxonomies]
     categoria            = 'categorias'
     category            = 'categories'
