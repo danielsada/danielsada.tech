@@ -72,7 +72,7 @@
   <link rel="canonical" href="{{ .Permalink }}">
 
   <link rel="stylesheet preload" as="style" href="{{ .Site.BaseURL }}/styles/{{ if .Site.Params.cacheBustCSS }}{{ index .Site.Data.cachedAssets "main.css" }}{{ else }}main.css{{ end }}" type="text/css">
-
+  <link rel="stylesheet" as="style" href="{{.Site.BaseURL}}styles/extra-styles.css" type="text/css">
   {{ if .Site.Params.customCSS }}
     {{ partial "css.html" . }}
   {{ end }}

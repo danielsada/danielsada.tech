@@ -10,8 +10,9 @@ categories = [
     "travel",
 ]
 +++
-I was born and raised in Mexico City, and I often get the question of what are my favorite places or plans t## Wow 
-o visit in Mexico City I enjoy that are compatible with foreigners and shine a light on some of the things Mexico has to offer.
+I was born and raised in Mexico City, and I often get the question of what are my favorite places or plans to visit in Mexico City I enjoy that are compatible with foreigners and shine a light on some of the things Mexico has to offer.
+
+
 
 ### Recommended Day 1 - Zocalo and Bellas Artes:
 

@@ -1,0 +1,65 @@
+/*
+Usage:
+
+Hello
+{.bubble .left}
+
+Hello
+{.bubble .right}
+
+How are you doing? This is some larger text that needs more space.
+{.bubble .p .left}
+
+Yes
+{.bubble .right}
+
+✔️ Sent at 2:55
+{.addticks}
+
+*/
+
+.bubble{
+    /* ios like bubble */
+    border-radius: 10px;
+    padding: 10px 50px;
+    display: block;
+    word-wrap: break-word;
+    line-height: 25px;
+    border-radius: 25px;
+    width: 100%;
+    font: Helvetica, Arial, sans-serif;
+}
+
+
+.left{
+    /* ios like bubble */
+    background-color: #e2e2e2;
+    float: left;
+    margin: 0 100% 0 0;
+    max-width: fit-content;
+    min-width: 100px;
+    text-align: left;
+}
+.p{
+    min-width: 300px;
+}
+.right{
+    /* ios like bubble */
+    background-color: #0b93f6;
+    color: white;
+    float: right;
+    text-align: right;
+    max-width: fit-content;
+    min-width: 100px;
+    margin-left: 100%;
+    margin: 0  0 0 100%;
+}
+.addticks{
+    display: block;
+    word-wrap: normal;
+    font-size: 10px;
+    color: black;
+    clear: both;
+    margin: 0  0 0 calc(100% - 90px);
+    width: 100px;
+}

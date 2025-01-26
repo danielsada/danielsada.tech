@@ -5,6 +5,7 @@ languageCode = "en-US"
 config = "config.toml"
 theme = "osprey"
 canonifyURLS = true
+ignoreLogs = ['warning-goldmark-raw-html']
 [serivces]
     [GoogleAnalytics]
         ID = "UA-43424010-8"
@@ -91,3 +92,12 @@ canonifyURLS = true
     type = 'basic'
     weight = 100
 
+
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  
