@@ -41,7 +41,7 @@ Yes
     text-align: left;
 }
 .p{
-    min-width: 300px;
+    min-width: 260px !important;
 }
 .right{
     /* ios like bubble */
@@ -50,7 +50,7 @@ Yes
     float: right;
     text-align: right;
     max-width: fit-content;
-    min-width: 100px;
+    min-width: 120px;
     margin-left: 100%;
     margin: 0  0 0 100%;
 }
