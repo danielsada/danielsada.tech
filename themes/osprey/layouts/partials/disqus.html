@@ -1,22 +1,17 @@
-<section class="disqus">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-    this.page.url = "{{ .Permalink }}"; 
-    this.page.identifier = "{{ .RelPermalink}}"; 
-    };
+<style>
+  iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+  }
+</style>
 
-    (function() {
-      // Don't ever inject Disqus on localhost--it creates unwanted
-      // discussions from 'localhost:1313' on your Disqus account...
-      if (window.location.hostname == "localhost"){
-        return;
-      }
-      var d = document, s = d.createElement('script');
-      s.src = 'https://danielsada.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view comments powered by <a href="http://disqus.com/?ref_noscript">Disqus</a>.</noscript>
+<section id="cusdis_thread"
+data-host="https://cusdis.com"
+data-app-id="42130075-8b57-4391-9b4b-2b5bc95bc7a6"
+data-page-id="{{ .RelPermalink }}"
+data-page-url="{{ .Permalink }}"
+data-page-title="{{ .Title }}" style="width: 100%; height: 100%; min-height: 300px;"></section>
+<script src="https://cusdis.com/js/cusdis.es.js"></script>
+
 </section>
