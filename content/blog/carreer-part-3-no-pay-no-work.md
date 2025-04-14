@@ -39,7 +39,7 @@ Walking away wasn't easy. They gave me my first shot as a professional coder. I 
 
 Before the payment drama, this had been an objectively awesome job for a 17 year-old. This was a company that did AR, and other super cool projects for the time. When I started, this company focused in a project for one of Mexico's efforts for renewable energy. A page for companies to apply for their energy savings grants for commercial builders. 
 
-If companies met the requisites, they would be awarded money which had to be closely tracked with reciepts/invoices and other kinds of controls. This meant we had to do a lot of stuff: 
+If companies met the requisites, they would be awarded money which had to be closely tracked with receipts/invoices and other kinds of controls. This meant we had to do a lot of stuff: 
 - Complex business rules that changed frequently
 - Multi-stage application processes with interdependent fields
 - Calculation-heavy rebate formulas
