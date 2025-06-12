@@ -142,7 +142,7 @@ On a personal side, I do think people worked faster in Git and were more product
 
 **Plan for rollback from day one.** Confidence to fail fast prevents catastrophic failures.
 
-**Measure satisfaction alongside technical metrics.** Productivity is as much about perception as performance. [Read my blog about how developer productivty is 99% perception.](https://danielsada.tech/blog/dev-productivity-is-99-perception/)
+**Measure satisfaction alongside technical metrics.** Productivity is as much about perception as performance. [Read my blog about how developer productivity is 99% perception.](https://danielsada.tech/blog/dev-productivity-is-99-perception/)
 
 > The real migration were the friends we made along the way.
 
