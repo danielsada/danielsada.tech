@@ -23,15 +23,15 @@ For many strong performing engineers, this was an attractive trade-off. You migh
 
 According to layoffs.fyi, Microsoft has laid off around 30,000 people in the last two years. To put this in context: that's roughly 13% of Microsoft's workforce, and while the entire tech industry saw significant layoffs (Meta, Google, Amazon all made major cuts), Microsoft's situation stands out because of their historical commitment to employment stability. Many people are confused about this departure from Microsoft's traditional approach. As a former employee, I want to share my perspective on why this shift was almost **expected**. While economic factors certainly contributed, Microsoft's performance management challenges made layoffs a more attractive option than addressing individual performance issues systematically.
 
-Microsoft's performance management has always been atrocious on both sides of the ruthlessness/leniency scale. In the Ballmer era, the forced stack ranking of employees—essentially a system where managers had to grade their teams on a curve, with a predetermined percentage forced into "underperforming" categories regardless of actual performance—caused people to live in this fear environment. Even if you had a team of stellar performers, **someone had to be labeled as bottom 10%**. This led to internal competition, backstabbing, and people gaming the system by avoiding high-performing teams or sabotaging colleagues. 
+Microsoft's performance management has always been atrocious on both sides of the ruthlessness/leniency scale. In the Ballmer era, the forced stack ranking of employees. Essentially a system where managers had to grade their teams on a curve, with a predetermined percentage forced into "underperforming" categories regardless of actual performance, caused people to live in this fear environment. Even if you had a team of stellar performers, **someone had to be labeled as bottom 10%**. This led to internal competition, backstabbing, and people gaming the system by avoiding high-performing teams or sabotaging colleagues. 
 
-This caused great attrition and unfavorable business outcomes for Microsoft.  The system was so universally hated that when Satya Nadella became CEO in 2014, eliminating stack ranking was one of his first major moves. The opposite became true—it seems managers had to fight HR to get someone on their team out. 
+This caused great attrition and unfavorable business outcomes for Microsoft.  The system was so universally hated that when Satya Nadella became CEO in 2014, eliminating stack ranking was one of his first major moves. The opposite became true: it seems managers had to fight HR to get someone on their team out. 
 
 I personally saw the bad side of this. I had a co-worker who had *no productive outcomes for a year*, and it took **a year of continued documentation** to get him fired. This also caused a downstream effect on team morale, as he was still getting rewards and a salary similar to other people.
 
 ## Great performance = mediocre pay?
 
-Sadly, one of the tradeoffs you have to understand is that at the same level, over the same year, the difference in pay between someone at the highest level of performance versus someone who passably does their job **does not create enough differentiation** for most levels lower than principal—barring random exceptional one-off stock grants (which also don't help retention, due to their randomness). This causes the system to not be a meritocracy, with *"passing by" being the default*. 
+Sadly, one of the tradeoffs you have to understand is that at the same level, over the same year, the difference in pay between someone at the highest level of performance versus someone who passably does their job **does not create enough differentiation** for most levels lower than principal, barring random exceptional one-off stock grants (which also don't help retention, due to their randomness). This causes the system to not be a meritocracy, with *"passing by" being the default*. 
 
 ## Limitations and Context
 
@@ -41,11 +41,11 @@ However, these patterns were consistent enough across my tenure, conversations w
 
 ## At will employment
 
-For me, coming from outside the US where employment contracts offer significantly more protection, at-will employment was a jarring concept. In most countries, terminating an employee requires cause, documentation, and often significant severance payments. Employment contracts typically specify notice periods—sometimes months—giving both parties time to plan transitions.
+For me, coming from outside the US where employment contracts offer significantly more protection, at-will employment was a jarring concept. In most countries, terminating an employee requires cause, documentation, and often significant severance payments. Employment contracts typically specify notice periods — sometimes months — giving both parties time to plan transitions.
 
 At-will employment means your employer can terminate you for any reason (or no reason) at any time, as long as it's not discriminatory. **No advance notice required. No severance guaranteed.** One day you're planning your next sprint, the next day you're cleaning out your desk.
 
-This reality requires a completely different approach to financial and mental planning. You can't just budget for your monthly expenses—you need to maintain an emergency fund that can cover 6+ months of unemployment. You can't get too comfortable or assume job security based on performance alone. You need to constantly network, keep your resume updated, and maintain relationships outside your current company.
+This reality requires a completely different approach to financial and mental planning. You can't just budget for your monthly expenses, you need to maintain an emergency fund that can cover 6+ months of unemployment. You can't get too comfortable or assume job security based on performance alone. You need to constantly network, keep your resume updated, and maintain relationships outside your current company.
 
 ## The Layoff Paradox: Why It's "Easier" Than Firing
 
@@ -55,17 +55,17 @@ To fire someone for performance, managers must document **everything** meticulou
 
 The legal risk is real. Even in at-will states, wrongful termination lawsuits can be expensive and time-consuming. Companies worry about discrimination claims, especially if the fired employee belongs to a protected class. Better to have an ironclad documentation trail than face a costly legal battle.
 
-**Layoffs, paradoxically, are "cleaner."** When you eliminate entire roles or teams, you sidestep the performance documentation requirements. You're not firing someone for being bad at their job—you're eliminating the job itself. The legal risk is minimal, and you can even look compassionate by offering severance packages and transition support. Employees can even claim unemployment and keep their income for months!
+**Layoffs, paradoxically, are "cleaner."** When you eliminate entire roles or teams, you sidestep the performance documentation requirements. You're not firing someone for being bad at their job, you're eliminating the job itself. The legal risk is minimal, and you can even look compassionate by offering severance packages and transition support. Employees can even claim unemployment and keep their income for months!
 
 For VPs and executives, layoffs solve multiple problems at once: they can eliminate underperformers without the messy documentation process, reduce headcount to hit financial targets, and maintain the narrative that they're making "tough but strategic decisions" rather than admitting they failed to manage performance effectively.
 
 The bitter irony? Getting laid off is often **better for the employee** than being fired. Layoffs typically come with severance, extended healthcare, and the ability to say you were "affected by restructuring" rather than "terminated for cause." You get more time to find your next job, and your professional reputation remains intact.
 
-This creates a system where companies find it easier to fire **good employees in bulk** than to fire **bad employees individually**. The legal protections meant to prevent arbitrary termination end up enabling exactly that—*just at scale*.
+This creates a system where companies find it easier to fire **good employees in bulk** than to fire **bad employees individually**. The legal protections meant to prevent arbitrary termination end up enabling exactly that, *just at scale*.
 
 **For visa workers, the math is even more stark.** When fired for performance, H-1B and other visa holders typically have just 60 days to find new employment or leave the country. But when laid off, they get severance time *plus* the 60-day grace period, often giving them 3-6 months to secure new sponsorship. For someone whose legal status depends on employment, layoffs are significantly more humane than performance-based termination.
 
-**The AI efficiency narrative** provides the perfect cover for these layoffs. Companies can frame headcount reduction as "leveraging AI to increase productivity" or "optimizing for the future of work." It sounds forward-thinking and strategic rather than admitting they failed to manage performance or simply want to cut costs. Whether AI actually replaces the laid-off workers' productivity is *rarely measured or proven*—but the narrative sells well to investors and the media.
+**The AI efficiency narrative** provides the perfect cover for these layoffs. Companies can frame headcount reduction as "leveraging AI to increase productivity" or "optimizing for the future of work." It sounds forward-thinking and strategic rather than admitting they failed to manage performance or simply want to cut costs. Whether AI actually replaces the laid-off workers' productivity is *rarely measured or proven*, but the narrative sells well to investors and the media.
 
 ## The pact is broken
 
