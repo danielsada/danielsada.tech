@@ -35,7 +35,7 @@ This stuck with me big time: being tech-savvy just isn't enough. Moving from for
 
 ## Interviews
 
-Jumping a little bit into the future to my senior engineer interviews, one of my them was about presenting to a team something I was passionate about. Not only was I being interviewed, but I also had to present to a room. I got the job, not in small part, by that presentation.
+Jumping a little bit into the future to my senior engineer interviews, one of them was about presenting to a team something I was passionate about. Not only was I being interviewed, but I also had to present to a room. I got the job, not in small part, by that presentation.
 
 It was about the migration from SourceDepot (Perforce) to Git that we went through in Microsoft Office OneNote. How we had to address the concerns of the users, how our feedback mechanism worked, training, opt-in phases, documents, etc. A big part of my job today is presenting strategy, tips, and recommendations to both senior leadership and my coworkers. 
 
