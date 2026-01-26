@@ -1,6 +1,6 @@
 +++
 title = "AI Lazyslop, and Personal Responsibility"
-description = "A love letter on owning AI-generated code and the importance of personal accountability in code reviews"
+description = "A love letter on owning AI generated code and the importance of personal accountability in code reviews"
 tags = [
     "ai",
     "code review",
@@ -69,7 +69,7 @@ Well, I'd like to say there was a happy story, but Mike evolved to the semi-lazy
 
 ## AI Disclosure
 
-I used claude to help me "Help me review my blog post for style and grammar". It catched the following:
+I used claude to help me "Help me review my blog post for style and grammar". It caught the following:
 
 ```
 Line 18: Missing space after "immediately"
@@ -87,6 +87,5 @@ Should be: rules of engagement
 Line 46: Comma splice
 Current: Even if you, personally, don't use AI; There is a high probability
 Should be: Even if you, personally, don't use AI, there is a high probability (lowercase "there" after semicolon, or use period)
-
 Line 51: The sentence is a bit long. Consider: I will own my code and the LLM outputs I decide to accept. I will disclose my use of AI.
 ```
