@@ -53,5 +53,7 @@ var toggle = function(el) {
   });
 
   // Highlight.js initialization
-  hljs.initHighlightingOnLoad();
+  if (typeof hljs !== 'undefined') {
+    hljs.highlightAll();
+  }
 }());
