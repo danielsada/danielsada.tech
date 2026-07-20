@@ -51,6 +51,8 @@ These people are much closer to the ALGOL side of the table. They think deeply a
 
 For example, Richard detailed how, over the last 25 years of developing SQLite, the project reached 100% MC/DC coverage and adopted profile-guided fuzzing, query fuzzing, mutation testing, and now AI-assisted bug testing. MC/DC, or modified condition/decision coverage, verifies that each condition in a decision can independently affect its outcome. Thanks to the extraordinary care he put into this software, vibe coders can now enjoy a `.db` file powering their vibe-coded Claude dashboards.
 
+![](/images/blog/richard-hipp-pic.png)
+
 **Every simple interface rests on an enormous amount of complexity that somebody else had to understand.** COBOL users could ignore machine instructions because compiler designers could not. A developer can ask an AI agent to create a database, but somebody still has to make SQLite reliable.
 
 This is the part missing from most arguments about whether AI will replace programmers. The future does not belong exclusively to people who understand every layer, or exclusively to people who can produce software without understanding any layer. Computing has always needed both.
