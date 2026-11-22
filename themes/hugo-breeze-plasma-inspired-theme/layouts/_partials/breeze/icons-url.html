@@ -1,0 +1,12 @@
+{{- /* Builds one SVG sprite from every assets/breeze/icons/*.svg (theme + site; a site file with the same
+  name replaces the theme's), fingerprints it, and returns its URL. Used through partialCached. */ -}}
+{{- $body := "" -}}
+{{- range resources.Match "breeze/icons/*.svg" -}}
+  {{- $id := path.BaseName .Name -}}
+  {{- $svg := .Content | replaceRE ` xmlns="[^"]*"` "" | strings.TrimSpace -}}
+  {{- $svg = replaceRE `^<svg` (printf `<symbol id="%s"` $id) $svg -}}
+  {{- $svg = replaceRE `</svg>$` "</symbol>" $svg -}}
+  {{- $body = print $body $svg -}}
+{{- end -}}
+{{- $sprite := resources.FromString "breeze/icons.svg" (print `<svg xmlns="http://www.w3.org/2000/svg">` $body `</svg>`) | fingerprint -}}
+{{- return $sprite.RelPermalink -}}

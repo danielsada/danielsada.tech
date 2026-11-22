@@ -1,0 +1,201 @@
+# UI strings for the Breeze Plasma theme. Override any of them in your site's i18n/en.toml.
+# Strings containing %s / %d are also used by script.js (filled in the browser).
+
+[skip_to_content]
+other = "Skip to content"
+[menu]
+other = "Menu"
+[close_menu]
+other = "Close menu"
+[site_navigation]
+other = "Site navigation"
+[places]
+other = "Places"
+[elsewhere]
+other = "Elsewhere"
+[home]
+other = "Home"
+[rss_feed]
+other = "RSS feed"
+[on_this_page]
+other = "On this page"
+[breadcrumb]
+other = "Breadcrumb"
+
+# Archive window
+[all_posts]
+other = "All posts"
+[show]
+other = "Show"
+[go]
+other = "Go →"
+[show_posts]
+other = "Show posts"
+[tags]
+other = "Tags"
+[all_tags]
+other = "All tags →"
+[years]
+other = "Years"
+[filter_posts]
+other = "Filter posts"
+[filter_placeholder]
+other = "Filter by title or tag…"
+[newest_first]
+other = "Newest first"
+[oldest_first]
+other = "Oldest first"
+[clear_filter]
+other = "Clear filter"
+[no_match]
+other = "No posts match."
+[show_all_posts]
+other = "Show all posts"
+[col_name]
+other = "Name"
+[col_date]
+other = "Date"
+[col_tags]
+other = "Tags"
+[caption_posts]
+other = "Posts grouped by year"
+[posts_count]
+one = "{{ .Count }} post"
+other = "{{ .Count }} posts"
+[js_post]
+other = "%d post"
+[js_posts]
+other = "%d posts"
+[js_tagged]
+other = "tagged %s"
+[js_tagged_title]
+other = "Tagged: %s"
+[js_from]
+other = "from %s"
+[js_posts_from]
+other = "Posts from %s"
+[js_matching]
+other = "matching “%s”"
+[series]
+other = "Series"
+[series_part]
+other = "Part {{ .Part }} of {{ .Total }}"
+[parts_count]
+other = "{{ .Title }} ({{ .Count }} parts)"
+[section_count]
+other = "{{ .Title }} ({{ .Count }})"
+
+# Taxonomy pages
+[col_term]
+other = "Name"
+[col_count]
+other = "Posts"
+[terms_count]
+one = "{{ .Count }} term"
+other = "{{ .Count }} terms"
+
+# Posts
+[back_to]
+other = "← {{ .Title }}"
+[min_read]
+one = "{{ .Count }} min read"
+other = "{{ .Count }} min read"
+[tagged]
+other = "Tagged"
+[more_posts]
+other = "More posts"
+[older_post]
+other = "← Older post"
+[newer_post]
+other = "Newer post →"
+[prev_in_series]
+other = "← Previous in series"
+[next_in_series]
+other = "Next in series →"
+[written_by]
+other = "Written by {{ .Name }}."
+[say_hi_at]
+other = "Say hi at"
+[link_to_section]
+other = "Link to this section"
+
+# Home
+[hi]
+other = "Hi, I’m {{ .Name }}."
+[latest_posts]
+other = "Latest posts"
+[all_posts_arrow]
+other = "All posts →"
+[more_writing]
+other = "More writing"
+[side_projects]
+other = "Side projects"
+[all_projects_arrow]
+other = "All projects →"
+[latest_talk]
+other = "Latest talk"
+[companion_post]
+other = "Companion post:"
+[see_all]
+other = "See all ({{ .Count }}) →"
+[series_heading]
+other = "Series"
+[parts]
+one = "{{ .Count }} part"
+other = "{{ .Count }} parts"
+[all_projects_count]
+other = "All projects ({{ .Count }}) →"
+
+# Video facade
+[play]
+other = "Play: {{ .Title }}"
+[play_duration]
+other = "Play: {{ .Title }} ({{ .Duration }})"
+[video_suffix]
+other = "(YouTube video)"
+
+# Projects
+[projects]
+other = "Projects"
+[col_project]
+other = "Project"
+[col_what]
+other = "What it is"
+[col_stack]
+other = "Stack"
+[col_links]
+other = "Links"
+[open]
+other = "Open"
+[how_built]
+other = "How I built it →"
+[since]
+other = "Since {{ .Year }}"
+[projects_count]
+one = "{{ .Count }} project"
+other = "{{ .Count }} projects"
+[caption_projects]
+other = "Projects, grouped by status"
+[in_listed_order]
+other = "Newest first"
+
+# About
+[say_hi]
+other = "Say hi"
+
+# Dates (used for sections written in this language on a site in another language;
+# the site's own language uses params.dates and Hugo's localized month names)
+[date_short]
+other = "2 Jan 2006"
+[date_long]
+other = "2 January 2006"
+[months]
+other = "January,February,March,April,May,June,July,August,September,October,November,December"
+[months_short]
+other = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"
+
+# 404
+[not_found_title]
+other = "Page not found"
+[not_found_text]
+other = "That page doesn’t exist (any more). Try the archive, or go back home."

@@ -1,0 +1,69 @@
+/* danielsada.tech additions to the Breeze Plasma theme (appended to its stylesheet).
+
+   Chat bubbles, written with Goldmark block attributes:
+     Hello
+     {.bubble .left}
+
+     How are you doing? This is some larger text that needs more space.
+     {.bubble .p .right}
+
+     ✔️ Sent at 2:55
+     {.addticks}
+*/
+
+.prose .bubble {
+  display: block;
+  width: fit-content;
+  min-width: 6rem;
+  max-width: 85%;
+  margin: 0 0 .6em;
+  padding: .55em 1.1em;
+  border-radius: 1.25em;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.prose .bubble.p { min-width: min(16rem, 85%); }
+.prose .bubble.left {
+  margin-right: auto;
+  background: light-dark(#e2e2e2, #3a3f44);
+  color: var(--text);
+}
+.prose .bubble.right {
+  margin-left: auto;
+  background: #0b6fc4;
+  color: #fff;
+  text-align: right;
+}
+.prose .bubble + :not(.bubble) { margin-top: 1.4em; }
+.prose .addticks {
+  margin: -.3em 0 1em auto;
+  width: fit-content;
+  font-family: var(--sans);
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+/* Newsletter signup at the end of posts (layouts/_partials/hooks/post-end.html). */
+.newsletter { padding-top: 20px; border-top: 1px solid var(--line); }
+.newsletter h2 { margin: 0 0 6px; font-size: 1.0625rem; }
+.newsletter p { margin: 0 0 12px; color: var(--muted); }
+.newsletter form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.newsletter input[type="email"] {
+  flex: 1 1 14rem;
+  max-width: 22rem;
+  min-width: 0;
+  height: 2.25rem;
+  padding: 0 12px;
+  border: 1px solid var(--field);
+  border-radius: 7px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+}
+.newsletter input[type="email"]::placeholder { color: var(--muted); opacity: 1; }
+.newsletter .tool { height: 2.25rem; }
+.newsletter .tool:disabled { opacity: .6; cursor: progress; }
+.newsletter .newsletter__status { flex-basis: 100%; margin: 0; color: var(--text); }
+.newsletter .newsletter__status:empty { display: none; }

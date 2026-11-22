@@ -1,0 +1,117 @@
+{{- /* A post: back link, title, meta (date · reading time · series part), lead, inline TOC (mobile), prose,
+  tags, series / older / newer navigation, byline. */ -}}
+{{- $p := . -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $tr := dict "lang" $L.name -}}
+{{- $cfg := site.Params.post | default (dict) -}}
+{{- $dates := site.Params.dates | default (dict) -}}
+{{- $long := $dates.long | default "2 January 2006" -}}
+{{- $acfg := site.Params.archive | default (dict) -}}
+{{- $tax := $acfg.taxonomy | default "tags" -}}
+{{- $sec := partialCached "breeze/section-info.html" .Section .Section -}}
+{{- $archive := partial "breeze/archive-page.html" . -}}
+{{- $series := partial "breeze/series.html" . -}}
+{{- $toc := partial "breeze/toc.html" . -}}
+
+{{- /* Back link: a section in another language goes back to its own list, everything else to All posts */ -}}
+{{- $back := $archive -}}
+{{- $backLabel := "" -}}
+{{- if or $sec.foreign (not $archive) -}}
+  {{- with $sec.page -}}
+    {{- $back = . -}}
+    {{- $backLabel = .Params.backlabel -}}
+  {{- end -}}
+{{- end -}}
+
+<article class="card paper">
+  <header>
+    {{- with $back }}
+    <a class="back" href="{{ .RelPermalink }}">{{ $backLabel | default (partial "breeze/t.html" (dict "lang" $tr.lang "key" "back_to" "ctx" (dict "Title" .LinkTitle))) }}</a>
+    {{- end }}
+    <h1>{{ .Title }}</h1>
+    <p class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "breeze/date.html" (dict "date" .Date "fmt" $long "lang" $L.name "long" true) }}</time>
+      {{- if ne $cfg.readingtime false }} · {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "min_read" "ctx" .ReadingTime) }}{{ end }}
+      {{- with $series }} · <a href="{{ .term.RelPermalink }}">{{ .term.LinkTitle }}</a>: {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "series_part" "ctx" (dict "Part" (add .index 1) "Total" .total)) }}{{ end }}
+    </p>
+    {{- with .Description }}
+    <p class="lead">{{ . }}</p>
+    {{- end }}
+    {{- with $toc }}
+    <details class="toc">
+      <summary>{{ partial "breeze/icon.html" "toc" }}{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "on_this_page") }}</summary>
+      {{ replace . `<nav id="TableOfContents">` (printf `<nav aria-label="%s">` (partial "breeze/t.html" (dict "lang" $tr.lang "key" "on_this_page") | htmlEscape)) | safeHTML }}
+    </details>
+    {{- end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{- with .GetTerms $tax }}
+  <ul class="tags" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "tags") }}">
+    <li>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "tagged") }}</li>
+    {{- range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+  </ul>
+  {{- end }}
+
+  {{- if ne $cfg.postnav false -}}
+    {{- $links := slice -}}
+    {{- $seen := slice -}}
+    {{- with $series -}}
+      {{- if gt .index 0 -}}
+        {{- $q := index .pages (sub .index 1) -}}
+        {{- $links = $links | append (dict "rel" "prev" "label" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "prev_in_series")) "page" $q) -}}
+        {{- $seen = $seen | append $q.RelPermalink -}}
+      {{- end -}}
+      {{- if lt (add .index 1) .total -}}
+        {{- $q := index .pages (add .index 1) -}}
+        {{- $links = $links | append (dict "rel" "next" "label" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "next_in_series")) "page" $q) -}}
+        {{- $seen = $seen | append $q.RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+    {{- /* chronological neighbours in the same section (ascending by date), when they differ from the series links */ -}}
+    {{- $list := (where site.RegularPages "Section" .Section).ByDate -}}
+    {{- $at := -1 -}}
+    {{- range $i, $q := $list }}{{ if eq $q.RelPermalink $p.RelPermalink }}{{ $at = $i }}{{ end }}{{ end -}}
+    {{- if gt $at 0 -}}
+      {{- $q := index $list (sub $at 1) -}}
+      {{- if not (in $seen $q.RelPermalink) -}}
+        {{- $links = $links | append (dict "rel" "prev" "label" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "older_post")) "page" $q) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if and (ge $at 0) (lt (add $at 1) (len $list)) -}}
+      {{- $q := index $list (add $at 1) -}}
+      {{- if not (in $seen $q.RelPermalink) -}}
+        {{- $links = $links | append (dict "rel" "next" "label" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "newer_post")) "page" $q) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- with $links }}
+  <nav class="post-nav" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "more_posts") }}">
+    {{- range . }}
+    <a href="{{ .page.RelPermalink }}" rel="{{ .rel }}"><small>{{ .label }}</small><b>{{ .page.LinkTitle }}</b></a>
+    {{- end }}
+  </nav>
+    {{- end }}
+  {{- end }}
+
+  {{- /* Extension point (newsletter form, comments…): wrapped only when the hook renders something */ -}}
+  {{- with partial "hooks/post-end.html" . | strings.TrimSpace }}
+  <div class="post-end">{{ . | safeHTML }}</div>
+  {{- end }}
+
+  {{- if ne $cfg.byline false }}
+  {{- $author := site.Params.author | default (dict) }}
+  {{- with $author.name }}
+  <footer class="byline">
+    <p>
+      {{- $who := . | htmlEscape -}}
+      {{- with site.GetPage ($author.page | default "/about") }}{{ $who = printf `<a href="%s">%s</a>` .RelPermalink $who }}{{ end -}}
+      {{- $line := partial "breeze/t.html" (dict "lang" $tr.lang "key" "written_by" "ctx" (dict "Name" "@@NAME@@")) -}}
+      {{ replace (htmlEscape $line) "@@NAME@@" $who | safeHTML }}
+      {{- with $author.email }} {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "say_hi_at") }} <a href="mailto:{{ . }}">{{ . }}</a>.{{ end -}}
+    </p>
+  </footer>
+  {{- end }}
+  {{- end }}
+</article>

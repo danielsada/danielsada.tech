@@ -1,0 +1,17 @@
+{{- /* The series a page belongs to (first term of params.series.taxonomy with ≥ params.series.min posts).
+  Returns false, or dict: term (term page), pages (reading order), index (0-based), total, slug. */ -}}
+{{- $cfg := site.Params.series | default (dict) -}}
+{{- $tax := $cfg.taxonomy | default "series" -}}
+{{- $min := $cfg.min | default 2 -}}
+{{- $out := false -}}
+{{- range first 1 (.GetTerms $tax) -}}
+  {{- $pages := .Pages.ByDate -}}
+  {{- if ge (len $pages) $min -}}
+    {{- $i := 0 -}}
+    {{- range $j, $p := $pages -}}
+      {{- if eq $p.RelPermalink $.RelPermalink }}{{ $i = $j }}{{ end -}}
+    {{- end -}}
+    {{- $out = dict "term" . "pages" $pages "index" $i "total" (len $pages) "slug" (path.Base (strings.TrimSuffix "/" .RelPermalink)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

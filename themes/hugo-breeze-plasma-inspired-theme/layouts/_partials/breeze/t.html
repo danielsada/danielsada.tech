@@ -1,0 +1,50 @@
+{{- /* Translate a UI string into a given language.
+  Usage: partial "breeze/t.html" (dict "key" "show" "lang" "es" "ctx" 3)
+  For the site's own language this is just T (so i18n/<lang>.toml in your site overrides it).
+  For another language (e.g. a Spanish section on an English site) the string comes from
+  data/breeze/i18n/<lang>.toml. The theme mounts its i18n/ there; your site can add its own file there too. */ -}}
+{{- $key := .key -}}
+{{- $ctx := .ctx -}}
+{{- $lang := .lang | default site.Language.Name -}}
+{{- $out := "" -}}
+{{- $table := false -}}
+{{- if ne $lang site.Language.Name -}}
+  {{- with hugo.Data.breeze -}}
+    {{- with .i18n -}}
+      {{- with index . $lang -}}
+        {{- $table = . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $entry := false -}}
+{{- with $table -}}
+  {{- $entry = index . $key -}}
+{{- end -}}
+{{- if $entry -}}
+  {{- $count := "" -}}
+  {{- if reflect.IsMap $ctx -}}
+    {{- with $ctx.Count }}{{ $count = . }}{{ end -}}
+  {{- else if ne $ctx nil -}}
+    {{- $count = $ctx -}}
+  {{- end -}}
+  {{- if reflect.IsMap $entry -}}
+    {{- $out = $entry.other -}}
+    {{- if and (eq (string $count) "1") $entry.one -}}
+      {{- $out = $entry.one -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $out = $entry -}}
+  {{- end -}}
+  {{- $out = replace (string $out) "{{ .Count }}" (string $count) -}}
+  {{- if reflect.IsMap $ctx -}}
+    {{- range $k, $v := $ctx -}}
+      {{- $out = replace $out (printf "{{ .%s }}" $k) (string $v) -}}
+    {{- end -}}
+  {{- end -}}
+{{- else if ne $ctx nil -}}
+  {{- $out = T $key $ctx -}}
+{{- else -}}
+  {{- $out = T $key -}}
+{{- end -}}
+{{- return $out -}}

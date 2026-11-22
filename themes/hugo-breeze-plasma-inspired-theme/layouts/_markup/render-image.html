@@ -1,0 +1,40 @@
+{{- /* Markdown images: page-bundle or assets/ images are resized (params.images.maxwidth) and converted to WebP,
+  with width/height, lazy loading and async decoding. A titled standalone image becomes <figure>/<figcaption>
+  (needs markup.goldmark.parser.wrapStandAloneImageWithinParagraph = false). Remote images are left as-is. */ -}}
+{{- $cfg := site.Params.images | default (dict) -}}
+{{- $max := $cfg.maxwidth | default 960 -}}
+{{- $q := $cfg.quality | default 75 -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := .Destination -}}
+{{- $w := 0 -}}
+{{- $h := 0 -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "/" $u.Path -}}
+  {{- with or (.PageInner.Resources.Get $u.Path) (resources.Get $path) -}}
+    {{- $r := . -}}
+    {{- if eq .ResourceType "image" -}}
+      {{- if in (slice "jpeg" "png" "webp" "tiff" "bmp") .MediaType.SubType -}}
+        {{- if gt .Width $max -}}
+          {{- $r = .Resize (printf "%dx webp q%d" $max $q) -}}
+        {{- else -}}
+          {{- $r = .Process (printf "webp q%d" $q) -}}
+        {{- end -}}
+        {{- $w = $r.Width -}}
+        {{- $h = $r.Height -}}
+      {{- else if eq .MediaType.SubType "gif" -}}
+        {{- $w = .Width -}}
+        {{- $h = .Height -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $src = $r.RelPermalink -}}
+  {{- else -}}
+    {{- /* an image in static/: keep root-relative paths working under a sub-path */ -}}
+    {{- if and (not $u.Host) (strings.HasPrefix $u.Path "/") }}{{ $src = relURL $path }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $img := printf `<img src="%s" alt="%s"%s loading="lazy" decoding="async">` ($src | htmlEscape) (.PlainText | htmlEscape) (cond (gt $w 0) (printf ` width="%d" height="%d"` $w $h) "") -}}
+{{- if and .IsBlock .Title -}}
+<figure>{{ $img | safeHTML }}<figcaption>{{ .Title | markdownify }}</figcaption></figure>
+{{- else -}}
+{{ $img | safeHTML }}
+{{- end -}}

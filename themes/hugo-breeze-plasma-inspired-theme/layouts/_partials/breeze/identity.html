@@ -1,0 +1,46 @@
+{{- /* The profile lockup (logo + name). Context: dict "page" "where" ("panel" | "top"). */ -}}
+{{- $p := .page -}}
+{{- $panel := eq .where "panel" -}}
+{{- $author := site.Params.author | default (dict) -}}
+{{- $name := $author.name | default site.Title -}}
+{{- $w := site.Params.logowidth | default 64 -}}
+{{- $showName := ne site.Params.logoname false -}}
+{{- $logo := "" -}}
+{{- $lw := 0 -}}
+{{- $lh := 0 -}}
+{{- with site.Params.logo -}}
+  {{- with resources.Get . -}}
+    {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") (ne .MediaType.SubType "svg+xml") -}}
+      {{- $r := . -}}
+      {{- if gt .Width (mul $w 2) -}}
+        {{- $r = .Resize (printf "%dx" (mul $w 2)) -}}
+      {{- end -}}
+      {{- $logo = $r.RelPermalink -}}
+      {{- $lw = $w -}}
+      {{- $lh = div (mul $w $r.Height) $r.Width -}}
+    {{- else -}}
+      {{- $logo = (. | fingerprint).RelPermalink -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $logo = . | relURL -}}
+  {{- end -}}
+{{- end -}}
+<a class="me" href="{{ site.Home.RelPermalink }}"{{ if and $panel $p.IsHome }} aria-current="page"{{ end }}{{ if $panel }} title="{{ T "home" }}"{{ end }}>
+  {{- if $logo -}}
+    <span class="logo{{ if eq site.Params.logoplate false }} logo--bare{{ end }}"><img src="{{ $logo }}" alt="{{ if not $showName }}{{ $name }}{{ end }}"{{ if $lh }} width="{{ $lw }}" height="{{ $lh }}"{{ end }}></span>
+  {{- else -}}
+    {{- $ini := "" -}}
+    {{- range first 2 (split $name " ") -}}{{- $ini = print $ini (substr . 0 1) -}}{{- end -}}
+    <span class="mono" aria-hidden="true">{{ upper $ini }}</span>
+  {{- end -}}
+  {{- if $showName -}}
+    {{- if $panel -}}
+      <span><b>{{ $name }}</b>{{ with site.Params.tagline }}<small>{{ . }}</small>{{ end }}</span>
+    {{- else -}}
+      <b>{{ $name }}</b>
+    {{- end -}}
+  {{- else if not $logo -}}
+    <span class="sr-only">{{ $name }}</span>
+  {{- end -}}
+</a>
+{{- /* trim */ -}}

@@ -1,0 +1,48 @@
+{{- /* More writing: the posts after the headlines, as compact rows, then a row of destinations
+  (All posts, each series, each section in another language). cfg: offset (3), count (5), sections, title, links (true). */ -}}
+{{- $cfg := .cfg -}}
+{{- $offset := 3 }}{{ if isset $cfg "offset" }}{{ $offset = $cfg.offset }}{{ end -}}
+{{- $n := $cfg.count | default 5 -}}
+{{- $pages := partial "breeze/primary-posts.html" (dict "sections" $cfg.sections) -}}
+{{- $list := first $n (after $offset $pages) -}}
+{{- $archive := partial "breeze/archive-page.html" .page -}}
+{{- $dates := site.Params.dates | default (dict) -}}
+{{- $short := $dates.short | default "2 Jan 2006" -}}
+{{- $scfg := site.Params.series | default (dict) -}}
+{{- $stax := $scfg.taxonomy | default "series" -}}
+{{- $smin := $scfg.min | default 2 -}}
+{{- $more := slice -}}
+{{- if ne $cfg.links false -}}
+  {{- with $archive }}{{ $more = $more | append (dict "url" .RelPermalink "text" (T "all_posts_arrow" (dict "Count" (len (partial "breeze/posts.html" $.page))))) }}{{ end -}}
+  {{- if ne $cfg.serieslinks false -}}
+  {{- with index site.Taxonomies $stax -}}
+    {{- range $name, $wp := . -}}
+      {{- if ge (len $wp.Pages) $smin -}}
+        {{- $more = $more | append (dict "url" $wp.Page.RelPermalink "text" (T "parts_count" (dict "Title" $wp.Page.LinkTitle "Count" (len $wp.Pages)))) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- end -}}
+  {{- range site.MainSections -}}
+    {{- $s := partialCached "breeze/section-info.html" . . -}}
+    {{- if and $s.foreign $s.url -}}
+      {{- $more = $more | append (dict "url" $s.url "text" (T "section_count" (dict "Title" $s.title "Count" $s.count)) "lang" $s.lang) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if or $list $more }}
+<section class="card recent" aria-labelledby="recent-h">
+  <div class="card-h"><h2 id="recent-h">{{ $cfg.title | default (T "more_writing") }}</h2></div>
+  {{- with $list }}
+  <ul>
+    {{- range . }}
+    {{- $L := partial "breeze/lang.html" . }}
+    <li><a href="{{ .RelPermalink }}"{{ if $L.foreign }} lang="{{ $L.code }}"{{ end }}><span>{{ .LinkTitle }}</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $short }}</time></a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- with $more }}
+  <p class="more">{{ range . }}<a href="{{ .url }}"{{ with .lang }} lang="{{ . }}"{{ end }}>{{ .text }}</a>{{ end }}</p>
+  {{- end }}
+</section>
+{{- end }}

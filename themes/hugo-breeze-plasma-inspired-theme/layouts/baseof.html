@@ -1,0 +1,23 @@
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $scheme := site.Params.colorscheme | default "auto" -}}
+<!doctype html>
+<html lang="{{ $L.code }}"{{ if ne $scheme "auto" }} data-scheme="{{ $scheme }}"{{ end }}>
+<head>
+{{ partial "breeze/head.html" . }}
+</head>
+<body>
+<a class="skip" href="#main"{{ if $L.foreign }} lang="{{ $L.site }}"{{ end }}>{{ T "skip_to_content" }}</a>
+{{ partial "breeze/topbar.html" . }}
+{{ partial "breeze/panel.html" . }}
+{{- $isPost := partial "breeze/is-post.html" . -}}
+{{- $post := site.Params.post | default (dict) -}}
+{{- if and $isPost (ne $post.progress false) }}
+<div class="progress" aria-hidden="true"></div>
+{{- end }}
+<main id="main"{{ if $isPost }} class="reading"{{ end }}>
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "breeze/scripts.html" . }}
+{{ partial "hooks/body-end.html" . }}
+</body>
+</html>

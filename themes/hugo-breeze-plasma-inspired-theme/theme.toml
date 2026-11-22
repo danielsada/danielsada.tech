@@ -1,0 +1,12 @@
+name = "Breeze Plasma"
+license = "MIT"
+licenselink = "https://github.com/danielsada/hugo-breeze-plasma-inspired-theme/blob/main/LICENSE"
+description = "A calm, KDE Plasma/Breeze-inspired blog theme: wallpaper, one translucent navigation panel, opaque reading cards, a Dolphin-style archive and a privacy-friendly video player. No web fonts, no external requests."
+homepage = "https://github.com/danielsada/hugo-breeze-plasma-inspired-theme"
+tags = ["blog", "personal", "minimal", "dark mode", "responsive", "accessible", "multilingual", "privacy"]
+features = ["light/dark", "archive with filters", "table of contents", "series", "projects", "lazy youtube", "rss", "i18n"]
+min_version = "0.158.0"
+
+[author]
+  name = "Daniel Sada"
+  homepage = "https://danielsada.tech"

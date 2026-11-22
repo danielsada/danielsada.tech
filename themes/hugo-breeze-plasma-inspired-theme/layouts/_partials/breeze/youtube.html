@@ -1,0 +1,44 @@
+{{- /* Lazy YouTube facade: a poster + play button linking to YouTube. script.js turns it into a button that loads
+  a youtube-nocookie iframe on click. Nothing is requested from YouTube before that.
+  Context dict: id (required), title, duration ("25:23"), poster (page resource, assets/ path or static URL),
+  start (seconds), page (for page resources), lang (UI language for the label). Without a poster a plain
+  gradient card with the title is shown (no request to YouTube's image servers either). */ -}}
+{{- $id := .id -}}
+{{- $title := .title | default "YouTube" -}}
+{{- $lang := .lang -}}
+{{- $poster := "" -}}
+{{- $pw := 640 -}}
+{{- $ph := 360 -}}
+{{- with .poster -}}
+  {{- $r := false -}}
+  {{- with $.page }}{{ $r = .Resources.Get $.poster }}{{ end -}}
+  {{- if not $r }}{{ $r = resources.Get . }}{{ end -}}
+  {{- with $r -}}
+    {{- if and (eq .ResourceType "image") (in (slice "jpeg" "png" "webp" "tiff" "bmp") .MediaType.SubType) -}}
+      {{- $i := .Fill "640x360 webp q60" -}}
+      {{- $poster = $i.RelPermalink -}}
+      {{- $pw = $i.Width -}}
+      {{- $ph = $i.Height -}}
+    {{- else -}}
+      {{- $poster = (. | fingerprint).RelPermalink -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $poster = . | relURL -}}
+  {{- end -}}
+{{- end -}}
+{{- $label := "" -}}
+{{- with .duration -}}
+  {{- $label = partial "breeze/t.html" (dict "key" "play_duration" "lang" $lang "ctx" (dict "Title" $title "Duration" .)) -}}
+{{- else -}}
+  {{- $label = partial "breeze/t.html" (dict "key" "play" "lang" $lang "ctx" (dict "Title" $title)) -}}
+{{- end -}}
+{{- $suffix := partial "breeze/t.html" (dict "key" "video_suffix" "lang" $lang) -}}
+{{- with $id }}
+<div class="yt{{ with $.class }} {{ . }}{{ end }}">
+  <a href="https://www.youtube.com/watch?v={{ . }}{{ with $.start }}&amp;t={{ . }}s{{ end }}" data-yt="{{ . }}"{{ with $.start }} data-start="{{ . }}"{{ end }} data-title="{{ $title }} {{ $suffix }}" aria-label="{{ $label }}">
+    {{- if $poster }}<img src="{{ $poster }}" width="{{ $pw }}" height="{{ $ph }}" alt="" loading="lazy" decoding="async">{{ else }}<span class="yt__ph" aria-hidden="true">{{ $title }}</span>{{ end -}}
+    <span class="yt__play" aria-hidden="true">{{ partial "breeze/icon.html" (dict "name" "play" "class" "") }}</span>
+    {{- with $.duration }}<span class="yt__dur" aria-hidden="true">{{ . }}</span>{{ end -}}
+  </a>
+</div>
+{{- end -}}

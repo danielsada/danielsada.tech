@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{- /* A term page (/tags/go/, /series/home-lab/): the same archive window, listing that term's posts.
+  Series are listed in reading order (oldest first). */ -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $acfg := site.Params.archive | default (dict) -}}
+{{- $tax := $acfg.taxonomy | default "tags" -}}
+{{- $scfg := site.Params.series | default (dict) -}}
+{{- $stax := $scfg.taxonomy | default "series" -}}
+{{- $isSeries := eq .Section $stax -}}
+{{- $slug := path.Base (strings.TrimSuffix "/" .RelPermalink) -}}
+{{- $kind := .Section -}}
+{{- if $isSeries }}{{ $kind = "series" }}{{ else if eq .Section $tax }}{{ $kind = "tag" }}{{ end -}}
+{{- $pages := .Pages -}}
+{{- $archive := partial "breeze/archive-page.html" . -}}
+{{- $crumbs := slice -}}
+{{- with $archive }}{{ $crumbs = $crumbs | append (dict "title" .Title "url" .RelPermalink) }}{{ end -}}
+{{- with .Parent }}{{ $crumbs = $crumbs | append (dict "title" .Title "url" .RelPermalink) }}{{ end -}}
+{{- partial "views/archive.html" (dict
+    "page" .
+    "pages" $pages
+    "base" (printf "%s:%s" $kind $slug)
+    "local" "years"
+    "title" .Title
+    "sub" (partial "breeze/t.html" (dict "key" "posts_count" "lang" $L.name "ctx" (len $pages)))
+    "icon" (cond $isSeries "series" "tag")
+    "crumbs" $crumbs
+    "asc" $isSeries
+) -}}
+{{ end }}

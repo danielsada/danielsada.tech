@@ -1,0 +1,42 @@
+{{- /* Projects page (front matter params.view = "projects"): data/projects.yaml as a Dolphin-style details view,
+  grouped by status in the order of params.projects.statuses (unknown statuses follow, in file order). */ -}}
+{{- $p := . -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $tr := dict "lang" $L.name -}}
+{{- $cfg := site.Params.projects | default (dict) -}}
+{{- $all := hugo.Data.projects | default (slice) -}}
+{{- $order := $cfg.statuses | default (slice "Live" "Beta" "Paused" "Archived") -}}
+{{- $statuses := slice -}}
+{{- range $order }}{{ if where $all "status" . }}{{ $statuses = $statuses | append . }}{{ end }}{{ end -}}
+{{- range $all }}{{ with .status }}{{ if not (in $statuses .) }}{{ $statuses = $statuses | append . }}{{ end }}{{ end }}{{ end -}}
+{{- $nostatus := slice -}}
+{{- range $all }}{{ if not .status }}{{ $nostatus = $nostatus | append . }}{{ end }}{{ end -}}
+<section class="win" aria-labelledby="proj-h">
+  <header class="win__bar">
+    {{ partial "breeze/icon.html" (.Params.icon | default "apps") }}
+    <h1 id="proj-h">{{ .Title }}</h1>
+    {{ with .Params.subtitle }}<p class="win__sub">{{ . }}</p>{{ end }}
+  </header>
+  <div class="win__loc">
+    <nav class="crumbs" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "breadcrumb") }}"><ol><li><a href="{{ site.Home.RelPermalink }}">{{ site.Params.crumbroot | default site.Title }}</a></li><li><span aria-current="page">{{ .Title }}</span></li></ol></nav>
+  </div>
+  {{- with .Content }}
+  <div class="win__intro">{{ . }}</div>
+  {{- end }}
+  <div class="view">
+  <table class="posts projs">
+    <caption class="sr-only">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "caption_projects") }}</caption>
+    <thead><tr><th scope="col" class="nm">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_project") }}</th><th scope="col" class="wh">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_what") }}</th><th scope="col" class="st">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_stack") }}</th><th scope="col" class="ln">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_links") }}</th></tr></thead>
+    {{- range $statuses }}
+    {{- $items := where $all "status" . }}
+    <tbody id="{{ . | anchorize }}"><tr class="yr"><th colspan="4" scope="rowgroup">{{ partial "breeze/icon.html" "folder" }}{{ . }}<small>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "projects_count" "ctx" (len $items)) }}</small></th></tr>
+    {{- range $items }}{{ partial "breeze/project-row.html" (dict "project" . "tr" $tr) }}{{ end }}
+    </tbody>
+    {{- end }}
+    {{- with $nostatus }}
+    <tbody>{{ range . }}{{ partial "breeze/project-row.html" (dict "project" . "tr" $tr) }}{{ end }}</tbody>
+    {{- end }}
+  </table>
+  </div>
+  <footer class="win__status"><span>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "projects_count" "ctx" (len $all)) }}</span></footer>
+</section>

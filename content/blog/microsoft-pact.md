@@ -17,7 +17,7 @@ When you join Microsoft, you hear stories about people who've been there for **2
 
 But something shifted. Maybe it was the market, maybe it was the pressure to stay competitive with companies that move faster and pay more. The implicit agreement that made lower compensation feel acceptable started to **crack**.
 
-For decades, Microsoft operated under an unspoken agreement with its employees—what I call **"the pact."** The deal was simple: We'll pay you 20-50% below market rate, but in exchange, you get stability, reasonable work-life balance, and most importantly, **no layoffs**. This wasn't written in any employee handbook, but *everyone understood it*. It was the Microsoft way.
+For decades, Microsoft operated under an unspoken agreement with its employees, what I call **"the pact."** The deal was simple: We'll pay you 20-50% below market rate, but in exchange, you get stability, reasonable work-life balance, and most importantly, **no layoffs**. This wasn't written in any employee handbook, but *everyone understood it*. It was the Microsoft way.
 
 For many strong performing engineers, this was an attractive trade-off. You might not get rich as quickly as your friends at startups, but you could *plan your life around stability*. You could get a mortgage, start a family, and sleep well knowing your job **wasn't going anywhere**.
 
@@ -41,7 +41,7 @@ However, these patterns were consistent enough across my tenure, conversations w
 
 ## At will employment
 
-For me, coming from outside the US where employment contracts offer significantly more protection, at-will employment was a jarring concept. In most countries, terminating an employee requires cause, documentation, and often significant severance payments. Employment contracts typically specify notice periods — sometimes months — giving both parties time to plan transitions.
+For me, coming from outside the US where employment contracts offer significantly more protection, at-will employment was a jarring concept. In most countries, terminating an employee requires cause, documentation, and often significant severance payments. Employment contracts typically specify notice periods (sometimes months), giving both parties time to plan transitions.
 
 At-will employment means your employer can terminate you for any reason (or no reason) at any time, as long as it's not discriminatory. **No advance notice required. No severance guaranteed.** One day you're planning your next sprint, the next day you're cleaning out your desk.
 
@@ -89,7 +89,7 @@ The optimal approach depends on your individual circumstances, risk tolerance, a
 
 ## Would I work for Microsoft today?
 
-**The Microsoft I joined no longer exists today.**. The implicit contract that made lower compensation tolerable — stability and job security — has been broken. What remains is a company that pays below market rate while offering the *same job insecurity as anywhere else*.
+**The Microsoft I joined no longer exists today.**. The implicit contract that made lower compensation tolerable (stability and job security) has been broken. What remains is a company that pays below market rate while offering the *same job insecurity as anywhere else*.
 
 For current and prospective Microsoft employees, understanding this new reality is crucial. The company still offers excellent benefits, interesting technical challenges, and the prestige of working at a tech giant. But the days of **trading pay for security** are over.
 

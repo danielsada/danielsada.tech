@@ -91,8 +91,6 @@ P.S.
 
 Esta infografía de [BetterBuys](https://www.betterbuys.com/estimating-password-cracking-times/) es interesante, pero solo toma los caracteres alfabeticos en minúscula, por lo que no es exactamente lo que queremos demostrar, dado que las claves de Santander tienen minúsculas, mayúsculas y alfanuméricos.
 
-![](https://www.betterbuys.com/estimating-password-cracking-times/assets/images/password_time_and_length.jpg)
-
 Gracias a Gandalf por ayudarme con las mátematicas y en el proceso creativo :)
 
 

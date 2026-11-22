@@ -1,0 +1,22 @@
+{{- /* A section card (e.g. a second-language section). cfg: section (required), count (3), tint ("note" | "plain").
+  The section's _index.md can set params.card.title, params.card.text and params.card.tint.
+  Strings use the section's own language (params.lang). */ -}}
+{{- $cfg := .cfg -}}
+{{- $s := partialCached "breeze/section-info.html" $cfg.section $cfg.section -}}
+{{- with $s.page -}}
+{{- $n := $cfg.count | default 3 -}}
+{{- $tint := $cfg.tint | default $s.card.tint | default "note" -}}
+{{- $id := printf "sec-%s-h" ($s.name | anchorize) }}
+<section class="card seccard{{ if ne $tint "plain" }} card--note{{ end }}"{{ if $s.foreign }} lang="{{ $s.lang }}"{{ end }} aria-labelledby="{{ $id }}">
+  <div class="card-h"><h2 id="{{ $id }}">{{ $s.card.title | default .Title }}</h2></div>
+  {{- with $s.card.text }}
+  <p>{{ . }}</p>
+  {{- end }}
+  <ul>
+    {{- range first $n .RegularPagesRecursive }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+  <p class="more"><a href="{{ .RelPermalink }}">{{ partial "breeze/t.html" (dict "key" "see_all" "lang" $s.lang "ctx" (dict "Count" $s.count)) }}</a></p>
+</section>
+{{- end }}

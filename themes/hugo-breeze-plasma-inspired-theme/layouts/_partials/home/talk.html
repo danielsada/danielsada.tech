@@ -1,0 +1,27 @@
+{{- /* Latest talk (data/talks.yaml: the entry with featured: true, else the first) with the lazy YouTube facade.
+  Entry: title, event, year, youtube (video id), duration, poster, url (non-YouTube link), companion (page path),
+  companiontext. cfg: title. */ -}}
+{{- $cfg := .cfg -}}
+{{- with hugo.Data.talks -}}
+{{- $x := index . 0 -}}
+{{- range first 1 (where . "featured" true) }}{{ $x = . }}{{ end -}}
+{{- $url := $x.url -}}
+{{- with $x.youtube }}{{ $url = printf "https://www.youtube.com/watch?v=%s" . }}{{ end }}
+<section class="card talk" aria-labelledby="talk-h">
+  <div class="card-h"><h2 id="talk-h">{{ $cfg.title | default (T "latest_talk") }}</h2></div>
+  {{- with $x.youtube }}
+  {{ partial "breeze/youtube.html" (dict "id" . "title" $x.title "duration" $x.duration "poster" $x.poster) }}
+  {{- end }}
+  <h3>{{ $x.title }}</h3>
+  <p>
+    {{- $bits := slice -}}
+    {{- with $x.event }}{{ $bits = $bits | append . }}{{ end -}}
+    {{- with $x.year }}{{ $bits = $bits | append (string .) }}{{ end -}}
+    {{- delimit $bits " · " -}}
+    {{- with $url }}{{ if $bits }} · {{ end }}<a href="{{ . }}">{{ if $x.youtube }}YouTube{{ else }}{{ $x.urllabel | default (T "open") }}{{ end }}&nbsp;↗</a>{{ end -}}
+  </p>
+  {{- with $x.companion }}{{ with site.GetPage . }}
+  <p class="companion">{{ T "companion_post" }} <a href="{{ .RelPermalink }}">{{ $x.companiontext | default .LinkTitle }}</a></p>
+  {{- end }}{{ end }}
+</section>
+{{- end }}

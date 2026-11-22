@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{- /* Sections. The archive page (front matter params.archive = true, e.g. content/posts/_index.md) lists every post
+  in mainSections; any other section lists its own posts. params.view picks another views/<name>.html. */ -}}
+{{- $view := .Params.view | default "archive" -}}
+{{- if eq $view "archive" -}}
+  {{- $L := partial "breeze/lang.html" . -}}
+  {{- $all := .Params.archive -}}
+  {{- $archive := partial "breeze/archive-page.html" . -}}
+  {{- if and (not $all) $archive (eq $archive.RelPermalink .RelPermalink) (not (in site.MainSections .Section)) }}{{ $all = true }}{{ end -}}
+  {{- $pages := .RegularPagesRecursive -}}
+  {{- if $all }}{{ $pages = partial "breeze/posts.html" . }}{{ end -}}
+  {{- $sec := partialCached "breeze/section-info.html" .Section .Section -}}
+  {{- $crumbs := slice -}}
+  {{- if and (not $all) $archive (ne $archive.RelPermalink .RelPermalink) }}{{ $crumbs = slice (dict "title" $archive.Title "url" $archive.RelPermalink) }}{{ end -}}
+  {{- $sub := .Params.subtitle -}}
+  {{- if not $all -}}
+    {{- $n := partial "breeze/t.html" (dict "key" "posts_count" "lang" $L.name "ctx" (len $pages)) -}}
+    {{- if $sub }}{{ $sub = printf "%s · %s" $n $sub }}{{ else }}{{ $sub = $n }}{{ end -}}
+  {{- end -}}
+  {{- partial "views/archive.html" (dict
+      "page" .
+      "pages" $pages
+      "base" (cond $all "all" (print "s:" .Section))
+      "local" (cond $all "all" "years")
+      "title" .Title
+      "sub" $sub
+      "icon" (cond $all "folder" $sec.icon)
+      "crumbs" $crumbs
+  ) -}}
+{{- else -}}
+  {{ partial (printf "views/%s.html" $view) . }}
+{{- end -}}
+{{ end }}

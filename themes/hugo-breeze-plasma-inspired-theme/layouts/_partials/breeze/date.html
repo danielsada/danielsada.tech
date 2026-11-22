@@ -1,0 +1,20 @@
+{{- /* Format a date. Context dict: date, fmt (Go layout), lang (the view's language), long (bool).
+  In the site's own language this is time.Format (localized by Hugo). For a section in another language the
+  layout and month names come from that language's strings (date_short / date_long, months, months_short). */ -}}
+{{- $fmt := .fmt -}}
+{{- $out := "" -}}
+{{- if and .lang (ne .lang site.Language.Name) -}}
+  {{- $fmt = partial "breeze/t.html" (dict "key" (cond .long "date_long" "date_short") "lang" .lang) | default $fmt -}}
+  {{- $out = .date.Format $fmt -}}
+  {{- $i := sub (int (.date.Format "1")) 1 -}}
+  {{- if strings.Contains $fmt "January" -}}
+    {{- $names := split (partial "breeze/t.html" (dict "key" "months" "lang" .lang)) "," -}}
+    {{- if eq (len $names) 12 }}{{ $out = replace $out (.date.Format "January") (index $names $i) }}{{ end -}}
+  {{- else if strings.Contains $fmt "Jan" -}}
+    {{- $names := split (partial "breeze/t.html" (dict "key" "months_short" "lang" .lang)) "," -}}
+    {{- if eq (len $names) 12 }}{{ $out = replace $out (.date.Format "Jan") (index $names $i) }}{{ end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $out = .date | time.Format $fmt -}}
+{{- end -}}
+{{- return $out -}}

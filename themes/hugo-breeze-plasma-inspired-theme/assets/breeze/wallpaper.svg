@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fc3f5"/><stop offset=".45" stop-color="#3d8ee9"/><stop offset="1" stop-color="#5b3fb8"/></linearGradient>
+<linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="b" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1d7a" stop-opacity=".55"/><stop offset="1" stop-color="#2a1d7a" stop-opacity="0"/></linearGradient>
+<linearGradient id="c" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#a77bff" stop-opacity=".6"/><stop offset="1" stop-color="#3daee9" stop-opacity=".05"/></linearGradient>
+<radialGradient id="g" cx=".22" cy=".18" r=".6"><stop offset="0" stop-color="#d8f3ff" stop-opacity=".7"/><stop offset="1" stop-color="#d8f3ff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1600" height="1000" fill="url(#s)"/>
+<rect width="1600" height="1000" fill="url(#g)"/>
+<path d="M0 620 L520 300 L980 1000 L0 1000Z" fill="url(#b)"/>
+<path d="M520 300 L1600 80 L1600 640 Z" fill="url(#a)"/>
+<path d="M980 1000 L520 300 L1600 640 L1600 1000Z" fill="url(#c)"/>
+<path d="M0 0 L760 0 L520 300 L0 620Z" fill="url(#a)" opacity=".5"/>
+<path d="M1150 0 L1600 0 L1600 80 L520 300Z" fill="#fff" opacity=".07"/>
+<path d="M1600 640 L1240 1000 L1600 1000Z" fill="#1b1464" opacity=".35"/>
+<path d="M0 820 L360 1000 L0 1000Z" fill="#fff" opacity=".08"/>
+<g fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.5"><path d="M0 620 L520 300 L1600 80"/><path d="M520 300 L980 1000"/><path d="M520 300 L1600 640"/></g>
+</svg>

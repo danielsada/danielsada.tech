@@ -1,0 +1,17 @@
+{{- /* Term counts of a taxonomy, scoped to a set of pages. Usage: partial "breeze/term-counts.html" (dict "pages" $pages "taxonomy" "tags")
+  Returns a slice of dict: slug, title, url, count; most used first, then by name. */ -}}
+{{- $pages := .pages -}}
+{{- $out := slice -}}
+{{- with index site.Taxonomies .taxonomy -}}
+  {{- range $name, $wp := . -}}
+    {{- $n := len (intersect $wp.Pages $pages) -}}
+    {{- if $n -}}
+      {{- $url := $wp.Page.RelPermalink -}}
+      {{- $out = $out | append (dict "slug" (path.Base (strings.TrimSuffix "/" $url)) "title" $wp.Page.LinkTitle "url" $url "count" $n) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $out -}}
+  {{- $out = sort (sort $out "title") "count" "desc" -}}
+{{- end -}}
+{{- return $out -}}

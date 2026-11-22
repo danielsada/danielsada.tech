@@ -1,0 +1,26 @@
+{{- /* Home intro card. Content comes from content/_index.md:
+  params.kicker (default: site tagline), params.heading (default: "Hi, I'm <author>."), the page body,
+  and params.links: [{text, url | ref | latest: true}] (latest = the newest post of the primary sections). */ -}}
+{{- $p := .page -}}
+{{- $author := site.Params.author | default (dict) -}}
+{{- $name := $author.name | default site.Title -}}
+<section class="card intro" aria-labelledby="hi">
+  {{- with $p.Params.kicker | default site.Params.tagline }}
+  <p class="kicker">{{ . }}</p>
+  {{- end }}
+  <h1 id="hi">{{ $p.Params.heading | default (T "hi" (dict "Name" $name)) }}</h1>
+  {{ $p.Content }}
+  {{- with $p.Params.links }}
+  <p class="links">
+    {{- range . -}}
+      {{- $url := .url -}}
+      {{- $text := .text -}}
+      {{- with .ref }}{{ with site.GetPage . }}{{ $url = .RelPermalink }}{{ $text = $text | default .LinkTitle }}{{ end }}{{ end -}}
+      {{- if .latest -}}
+        {{- range first 1 (partial "breeze/primary-posts.html" (dict)) }}{{ $url = .RelPermalink }}{{ $text = $text | default .LinkTitle }}{{ end -}}
+      {{- end -}}
+      {{- with $url }}<a href="{{ . }}">{{ $text }}</a>{{ end -}}
+    {{- end -}}
+  </p>
+  {{- end }}
+</section>

@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{- $archive := partial "breeze/archive-page.html" . }}
+<article class="card page" aria-labelledby="page-h">
+  <h1 id="page-h">{{ T "not_found_title" }}</h1>
+  <p>{{ T "not_found_text" }}</p>
+  <ul class="golinks">
+    {{- with $archive }}
+    <li><a class="go" href="{{ .RelPermalink }}">{{ partial "breeze/icon.html" "blog" }}{{ .Title }}</a></li>
+    {{- end }}
+    <li><a class="go" href="{{ site.Home.RelPermalink }}">{{ partial "breeze/icon.html" "folder" }}{{ T "home" }}</a></li>
+  </ul>
+</article>
+{{ end }}

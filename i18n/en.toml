@@ -1,0 +1,3 @@
+# Site overrides of the theme's UI strings (themes/hugo-breeze-plasma-inspired-theme/i18n/en.toml).
+[all_posts_arrow]
+other = "All {{ .Count }} posts →"

@@ -1,0 +1,22 @@
+{{- /* Markdown links. Root-relative links ("/blog/post/") resolve to the page they name, or else get the site's
+  base path, so a site served from a sub-path (e.g. GitHub Pages project sites) keeps working. Relative and
+  external links are unchanged. */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $href := .Destination -}}
+{{- if and (not $u.IsAbs) (not $u.Host) (strings.HasPrefix $u.Path "/") -}}
+  {{- $p := false -}}
+  {{- if eq $u.Path "/" -}}
+    {{- $p = site.Home -}}
+  {{- else -}}
+    {{- $p = site.GetPage (strings.TrimSuffix "/" $u.Path) -}}
+  {{- end -}}
+  {{- with $p -}}
+    {{- $href = .RelPermalink -}}
+  {{- else -}}
+    {{- $href = relURL (strings.TrimPrefix "/" $u.Path) -}}
+  {{- end -}}
+  {{- with $u.RawQuery }}{{ $href = printf "%s?%s" $href . }}{{ end -}}
+  {{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+{{- end -}}
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- /* trim */ -}}

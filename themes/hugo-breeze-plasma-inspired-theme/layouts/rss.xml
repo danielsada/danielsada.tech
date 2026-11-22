@@ -1,0 +1,41 @@
+{{- /* RSS 2.0 for home, sections, taxonomies and terms. Only posts (pages in mainSections) are included;
+  the home feed and the archive page's feed carry every post. */ -}}
+{{- $pages := slice -}}
+{{- if or .IsHome .Params.archive -}}
+  {{- $pages = partial "breeze/posts.html" . -}}
+{{- else if .IsSection -}}
+  {{- $pages = where .RegularPagesRecursive "Section" "in" site.MainSections -}}
+{{- else -}}
+  {{- $pages = where .Pages "Section" "in" site.MainSections -}}
+{{- end -}}
+{{- $limit := site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 }}{{ $pages = $pages | first $limit }}{{ end -}}
+{{- $author := site.Params.author | default (dict) -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ partial "breeze/title-separator.html" . }}{{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ .Description | default site.Params.description | default site.Title }}</description>
+    <generator>Hugo</generator>
+    <language>{{ site.Language.Locale | default site.Language.Name }}</language>
+    {{- with $author.email }}
+    <managingEditor>{{ . }}{{ with $author.name }} ({{ . }}){{ end }}</managingEditor>
+    {{- end }}
+    {{- with $pages }}
+    <lastBuildDate>{{ (index .ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "rss" }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType.Type | safeHTML }}
+    {{- end }}
+    {{- range $pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

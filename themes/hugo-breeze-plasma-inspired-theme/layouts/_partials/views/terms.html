@@ -1,0 +1,35 @@
+{{- /* Taxonomy page (/tags/, /series/): every term with its post count, most used first. */ -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $tr := dict "lang" $L.name -}}
+{{- $terms := slice -}}
+{{- range .Pages -}}
+  {{- $terms = $terms | append (dict "title" .LinkTitle "url" .RelPermalink "count" (len .Pages)) -}}
+{{- end -}}
+{{- if $terms }}{{ $terms = sort (sort $terms "title") "count" "desc" }}{{ end -}}
+{{- $archive := partial "breeze/archive-page.html" . -}}
+<section class="win" aria-labelledby="list-h">
+  <header class="win__bar">
+    {{ partial "breeze/icon.html" "tag" }}
+    <h1 id="list-h">{{ .Title }}</h1>
+    <p class="win__sub">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "terms_count" "ctx" (len $terms)) }}</p>
+  </header>
+  <div class="win__loc">
+    <nav class="crumbs" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "breadcrumb") }}"><ol>
+      <li><a href="{{ site.Home.RelPermalink }}">{{ site.Params.crumbroot | default site.Title }}</a></li>
+      {{- with $archive }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+      <li><span aria-current="page">{{ .Title }}</span></li>
+    </ol></nav>
+  </div>
+  <div class="view">
+  <table class="posts terms">
+    <caption class="sr-only">{{ .Title }}</caption>
+    <thead><tr><th scope="col" class="nm">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_term") }}</th><th scope="col" class="dt">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_count") }}</th></tr></thead>
+    <tbody>
+    {{- range $terms }}
+      <tr><td class="nm tm"><a href="{{ .url }}">{{ .title }}</a></td><td class="dt">{{ .count }}</td></tr>
+    {{- end }}
+    </tbody>
+  </table>
+  </div>
+  <footer class="win__status"><span>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "terms_count" "ctx" (len $terms)) }}</span></footer>
+</section>

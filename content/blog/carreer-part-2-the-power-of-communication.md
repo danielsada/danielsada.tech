@@ -1,6 +1,6 @@
 +++
 title = "Part 2: Beyond Code, The Power of Communication"
-description = "Part 2 of my software journey—why technical skills are only half the equation."
+description = "Part 2 of my software journey: why technical skills are only half the equation."
 tags = [
     "communication",
     "soft-skills",

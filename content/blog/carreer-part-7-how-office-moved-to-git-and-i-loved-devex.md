@@ -22,13 +22,13 @@ Come kids, gather around. Let me tell you youngsters about the ancient times of 
 
 In the early 2000s, Microsoft faced a dilemma. Windows was growing enormously complex, with millions of lines of code that needed versioning. Git? Didn't exist. SVN? Barely crawling out of CVS's shadow. No, children, these were the **dark ages** of version control.
 
-Perforce was one of the few commercial options available—expensive but powerful for its time. Microsoft, being Microsoft, decided to build their own system based on Perforce technology. And thus, **Source Depot was born.**
+Perforce was one of the few commercial options available: expensive but powerful for its time. Microsoft, being Microsoft, decided to build their own system based on Perforce technology. And thus, **Source Depot was born.**
 
 Using Source Depot was weird, it felt a little bit like **programming with oven mitts on**: iterations were faster, but branching and switching state were painful. Also, it didn't help that a single get of the office repo took some hours. Want to check out code? Type `sd get (a.k.a osync)` and wait. And wait. *And perhaps make yourself a sandwich while waiting.*
 
 Branching? Oh, my sweet summer children. Creating a branch wasn't the casual `git checkout -b` you casually toss around today. It was an **event**. Something you **planned** for, scheduled, and possibly created a small ritual around. (And pray you don't have a name conflict.)
 
-Everything was centralized—if the network went down, **productivity ceased**. If you were working remotely? Well, *VPN and prayer* were your only options. (And VPN was only to get into the AAD network and join the REDMOND domain.)
+Everything was centralized. If the network went down, **productivity ceased**. If you were working remotely? Well, *VPN and prayer* were your only options. (And VPN was only to get into the AAD network and join the REDMOND domain.)
 
 The worst part? Merging changes (or how we, the ancients, call them *Reverse Integrate* and *Forward Integrate*). Branch admins would constantly work on doing this process. You'd be **respected** by being the RI and FI admin for your part of your world.
 
@@ -148,7 +148,7 @@ On a personal side, I do think people worked faster in Git and were more product
 
 The Office migration took years of planning. The OneNote migration took around 6 months of execution. The real lesson wasn't about version control but about **orchestrating change across thousands of people without breaking what they depended on**.
 
-When I think about today's big migrations—cloud, monolith decomposition, framework upgrades—the playbook is surprisingly similar. **Build parallel systems, prove equivalence, communicate relentlessly, and always have a way back.**
+When I think about today's big migrations (cloud, monolith decomposition, framework upgrades), the playbook is surprisingly similar. **Build parallel systems, prove equivalence, communicate relentlessly, and always have a way back.**
 
 I wish I could go deeper into some of the topics *(build infra, test infra, office versioning, on-prem, contractual obligations, semi-annual channels, certification of builds, BOMs, caches, etc.)* that had to happen here, but I think they are a lot of people that can explain this part a lot better than I can. Maybe one day?
 

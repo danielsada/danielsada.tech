@@ -1,6 +1,6 @@
 +++
 title = "Part 5: Many Bosses, The Reality of Running Your Own Company"
-description = "Part 5 of my 12-year journey—what happens when you trade one boss for many clients."
+description = "Part 5 of my 12-year journey: what happens when you trade one boss for many clients."
 tags = [
     "entrepreneurship",
     "startup",
@@ -56,7 +56,7 @@ Within the lifespan of the company, we attempted and failed at numerous ventures
 ### Educational Game Development
 **What happened:** We built an educational game to teach basic math concepts. Development took longer than expected, playability issues persisted, and schools weren't willing to pay enough to make the project viable.
 
-**Key lesson:** Games are hard to tune, create, and code—especially educational games with specific learning objectives.
+**Key lesson:** Games are hard to tune, create, and code, especially educational games with specific learning objectives.
 
 ### Parent-Teacher Social Network
 **What happened:** We developed a platform to improve parent-teacher communication. User acquisition was difficult, schools had complex purchasing processes, and we couldn't reach the critical mass needed for network effects.

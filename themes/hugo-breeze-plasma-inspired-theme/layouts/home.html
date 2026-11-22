@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{- /* Home: two columns of widgets (params.home.main / params.home.side), in reading order.
+  Each widget is the partial home/<widget>.html, called with (dict "page" . "cfg" <the widget's config>). */ -}}
+{{- $home := site.Params.home | default (dict) -}}
+{{- $main := $home.main | default (slice (dict "widget" "intro") (dict "widget" "latest" "count" 3) (dict "widget" "recent" "offset" 3 "count" 5)) -}}
+{{- $side := $home.side | default (slice) -}}
+<div class="home{{ if not $side }} home--single{{ end }}">
+  <div class="home__main">
+    {{- range $main }}{{ if ne .enable false }}
+    {{ partial (printf "home/%s.html" .widget) (dict "page" $ "cfg" .) }}
+    {{- end }}{{ end }}
+  </div>
+  {{- with $side }}
+  <div class="home__side">
+    {{- range . }}{{ if ne .enable false }}
+    {{ partial (printf "home/%s.html" .widget) (dict "page" $ "cfg" .) }}
+    {{- end }}{{ end }}
+  </div>
+  {{- end }}
+</div>
+{{ end }}

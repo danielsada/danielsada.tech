@@ -1,0 +1,13 @@
+{{- /* Posts of the "primary" sections: the ones given (dict "sections" (slice "blog")), else every main section
+  written in the site's own language. Newest first. */ -}}
+{{- $secs := .sections -}}
+{{- if not $secs -}}
+  {{- $secs = slice -}}
+  {{- range site.MainSections -}}
+    {{- $s := partialCached "breeze/section-info.html" . . -}}
+    {{- if not $s.foreign -}}
+      {{- $secs = $secs | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return where site.RegularPages "Section" "in" $secs -}}

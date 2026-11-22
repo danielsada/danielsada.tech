@@ -22,7 +22,7 @@ We were tasked to try to get some indices of google hacking performed, to show u
 
 While it certainly is something that sounds fun, for me this is more of a gimmick, nevertheless it made me think for a second. Besides the [famous search for "add password" or "aws keys" or looking for .pem files,](https://www.theregister.co.uk/2015/01/06/dev_blunder_shows_github_crawling_with_keyslurping_bots/) we could ideally search for files that contain connection strings. So an idea sprang to mind. Which files usually have database configs, which might be uploaded to a repository.
 
-![](https://phaven-prod.s3.amazonaws.com/files/image_part/asset/2003062/iPzhe15hQK7Trx2c65x1WTJ2LuI/thumb_GithubResults.png)
+![](/images/blog/wp-config/github-results.png)
 
 Oh... darn.
 
@@ -30,11 +30,11 @@ For those who aren't well versed on the internals of WordPress, when you install
 
 Well, it seems it is pretty common to have your wp-config on github. You would **expect** someone to do the sensible thing and declare this as secret files like this:
 
-![](https://phaven-prod.s3.amazonaws.com/files/image_part/asset/2003063/eI8EDVzuMc21pR4GUNF7HZ4s58o/thumb_secureWP.png)
+![](/images/blog/wp-config/secure-wp.png)
 
 Nevertheless I found some things like this: 
 
-![](https://phaven-prod.s3.amazonaws.com/files/image_part/asset/2003066/Y7TnhukC6eFvQ94UNx1aNnp7E-g/thumb_results.png)
+![](/images/blog/wp-config/results.png)
 
 All of this, in public repositories. 
 

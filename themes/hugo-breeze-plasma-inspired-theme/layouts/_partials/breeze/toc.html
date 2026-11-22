@@ -1,0 +1,10 @@
+{{- /* The page's table of contents (HTML) when it has headings and TOC is enabled; else "". */ -}}
+{{- $cfg := site.Params.post | default (dict) -}}
+{{- $out := "" -}}
+{{- if and (ne $cfg.toc false) (ne .Params.toc false) -}}
+  {{- $t := string .TableOfContents -}}
+  {{- if strings.Contains $t "<a " -}}
+    {{- $out = $t -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

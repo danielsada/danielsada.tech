@@ -1,0 +1,8 @@
+{{- /* Privacy-friendly YouTube embed: a poster + play button, the player loads only on click.
+  {{< youtube-lite id="VIDEO_ID" title="What it is" duration="12:34" poster="poster.jpg" start="30" >}}
+  poster: a page-bundle image, an assets/ path or a static URL (optional). */ -}}
+{{- $L := partial "breeze/lang.html" .Page -}}
+{{- $id := "" -}}
+{{- if .IsNamedParams }}{{ $id = .Get "id" }}{{ else }}{{ $id = .Get 0 }}{{ end -}}
+{{- if not $id }}{{ errorf "youtube-lite: missing id in %s" .Position }}{{ end -}}
+{{ partial "breeze/youtube.html" (dict "id" $id "title" (.Get "title") "duration" (.Get "duration") "poster" (.Get "poster") "start" (.Get "start") "page" .Page "lang" $L.name) }}

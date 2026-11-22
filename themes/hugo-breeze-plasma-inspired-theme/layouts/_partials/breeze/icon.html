@@ -1,0 +1,10 @@
+{{- /* Usage: partial "breeze/icon.html" "rss"  or  partial "breeze/icon.html" (dict "name" "rss" "class" "pi") */ -}}
+{{- $name := . -}}
+{{- $class := "i" -}}
+{{- if reflect.IsMap . -}}
+  {{- $name = .name -}}
+  {{- $class = .class -}}
+{{- end -}}
+{{- $url := partialCached "breeze/icons-url.html" "icons" -}}
+<svg{{ with $class }} class="{{ . }}"{{ end }} aria-hidden="true"><use href="{{ $url }}#{{ $name }}"/></svg>
+{{- /* trim */ -}}

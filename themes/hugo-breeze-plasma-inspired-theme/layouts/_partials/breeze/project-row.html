@@ -1,0 +1,20 @@
+{{- /* One project row (projects page). Context dict: project (an entry of data/projects.yaml), tr (dict "lang" …). */ -}}
+{{- $x := .project -}}
+{{- $tr := .tr }}
+<tr{{ with $x.id | default ($x.name | anchorize) }} id="{{ . }}"{{ end }}>
+  <td class="nm">{{ partial "breeze/icon.html" (dict "name" ($x.icon | default "box") "class" "pi") }}<b>{{ $x.name }}</b>{{ with $x.since }}<span class="d">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "since" "ctx" (dict "Year" .)) }}</span>{{ end }}</td>
+  <td class="wh">{{ $x.summary }}{{ with $x.description }}<span class="d">{{ . }}</span>{{ end }}</td>
+  <td class="st">{{ with $x.stack }}{{ if reflect.IsSlice . }}{{ delimit . ", " }}{{ else }}{{ . }}{{ end }}{{ end }}</td>
+  <td class="ln"><ul class="golinks">
+    {{- with $x.url }}
+    <li><a class="go" href="{{ . }}">{{ $x.urllabel | default (partial "breeze/t.html" (dict "lang" $tr.lang "key" "open")) }}<span class="sr-only"> {{ $x.name }}</span>{{ partial "breeze/icon.html" "ext" }}</a></li>
+    {{- end }}
+    {{- with $x.writeup }}{{ with site.GetPage . }}
+    <li><a class="go" href="{{ .RelPermalink }}">{{ $x.writeuplabel | default (partial "breeze/t.html" (dict "lang" $tr.lang "key" "how_built")) }}</a></li>
+    {{- end }}{{ end }}
+    {{- range $x.links }}
+    <li><a class="go" href="{{ .url }}">{{ .text }}</a></li>
+    {{- end }}
+  </ul></td>
+</tr>
+{{- /* trim */ -}}

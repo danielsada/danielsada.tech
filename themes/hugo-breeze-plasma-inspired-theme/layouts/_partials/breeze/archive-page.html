@@ -1,0 +1,9 @@
+{{- /* The "All posts" page: params.archive.path (default /posts), else the first main section. May return nil. */ -}}
+{{- $cfg := site.Params.archive | default (dict) -}}
+{{- $p := site.GetPage ($cfg.path | default "/posts") -}}
+{{- if not $p -}}
+  {{- with site.MainSections -}}
+    {{- $p = site.GetPage (printf "/%s" (index . 0)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $p -}}

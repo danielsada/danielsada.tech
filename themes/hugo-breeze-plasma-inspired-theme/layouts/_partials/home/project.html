@@ -1,0 +1,29 @@
+{{- /* Featured project (data/projects.yaml: the entry with featured: true, else the first).
+  Uses the entry's `pitch` (short home copy) before its `description`. cfg: title. */ -}}
+{{- $cfg := .cfg -}}
+{{- $pcfg := site.Params.projects | default (dict) -}}
+{{- with hugo.Data.projects -}}
+{{- $x := index . 0 -}}
+{{- range first 1 (where . "featured" true) }}{{ $x = . }}{{ end }}
+<section class="card projects" aria-labelledby="proj-h">
+  <div class="card-h"><h2 id="proj-h">{{ $cfg.title | default (T "side_projects") }}</h2>{{ with site.GetPage ($pcfg.page | default "/projects") }}<a href="{{ .RelPermalink }}">{{ T "all_projects_arrow" }}</a>{{ end }}</div>
+  <article class="proj-feat">
+    {{ partial "breeze/icon.html" (dict "name" ($x.icon | default "box") "class" "") }}
+    <h3>{{ $x.name }}{{ with $x.status }}&nbsp;<small class="mk">{{ . }}</small>{{ end }}</h3>
+    {{- with $x.summary }}
+    <p class="sub">{{ . }}</p>
+    {{- end }}
+    {{- with $x.pitch | default $x.description }}
+    <p class="desc">{{ . }}</p>
+    {{- end }}
+    <ul class="golinks">
+      {{- with $x.url }}
+      <li><a class="go" href="{{ . }}">{{ T "open" }} {{ $x.name }}{{ partial "breeze/icon.html" "ext" }}</a></li>
+      {{- end }}
+      {{- with $x.writeup }}{{ with site.GetPage . }}
+      <li><a class="go" href="{{ .RelPermalink }}">{{ $x.writeuplabel | default (T "how_built") }}</a></li>
+      {{- end }}{{ end }}
+    </ul>
+  </article>
+</section>
+{{- end }}

@@ -1,0 +1,27 @@
+# Projects page (content/projects.md) and the home "Side projects" card (the featured entry).
+# Fields: see the theme README → Content model.
+
+- name: WATolls
+  status: Live
+  since: 2026
+  featured: true
+  icon: chart
+  summary: Washington highway toll rate visualizer.
+  pitch: Collects, serves and charts dynamic toll prices so you can find the cheapest time to cross. Go + Python + Hugo.
+  description: The state only shows what a dynamic toll lane costs right now. WATolls records every rate about every 15 minutes, charts the last 7, 30 and 60 days, and finds the cheapest 15-minute window to cross on your commute.
+  stack: [Python, Postgres, Go, Hugo, ECharts]
+  url: https://watolls.danielsada.tech/
+  writeup: /blog/watolls-washington-toll-visualizer
+
+- name: Breeze Plasma Hugo theme
+  status: Live
+  since: 2026
+  icon: apps
+  summary: The Hugo theme this site runs on.
+  description: A calm, KDE Plasma/Breeze-inspired Hugo blog theme with one translucent navigation panel, opaque reading cards, a Dolphin-style archive, light/dark and no external requests. MIT licensed; this site uses it.
+  stack: [Hugo, CSS, JS]
+  url: https://github.com/danielsada/hugo-breeze-plasma-inspired-theme
+  urllabel: Source
+  links:
+    - text: Demo
+      url: https://danielsada.github.io/hugo-breeze-plasma-inspired-theme/

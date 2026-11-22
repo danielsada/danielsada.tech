@@ -1,0 +1,41 @@
+{{- /* "Projects" box in the panel (params.panel.projects.enable). Compact rows from data/projects.yaml:
+  featured first, then newest (since) first, capped at `limit`, with "All projects (N) →" when truncated.
+  On posts it sits under "On this page" and starts collapsed, so the outline keeps the room; elsewhere it is open.
+  pages = "all" (default) | "nonpost" (hide on posts). Context dict: page, isPost. */ -}}
+{{- $panel := site.Params.panel | default (dict) -}}
+{{- $cfg := $panel.projects | default (dict) -}}
+{{- $all := hugo.Data.projects | default (slice) -}}
+{{- $show := and $cfg.enable $all (or (not .isPost) (ne $cfg.pages "nonpost")) -}}
+{{- if $show -}}
+  {{- $limit := 5 }}{{ if isset $cfg "limit" }}{{ $limit = $cfg.limit }}{{ end -}}
+  {{- $pcfg := site.Params.projects | default (dict) -}}
+  {{- $statuses := $pcfg.statuses | default (slice "Live" "Beta" "Paused" "Archived") -}}
+  {{- $live := $cfg.live | default (index $statuses 0) -}}
+  {{- $projectsPage := site.GetPage ($pcfg.page | default "/projects") -}}
+  {{- /* featured first, then newest first; file order breaks ties */ -}}
+  {{- $rows := slice -}}
+  {{- range $i, $x := $all -}}
+    {{- $url := $x.url -}}
+    {{- if not $url }}{{ with $x.writeup }}{{ with site.GetPage . }}{{ $url = .RelPermalink }}{{ end }}{{ end }}{{ end -}}
+    {{- if and (not $url) $projectsPage }}{{ $url = printf "%s#%s" $projectsPage.RelPermalink ($x.id | default ($x.name | anchorize)) }}{{ end -}}
+    {{- $y := 0 }}{{ with findRE `\d{4}` (string ($x.since | default "")) 1 }}{{ $y = int (index . 0) }}{{ end -}}
+    {{- $rank := printf "%d-%06d-%06d" (cond (eq $x.featured true) 0 1) (sub 999999 $y) $i -}}
+    {{- $rows = $rows | append (dict "rank" $rank "name" $x.name "icon" ($x.icon | default "box") "url" $url "live" (eq $x.status $live) "status" $x.status) -}}
+  {{- end -}}
+  {{- $rows = sort $rows "rank" -}}
+  {{- $title := $cfg.title | default (T "projects") -}}
+  {{- $collapsed := and .isPost (ne $cfg.collapse false) }}
+  <details class="pproj"{{ if not $collapsed }} open{{ end }}>
+    <summary><h2 class="ph" id="pproj-h">{{ $title }}<span class="n">{{ len $all }}</span></h2></summary>
+    <nav aria-labelledby="pproj-h">
+      <ul>
+        {{- range first $limit $rows }}
+        <li><a href="{{ .url }}">{{ partial "breeze/icon.html" .icon }}<span class="nm">{{ .name }}</span>{{ if .live }}<span class="live" title="{{ .status }}"><span class="sr-only"> ({{ .status }})</span></span>{{ end }}</a></li>
+        {{- end }}
+      </ul>
+      {{- if and $projectsPage (gt (len $all) $limit) }}
+      <a class="all" href="{{ $projectsPage.RelPermalink }}">{{ T "all_projects_count" (dict "Count" (len $all)) }}</a>
+      {{- end }}
+    </nav>
+  </details>
+{{- end -}}

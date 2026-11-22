@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{- /* Regular pages: posts (pages in mainSections) use views/post.html, other pages views/page.html.
+  Front matter params.view picks any views/<name>.html (e.g. "projects"), including your own. */ -}}
+{{- $view := .Params.view | default (cond (partial "breeze/is-post.html" .) "post" "page") -}}
+{{ partial (printf "views/%s.html" $view) . }}
+{{ end }}

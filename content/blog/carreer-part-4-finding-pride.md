@@ -1,6 +1,6 @@
 +++
 title = "Part 4: Finding pride in shipping real features"
-description = "Part 4 of my software journey—bridging academic learning with real-world impact."
+description = "Part 4 of my software journey: bridging academic learning with real-world impact."
 tags = [
     "internships",
     "microsoft",

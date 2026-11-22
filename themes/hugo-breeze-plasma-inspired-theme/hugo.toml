@@ -1,0 +1,119 @@
+# Theme configuration for hugo-breeze-plasma-inspired-theme.
+# These are defaults; every value can be overridden in your site's config (see README.md → Configuration).
+
+[module]
+  [module.hugoVersion]
+    min = "0.158.0"
+  [[module.mounts]]
+    source = "archetypes"
+    target = "archetypes"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "i18n"
+    target = "i18n"
+  # The same strings are also readable as data, so a section written in another language than the site
+  # (e.g. a Spanish "notas" section on an English site) gets its own UI strings. See README → Languages.
+  [[module.mounts]]
+    source = "i18n"
+    target = "data/breeze/i18n"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+
+[params]
+  # Identity -----------------------------------------------------------------
+  description = ""
+  tagline = ""
+  # logo = "images/logo.svg"     # assets/ path (processed) or static/ path; omit for a monogram
+  logowidth = 64                 # CSS px at 16px root size
+  logoplate = true               # draw the logo on a small light plate (good for dark-on-transparent logos)
+  logoname = true                # show the name next to the logo
+  colorscheme = "auto"           # auto | light | dark
+  titleseparator = " · "         # between the page title and the site title (in <title>, feeds)
+  # favicon = "favicon.svg"
+  # ogimage = "images/og.png"
+
+  wallpaper = "breeze/wallpaper.svg"   # assets/ path, static path, or "none"
+  [params.author]
+    name = ""
+    email = ""
+    page = "/about"              # page linked from bylines
+
+  # Colours / look (unset = theme defaults) ----------------------------------
+  [params.colors]
+    # wall = "#3d6fd6"           # wallpaper base colour (shown while the wallpaper loads)
+    [params.colors.light]
+      # accent = "#8a5cd6"
+      # ink = "#5e2ca5"          # accent for text and focus rings: keep ≥ 4.5:1 on #fcfcfc
+    [params.colors.dark]
+      # accent = "#a77bff"
+      # ink = "#c6a8ff"          # keep ≥ 4.5:1 on #1f2226
+  [params.fonts]
+    # sans = '"Inter", system-ui, sans-serif'
+    # read = 'Georgia, serif'    # long-form reading face
+    # mono = 'ui-monospace, monospace'
+
+  # Archive (All posts / sections / tags / series) ---------------------------
+  [params.archive]
+    path = "/posts"              # section page that lists every post (front matter: params.archive = true)
+    taxonomy = "tags"            # taxonomy shown in rows and in the Show pane
+    showtags = 8                 # tags listed in the Show pane
+    rowtags = 2                  # tags visible per row (the rest appear when they match)
+    search = true
+
+  [params.series]
+    taxonomy = "series"
+    min = 2                      # a series needs at least this many posts to get series UI
+
+  [params.dates]
+    short = "2 Jan 2006"
+    long = "2 January 2006"
+
+  # Posts --------------------------------------------------------------------
+  [params.post]
+    toc = true                   # "On this page" (panel on desktop, collapsible on mobile)
+    progress = true              # thin reading-progress bar
+    readingtime = true
+    anchors = true               # "#" links on headings
+    postnav = true               # series / older / newer links
+    byline = true
+
+  [params.images]
+    maxwidth = 960
+    quality = 75
+
+  [params.rss]
+    panel = true                 # RSS icon in the panel's social row
+
+  [params.projects]
+    page = "/projects"
+    statuses = ["Live", "Beta", "Paused", "Archived"]
+
+  # "Projects" box in the left panel (off by default). Compact rows from data/projects.yaml, featured first,
+  # then newest. On posts it sits under "On this page", collapsed. pages = "all" | "nonpost".
+  [params.panel.projects]
+    enable = false
+    limit = 5
+    # title = "Projects"
+    pages = "all"
+    collapse = true              # start collapsed on posts
+    # live = "Live"              # status shown as a green dot (default: the first of projects.statuses)
+
+  # Home widgets: rendered in this order; set enable = false to hide one.
+  # Add your own by creating layouts/_partials/home/<widget>.html in your site.
+  [params.home]
+    [[params.home.main]]
+      widget = "intro"
+    [[params.home.main]]
+      widget = "latest"
+      count = 3
+    [[params.home.main]]
+      widget = "recent"
+      offset = 3
+      count = 5
+    [[params.home.side]]
+      widget = "project"
+    [[params.home.side]]
+      widget = "talk"

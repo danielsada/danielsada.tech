@@ -1,0 +1,24 @@
+{{- /* Latest posts as headlines. cfg: count (3), sections (default: main sections in the site's language), title. */ -}}
+{{- $cfg := .cfg -}}
+{{- $n := $cfg.count | default 3 -}}
+{{- $pages := partial "breeze/primary-posts.html" (dict "sections" $cfg.sections) -}}
+{{- $archive := partial "breeze/archive-page.html" .page -}}
+{{- $dates := site.Params.dates | default (dict) -}}
+{{- $short := $dates.short | default "2 Jan 2006" -}}
+{{- with first $n $pages }}
+<section class="card latest" aria-labelledby="latest-h">
+  <div class="card-h"><h2 id="latest-h">{{ $cfg.title | default (T "latest_posts") }}</h2>{{ with $archive }}<a href="{{ .RelPermalink }}">{{ T "all_posts_arrow" (dict "Count" (len (partial "breeze/posts.html" $.page))) }}</a>{{ end }}</div>
+  <ol>
+    {{- range . }}
+    {{- $L := partial "breeze/lang.html" . }}
+    <li><article{{ if $L.foreign }} lang="{{ $L.code }}"{{ end }}>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $short }}</time>
+      <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+      {{- with .Description }}
+      <p>{{ . }}</p>
+      {{- end }}
+    </article></li>
+    {{- end }}
+  </ol>
+</section>
+{{- end }}

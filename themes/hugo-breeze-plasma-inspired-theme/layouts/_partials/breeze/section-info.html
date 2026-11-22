@@ -1,0 +1,23 @@
+{{- /* Metadata of a top-level content section, read from its _index.md (context: the section name).
+  Use with partialCached "breeze/section-info.html" $name $name. */ -}}
+{{- $name := . -}}
+{{- $siteLang := site.Language.Name -}}
+{{- $info := dict "name" $name "title" $name "url" "" "lang" $siteLang "foreign" false "badge" "" "icon" "blog" "count" 0 "card" (dict) -}}
+{{- with $name -}}
+  {{- with site.GetPage (printf "/%s" $name) -}}
+    {{- $lang := .Params.lang | default $siteLang -}}
+    {{- $info = dict
+      "name" $name
+      "page" .
+      "title" .LinkTitle
+      "url" .RelPermalink
+      "lang" $lang
+      "foreign" (and (ne $lang $siteLang) (ne $lang (site.Language.Locale | default $siteLang)))
+      "badge" (.Params.badge | default "")
+      "icon" (.Params.icon | default "blog")
+      "count" (len .RegularPagesRecursive)
+      "card" (.Params.card | default (dict))
+    -}}
+  {{- end -}}
+{{- end -}}
+{{- return $info -}}

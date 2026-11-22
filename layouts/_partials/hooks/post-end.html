@@ -1,0 +1,44 @@
+{{- /* Site override of the theme's post-end hook: the "get my posts by email" (MailerLite) signup.
+  Config: [params.newsletter] account + one table per language (form, title, text, label, placeholder,
+  button, sending, thanks, error); the post's language (Notas = es) picks the table. It's a plain form
+  POST to MailerLite (opens their JSON reply in a new tab without JavaScript); the inline script submits
+  it with fetch instead and shows the result in place. Nothing is requested from MailerLite before submit. */ -}}
+{{- $cfg := site.Params.newsletter | default (dict) -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $t := index $cfg $L.name | default (index $cfg site.Language.Name) -}}
+{{- if and $cfg.account $t $t.form }}
+<section class="newsletter" aria-labelledby="nl-h">
+  <h2 id="nl-h">{{ $t.title }}</h2>
+  {{- with $t.text }}
+  <p>{{ . }}</p>
+  {{- end }}
+  <form action="https://assets.mailerlite.com/jsonp/{{ $cfg.account }}/forms/{{ $t.form }}/subscribe" method="post" target="_blank" data-newsletter data-sending="{{ $t.sending }}" data-thanks="{{ $t.thanks }}" data-error="{{ $t.error }}">
+    <label class="sr-only" for="nl-email">{{ $t.label }}</label>
+    <input id="nl-email" type="email" name="fields[email]" required autocomplete="email" placeholder="{{ $t.placeholder }}">
+    <input type="hidden" name="ml-submit" value="1">
+    <input type="hidden" name="anticsrf" value="true">
+    <button class="tool" type="submit">{{ $t.button }}</button>
+    <p class="newsletter__status" role="status"></p>
+  </form>
+</section>
+<script>
+document.querySelectorAll('form[data-newsletter]').forEach(function (f) {
+  var out = f.querySelector('[role=status]'), btn = f.querySelector('button');
+  f.addEventListener('submit', function (e) {
+    if (!window.fetch || !window.FormData) return;
+    e.preventDefault();
+    btn.disabled = true;
+    out.textContent = f.dataset.sending;
+    fetch(f.action, { method: 'POST', body: new FormData(f) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.success) throw new Error();
+        out.textContent = f.dataset.thanks;
+        f.reset();
+      })
+      .catch(function () { out.textContent = f.dataset.error; })
+      .finally(function () { btn.disabled = false; });
+  });
+});
+</script>
+{{- end -}}

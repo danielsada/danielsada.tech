@@ -1,8 +1,0 @@
-{{ if .IsPage }}
-  <script src="/highlight.min.js"></script>
-{{ end }}
-{{ if .IsHome }}
-  <script src="/scripts/{{ if .Site.Params.cacheBustJS }}{{ index .Site.Data.cachedAssets "index.js" }}{{ else }}index.min.js{{ end }}" type="text/javascript"></script>
-{{ else }}
-  <script src="/scripts/{{ if .Site.Params.cacheBustJS }}{{ index .Site.Data.cachedAssets "main.js" }}{{ else }}main.min.js{{ end }}" type="text/javascript"></script>
-{{ end }}

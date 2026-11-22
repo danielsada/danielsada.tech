@@ -42,7 +42,7 @@ return
 
 AutoHotKey is seriously nuts, the amount of things you can do, automate and test with it is incredible, [a quick glance to their docs](https://www.autohotkey.com/docs/Hotkeys.htm), can make you dream of the possibilities of automation, but always remember the rule of thumb XKCD:
 
-![](https://imgs.xkcd.com/comics/is_it_worth_the_time_2x.png)
+![](/images/blog/programs-hn/xkcd-is-it-worth-the-time.png)
 Randall Munroe ([xkcd.com](https://xkcd.com/1205/))
 
 [Roisoyok, from the HN comments](https://news.ycombinator.com/item?id=13889315) mentions:
@@ -56,7 +56,7 @@ Randall Munroe ([xkcd.com](https://xkcd.com/1205/))
 [Vasilli111 also recommends ](https://news.ycombinator.com/item?id=13890426)  [Awesome AutoHotkey list](https://github.com/ahkscript/awesome-AutoHotkey)
 A curated list of awesome AutoHotkey libraries, library distributions, scripts, tools, and resources. 
 
-**For MacOSX users**, there is BetterTouchTool (https://www.boastr.net/) [as mentioned by boondaburrah](https://news.ycombinator.com/item?id=13892307) "is kinda like an AutoHotKey for OS X -- but on top of custom keyboard shortcuts, it also allows you to configure custom trackpad gestures." and [fatratchet adds](https://news.ycombinator.com/item?id=13891025) "I love BetterTouchTool, especially since it allows setting everything on a per application basis. I use it to have the same keyboard shortcuts for navigating tabs in everything, like browsers, iterm, finder, IDEs and more, it's so nice to have consistent shortcuts.
+**For MacOSX users**, there is BetterTouchTool (https://www.boastr.net/) [as mentioned by boondaburrah](https://news.ycombinator.com/item?id=13892307) "is kinda like an AutoHotKey for OS X, but on top of custom keyboard shortcuts, it also allows you to configure custom trackpad gestures." and [fatratchet adds](https://news.ycombinator.com/item?id=13891025) "I love BetterTouchTool, especially since it allows setting everything on a per application basis. I use it to have the same keyboard shortcuts for navigating tabs in everything, like browsers, iterm, finder, IDEs and more, it's so nice to have consistent shortcuts.
 
 They also mention: "It's also really practical for programs that don't even support custom keybinds or when running multiple instances at the same time like multiple firefox profiles. No need to set the new shortcuts in every profile, they just always work on every running firefox instance."
 
@@ -108,7 +108,7 @@ Peter has sold Paper in 100 quantity
 Peter has sold Paper in 400 quantity
 ```
 
-![](https://imgs.xkcd.com/comics/regular_expressions.png)
+![](/images/blog/programs-hn/xkcd-regular-expressions.png)
 Randall Munroe ([xkcd.com](https://xkcd.com/208/))
 
 
@@ -159,7 +159,7 @@ As a last comment on Unix utilities, [gshakir recommends](https://news.ycombinat
 
 I'm not doing a section on Perl, but funnily enough, a lot of my tools in my work in Microsoft OneNote are built in Perl. *(Who are you Perl wizard who wrote these?)*
 
-![](https://imgs.xkcd.com/comics/lisp.jpg)
+![](/images/blog/programs-hn/xkcd-lisp.jpg)
 Randall Munroe ([xkcd.com](https://xkcd.com/224/))
 
 # Beyond Compare
@@ -220,8 +220,6 @@ Finally, I wanted to list some of the new ones that are saving me hundreds of ho
 
 One of the **most jarring things missing in OSX** is being able to snap windows to the sides or in quarters, similar to what Win + arrow keys does in Windows. [Rectangle](https://rectangleapp.com/) ~~[Spectacle](https://www.spectacleapp.com/)~~ (Edit: Seems like Spectacle is no longer being developed, [as mentioned by lioeters](https://news.ycombinator.com/item?id=30317246))does this by providing you shortcuts on OSX to do this.
 
-![](https://www.spectacleapp.com/images/right.jpg)
-
 # Power Toys on Windows.
 
 [Power Toys on Windows](https://docs.microsoft.com/en-us/windows/powertoys/install) has a lot of utilities that were missing on windows. My favorites in any order are:
@@ -229,17 +227,17 @@ One of the **most jarring things missing in OSX** is being able to snap windows 
 
 ## Power Toys Run
 Similar to Spotlight for OSX, but for Windows, fully customizable.
-![](https://docs.microsoft.com/en-us/windows/images/pt-powerrun-demo.gif)
+![](/images/blog/programs-hn/powertoys-run.gif)
 
 ## Color picker
 You can now find colors you used in your screen! OSX also has a color picker included under Utilities.
-![](https://docs.microsoft.com/en-us/windows/images/pt-colorpicker-hex-editor.png)
+![](/images/blog/programs-hn/powertoys-color-picker.png)
 
 ## Image Resizer
 Resize images with right click.
-![](https://docs.microsoft.com/en-us/windows/images/powertoys-resize-images.gif)
+![](/images/blog/programs-hn/powertoys-image-resizer.gif)
 
 ## Power Rename
 Bulk rename files
-![](https://docs.microsoft.com/en-us/windows/images/powerrename-menu.png)
+![](/images/blog/programs-hn/powertoys-power-rename.png)
 

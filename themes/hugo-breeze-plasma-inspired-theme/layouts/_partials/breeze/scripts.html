@@ -1,0 +1,2 @@
+{{- $js := resources.Get "breeze/script.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>

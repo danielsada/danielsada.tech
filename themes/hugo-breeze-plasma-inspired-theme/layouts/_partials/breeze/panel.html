@@ -1,0 +1,90 @@
+{{- /* The translucent left panel: profile (Home) → Places (menus.main) → "On this page" (posts) → Elsewhere (menus.social + RSS).
+  Places: [[menus.main]] entries with params.icon (sprite id), params.badge, params.count (show the section's post count). */ -}}
+{{- $p := . -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $archive := partial "breeze/archive-page.html" . -}}
+{{- $isPost := partial "breeze/is-post.html" . -}}
+
+{{- /* Collect entries: the main menu, or (without one) the archive + every main section */ -}}
+{{- $entries := slice -}}
+{{- with site.Menus.main -}}
+  {{- range . -}}
+    {{- $lang := .Params.lang -}}
+    {{- if and (not $lang) .Page }}{{ $lang = .Page.Params.lang }}{{ end -}}
+    {{- $entries = $entries | append (dict "name" .Name "url" .URL "page" .Page "icon" (.Params.icon | default "folder") "badge" .Params.badge "count" .Params.count "lang" $lang "current" ($p.IsMenuCurrent "main" .)) -}}
+  {{- end -}}
+{{- else -}}
+  {{- with $archive -}}
+    {{- $entries = $entries | append (dict "name" .LinkTitle "url" .RelPermalink "page" . "icon" (.Params.icon | default "blog") "current" (eq .RelPermalink $p.RelPermalink)) -}}
+  {{- end -}}
+  {{- range site.MainSections -}}
+    {{- $s := partialCached "breeze/section-info.html" . . -}}
+    {{- if and $s.url (or (not $archive) (ne $s.url $archive.RelPermalink)) -}}
+      {{- $entries = $entries | append (dict "name" $s.title "url" $s.url "page" $s.page "icon" $s.icon "badge" $s.badge "count" true "lang" $s.lang "current" (eq $s.url $p.RelPermalink)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Current state: "page" = this is the page; "true" = this page lives under that entry */ -}}
+{{- $states := slice -}}
+{{- $any := false -}}
+{{- range $entries -}}
+  {{- $st := "" -}}
+  {{- if or .current (and .page (eq .page.RelPermalink $p.RelPermalink)) -}}
+    {{- $st = "page" -}}
+  {{- else if and .page (not .page.IsHome) ($p.IsDescendant .page) -}}
+    {{- $st = "true" -}}
+  {{- end -}}
+  {{- if $st }}{{ $any = true }}{{ end -}}
+  {{- $states = $states | append $st -}}
+{{- end -}}
+{{- $underArchive := or $isPost (eq $p.Kind "term") (eq $p.Kind "taxonomy") (and (eq $p.Kind "section") (in site.MainSections $p.Section)) -}}
+{{- $archiveURL := "" }}{{ with $archive }}{{ $archiveURL = .RelPermalink }}{{ end -}}
+
+<aside class="panel" id="panel" aria-label="{{ T "site_navigation" }}"{{ if $L.foreign }} lang="{{ $L.site }}"{{ end }}>
+  <div class="panel__head">
+    {{ partial "breeze/identity.html" (dict "page" . "where" "panel") }}
+    <button class="tool tool--plain panel__close" type="button" data-close aria-label="{{ T "close_menu" }}">{{ partial "breeze/icon.html" "close" }}</button>
+  </div>
+  {{- with $entries }}
+  <nav aria-labelledby="places-h">
+    <h2 class="ph" id="places-h">{{ T "places" }}</h2>
+    <ul class="nav">
+    {{- range $i, $e := . }}
+      {{- $st := index $states $i -}}
+      {{- if and (not $any) $underArchive (eq $e.url $archiveURL) }}{{ $st = "true" }}{{ end }}
+      <li><a href="{{ $e.url }}"{{ with $st }} aria-current="{{ . }}"{{ end }}>
+        {{- partial "breeze/icon.html" $e.icon -}}
+        {{- if and $e.lang (ne $e.lang $L.site) (ne $e.lang site.Language.Name) }}<span lang="{{ $e.lang }}">{{ $e.name }}</span>{{ else }}{{ $e.name }}{{ end -}}
+        {{- with $e.badge }} <span class="tag">{{ . }}</span>{{ end -}}
+        {{- if and $e.count $e.page -}}
+          {{- $n := len $e.page.RegularPagesRecursive -}}
+          {{- if and $archive (eq $e.page.RelPermalink $archive.RelPermalink) }}{{ $n = len (partial "breeze/posts.html" $p) }}{{ end -}}
+          <span class="n">{{ $n }}</span>
+        {{- end -}}
+      </a></li>
+    {{- end }}
+    </ul>
+  </nav>
+  {{- end }}
+  {{- if $isPost }}{{ with partial "breeze/toc.html" . }}
+  <div class="outline"{{ if $L.foreign }} lang="{{ $L.code }}"{{ end }}>
+    <h2 class="ph" id="toc-h">{{ partial "breeze/t.html" (dict "key" "on_this_page" "lang" $L.name) }}</h2>
+    {{ replace . `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-labelledby="toc-h">` | safeHTML }}
+  </div>
+  {{- end }}{{ end }}
+  {{- partial "breeze/panel-projects.html" (dict "page" . "isPost" $isPost) }}
+  {{- $rssCfg := site.Params.rss | default (dict) -}}
+  {{- $rss := false -}}
+  {{- if ne $rssCfg.panel false }}{{ $rss = site.Home.OutputFormats.Get "rss" }}{{ end -}}
+  {{- if or site.Menus.social $rss }}
+  <ul class="social" aria-label="{{ T "elsewhere" }}">
+    {{- range site.Menus.social }}
+    <li><a href="{{ .URL }}" aria-label="{{ .Name }}" title="{{ .Name }}"{{ if strings.HasPrefix .URL "http" }} rel="me"{{ end }}>{{ partial "breeze/icon.html" (.Params.icon | default "link") }}</a></li>
+    {{- end }}
+    {{- with $rss }}
+    <li><a href="{{ .RelPermalink }}" aria-label="{{ T "rss_feed" }}" title="{{ T "rss_feed" }}">{{ partial "breeze/icon.html" "rss" }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</aside>

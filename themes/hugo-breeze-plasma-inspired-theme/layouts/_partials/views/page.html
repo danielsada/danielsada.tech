@@ -1,0 +1,19 @@
+{{- /* A plain page (About, colophon…): one card. Front matter params.sayhi = true adds email + social links. */ -}}
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $tr := dict "lang" $L.name -}}
+<article class="card page" aria-labelledby="page-h">
+  <h1 id="page-h">{{ .Title }}</h1>
+  {{ .Content }}
+  {{- if .Params.sayhi }}
+  {{- $author := site.Params.author | default (dict) }}
+  <h2>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "say_hi") }}</h2>
+  <ul class="golinks">
+    {{- with $author.email }}
+    <li><a class="go" href="mailto:{{ . }}">{{ partial "breeze/icon.html" "mail" }}{{ . }}</a></li>
+    {{- end }}
+    {{- range site.Menus.social }}
+    <li><a class="go" href="{{ .URL }}"{{ if strings.HasPrefix .URL "http" }} rel="me"{{ end }}>{{ partial "breeze/icon.html" (.Params.icon | default "link") }}{{ .Name }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</article>

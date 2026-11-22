@@ -1,6 +1,6 @@
 +++
 title = "Part 3: No Pay, No Work; Early Career Lessons"
-description = "Part 3 of my 12-year journey—what my first rocky job taught me about boundaries and value."
+description = "Part 3 of my 12-year journey: what my first rocky job taught me about boundaries and value."
 tags = [
     "practical-experience"
 ]
@@ -12,7 +12,7 @@ categories = [
 series = ["My career so far"]
 +++
 
-*Little elephant company* — *7 people working out of a random house* — *2013*
+*Little elephant company*, *7 people working out of a random house*, *2013*
 
 
 I know we haven't paid you for 30 days, but would you be willing to float another month?

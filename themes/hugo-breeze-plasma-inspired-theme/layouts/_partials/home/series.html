@@ -1,0 +1,41 @@
+{{- /* Series: one quiet row per series (params.series.taxonomy, ≥ params.series.min posts): name, part count,
+  date of its latest (or first) part. cfg: title, sort ("latest" | "name"), limit, counts (true), date ("latest" | "first" | "none").
+  The card is omitted when there is no series. */ -}}
+{{- $cfg := .cfg -}}
+{{- $scfg := site.Params.series | default (dict) -}}
+{{- $stax := $scfg.taxonomy | default "series" -}}
+{{- $smin := $scfg.min | default 2 -}}
+{{- $dates := site.Params.dates | default (dict) -}}
+{{- $short := $dates.short | default "2 Jan 2006" -}}
+{{- $which := $cfg.date | default "latest" -}}
+{{- $rows := slice -}}
+{{- with index site.Taxonomies $stax -}}
+  {{- range $name, $wp := . -}}
+    {{- if ge (len $wp.Pages) $smin -}}
+      {{- $byDate := $wp.Pages.ByDate -}}
+      {{- $rows = $rows | append (dict
+          "title" $wp.Page.LinkTitle
+          "url" $wp.Page.RelPermalink
+          "count" (len $wp.Pages)
+          "first" (index $byDate 0).Date
+          "latest" (index $byDate.Reverse 0).Date
+          "key" (index $byDate.Reverse 0).Date.Unix
+      ) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $rows -}}
+  {{- if eq $cfg.sort "name" }}{{ $rows = sort $rows "title" }}{{ else }}{{ $rows = sort $rows "key" "desc" }}{{ end -}}
+  {{- with $cfg.limit }}{{ $rows = first . $rows }}{{ end }}
+<section class="card recent seriescard" aria-labelledby="series-h">
+  <div class="card-h"><h2 id="series-h">{{ $cfg.title | default (T "series_heading") }}</h2></div>
+  <ul>
+    {{- range $rows }}
+    <li><a href="{{ .url }}">{{ partial "breeze/icon.html" "series" }}<span>{{ .title }}</span>
+      {{- if ne $cfg.counts false }}<small class="parts">{{ T "parts" .count }}</small>{{ end -}}
+      {{- if ne $which "none" }}{{ $d := cond (eq $which "first") .first .latest }}<time datetime="{{ $d.Format "2006-01-02" }}">{{ $d | time.Format $short }}</time>{{ end -}}
+    </a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

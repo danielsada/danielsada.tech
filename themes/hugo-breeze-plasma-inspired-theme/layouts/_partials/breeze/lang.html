@@ -1,0 +1,15 @@
+{{- /* The language of a page: front matter params.lang, else its top-level section's params.lang, else the site's.
+  Returns dict: name (for strings), code (for lang=""), site (the site's code), foreign (differs from the site). */ -}}
+{{- $siteName := site.Language.Name -}}
+{{- $siteCode := site.Language.Locale | default $siteName -}}
+{{- $l := .Params.lang -}}
+{{- if not $l -}}
+  {{- with .FirstSection -}}
+    {{- $l = .Params.lang -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := dict "name" $siteName "code" $siteCode "site" $siteCode "foreign" false -}}
+{{- if and $l (ne $l $siteName) (ne $l $siteCode) -}}
+  {{- $out = dict "name" $l "code" $l "site" $siteCode "foreign" true -}}
+{{- end -}}
+{{- return $out -}}

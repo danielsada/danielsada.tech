@@ -1,0 +1,191 @@
+# Cadenas de la interfaz del tema Breeze Plasma. Sobrescríbelas en i18n/es.toml de tu sitio
+# (o en data/breeze/i18n/es.toml para una sección en español dentro de un sitio en otro idioma).
+
+[skip_to_content]
+other = "Saltar al contenido"
+[menu]
+other = "Menú"
+[close_menu]
+other = "Cerrar menú"
+[site_navigation]
+other = "Navegación del sitio"
+[places]
+other = "Lugares"
+[elsewhere]
+other = "En otros sitios"
+[home]
+other = "Inicio"
+[rss_feed]
+other = "Canal RSS"
+[on_this_page]
+other = "En esta página"
+[breadcrumb]
+other = "Ruta de navegación"
+
+[all_posts]
+other = "Todas las entradas"
+[show]
+other = "Mostrar"
+[go]
+other = "Ir →"
+[show_posts]
+other = "Mostrar entradas"
+[tags]
+other = "Etiquetas"
+[all_tags]
+other = "Todas las etiquetas →"
+[years]
+other = "Años"
+[filter_posts]
+other = "Buscar entradas"
+[filter_placeholder]
+other = "Buscar por título o etiqueta…"
+[newest_first]
+other = "Más recientes primero"
+[oldest_first]
+other = "Más antiguas primero"
+[clear_filter]
+other = "Quitar filtro"
+[no_match]
+other = "Ninguna entrada coincide."
+[show_all_posts]
+other = "Mostrar todas"
+[col_name]
+other = "Nombre"
+[col_date]
+other = "Fecha"
+[col_tags]
+other = "Etiquetas"
+[caption_posts]
+other = "Entradas agrupadas por año"
+[posts_count]
+one = "{{ .Count }} entrada"
+other = "{{ .Count }} entradas"
+[js_post]
+other = "%d entrada"
+[js_posts]
+other = "%d entradas"
+[js_tagged]
+other = "con la etiqueta %s"
+[js_tagged_title]
+other = "Etiqueta: %s"
+[js_from]
+other = "de %s"
+[js_posts_from]
+other = "Entradas de %s"
+[js_matching]
+other = "que coinciden con «%s»"
+[series]
+other = "Serie"
+[series_part]
+other = "Parte {{ .Part }} de {{ .Total }}"
+[parts_count]
+other = "{{ .Title }} ({{ .Count }} partes)"
+[section_count]
+other = "{{ .Title }} ({{ .Count }})"
+
+[col_term]
+other = "Nombre"
+[col_count]
+other = "Entradas"
+[terms_count]
+one = "{{ .Count }} término"
+other = "{{ .Count }} términos"
+
+[back_to]
+other = "← {{ .Title }}"
+[min_read]
+one = "{{ .Count }} min de lectura"
+other = "{{ .Count }} min de lectura"
+[tagged]
+other = "Etiquetas:"
+[more_posts]
+other = "Más entradas"
+[older_post]
+other = "← Entrada anterior"
+[newer_post]
+other = "Entrada siguiente →"
+[prev_in_series]
+other = "← Anterior en la serie"
+[next_in_series]
+other = "Siguiente en la serie →"
+[written_by]
+other = "Escrito por {{ .Name }}."
+[say_hi_at]
+other = "Escríbeme a"
+[link_to_section]
+other = "Enlace a esta sección"
+
+[hi]
+other = "Hola, soy {{ .Name }}."
+[latest_posts]
+other = "Últimas entradas"
+[all_posts_arrow]
+other = "Todas las entradas →"
+[more_writing]
+other = "Más entradas"
+[side_projects]
+other = "Proyectos"
+[all_projects_arrow]
+other = "Todos los proyectos →"
+[latest_talk]
+other = "Última charla"
+[companion_post]
+other = "Entrada relacionada:"
+[see_all]
+other = "Ver todas ({{ .Count }}) →"
+[series_heading]
+other = "Series"
+[parts]
+one = "{{ .Count }} parte"
+other = "{{ .Count }} partes"
+[all_projects_count]
+other = "Todos los proyectos ({{ .Count }}) →"
+
+[play]
+other = "Reproducir: {{ .Title }}"
+[play_duration]
+other = "Reproducir: {{ .Title }} ({{ .Duration }})"
+[video_suffix]
+other = "(vídeo de YouTube)"
+
+[projects]
+other = "Proyectos"
+[col_project]
+other = "Proyecto"
+[col_what]
+other = "Qué es"
+[col_stack]
+other = "Tecnologías"
+[col_links]
+other = "Enlaces"
+[open]
+other = "Abrir"
+[how_built]
+other = "Cómo lo hice →"
+[since]
+other = "Desde {{ .Year }}"
+[projects_count]
+one = "{{ .Count }} proyecto"
+other = "{{ .Count }} proyectos"
+[caption_projects]
+other = "Proyectos, agrupados por estado"
+[in_listed_order]
+other = "Más recientes primero"
+
+[say_hi]
+other = "Saluda"
+
+[date_short]
+other = "2 Jan 2006"
+[date_long]
+other = "2 de January de 2006"
+[months]
+other = "enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre"
+[months_short]
+other = "ene,feb,mar,abr,may,jun,jul,ago,sept,oct,nov,dic"
+
+[not_found_title]
+other = "Página no encontrada"
+[not_found_text]
+other = "Esa página no existe (o ya no). Prueba el archivo o vuelve al inicio."

@@ -1,0 +1,10 @@
+# Home "Latest talk" card (the featured entry, else the first). Fields: see the theme README → Content model.
+
+- title: How to sleep at night having a cloud service
+  event: DevOpsDays Rockies
+  year: 2023
+  youtube: KU_pUFd0kjY
+  duration: "25:23"
+  poster: images/talks/talk-KU_pUFd0kjY.webp   # assets/images/talks/
+  companion: /blog/cloud-services-dos
+  featured: true

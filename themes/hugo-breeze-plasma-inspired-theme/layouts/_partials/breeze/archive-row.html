@@ -1,0 +1,44 @@
+{{- /* One archive row. Context dict: page, base (the view's own filter), lang (the view's language),
+  tax / stax / smin (tag and series taxonomies, series minimum), rowtags, short (date format). */ -}}
+{{- $p := .page -}}
+{{- $sec := partialCached "breeze/section-info.html" $p.Section $p.Section -}}
+{{- $series := slice -}}
+{{- range $p.GetTerms .stax -}}
+  {{- if ge (len .Pages) $.smin -}}
+    {{- $series = $series | append (path.Base (strings.TrimSuffix "/" .RelPermalink)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $terms := $p.GetTerms .tax -}}
+{{- $slugs := slice -}}
+{{- range $terms -}}
+  {{- $slugs = $slugs | append (path.Base (strings.TrimSuffix "/" .RelPermalink)) -}}
+{{- end -}}
+{{- $foreign := ne $sec.lang .lang -}}
+{{- $marks := slice -}}
+{{- if and $sec.foreign $sec.badge (ne .base (print "s:" $p.Section)) -}}
+  {{- $marks = $marks | append $sec.badge -}}
+{{- end -}}
+{{- if and $series (not (strings.HasPrefix .base "series:")) -}}
+  {{- $marks = $marks | append (partial "breeze/t.html" (dict "key" "series" "lang" .lang)) -}}
+{{- end -}}
+{{- with $p.Params.mark -}}
+  {{- $marks = $marks | append . -}}
+{{- end }}
+<tr data-s="{{ $p.Section }}"{{ with $series }} data-series="{{ delimit . " " }}"{{ end }} data-tags="{{ delimit $slugs " " }}">
+<td class="nm"><a href="{{ $p.RelPermalink }}"{{ if $foreign }} lang="{{ $sec.lang }}"{{ end }}>{{ $p.LinkTitle }}</a>
+  {{- range $marks }}&nbsp;<small class="mk">{{ . }}</small>{{ end -}}
+  {{- with $p.Description }}<span class="d"{{ if $foreign }} lang="{{ $sec.lang }}"{{ end }}>{{ . }}</span>{{ end -}}
+</td>
+<td class="dt"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ partial "breeze/date.html" (dict "date" $p.Date "fmt" .short "lang" .lang) }}</time></td>
+<td class="tg">
+  {{- range $i, $t := $terms -}}
+    {{- $slug := index $slugs $i -}}
+    {{- if lt $i $.rowtags -}}
+      {{- if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}" data-f="tag:{{ $slug }}">{{ $t.LinkTitle }}</a>
+    {{- else -}}
+      <span class="x">{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}" data-f="tag:{{ $slug }}">{{ $t.LinkTitle }}</a></span>
+    {{- end -}}
+  {{- end -}}
+</td>
+</tr>
+{{- /* trim */ -}}

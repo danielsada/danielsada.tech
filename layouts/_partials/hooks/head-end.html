@@ -1,0 +1,48 @@
+{{- /* Site hook (theme: layouts/_partials/hooks/head-end.html). Schema.org JSON-LD:
+  home → WebSite + Person, the author page (params.author.page) → ProfilePage, posts → BlogPosting.
+  Person data comes from params.author, params.tagline, params.logo, params.schema.worksFor and the
+  http(s) links of [[menus.social]] (sameAs). Also renders _partials/analytics.html (Google Analytics, production only). */ -}}
+{{- $author := site.Params.author | default (dict) -}}
+{{- $schema := site.Params.schema | default (dict) -}}
+{{- $person := dict "@type" "Person" "@id" (print site.Home.Permalink "#person") "name" ($author.name | default site.Title) "url" site.Home.Permalink -}}
+{{- with site.Params.tagline }}{{ $person = merge $person (dict "description" .) }}{{ end -}}
+{{- with site.Params.logo -}}
+  {{- with resources.Get . }}{{ $person = merge $person (dict "image" .Permalink) }}{{ else }}{{ $person = merge $person (dict "image" (absURL .)) }}{{ end -}}
+{{- end -}}
+{{- with $schema.worksFor }}{{ $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" .)) }}{{ end -}}
+{{- $sameAs := slice -}}
+{{- range site.Menus.social }}{{ if strings.HasPrefix .URL "http" }}{{ $sameAs = $sameAs | append .URL }}{{ end }}{{ end -}}
+{{- with $sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end -}}
+
+{{- $data := false -}}
+{{- $authorPage := site.GetPage ($author.page | default "/about") -}}
+{{- if .IsHome -}}
+  {{- $site := dict "@type" "WebSite" "@id" (print site.Home.Permalink "#website") "url" site.Home.Permalink "name" site.Title "inLanguage" (site.Language.Locale | default site.Language.Name) "publisher" (dict "@id" (index $person "@id")) -}}
+  {{- with site.Params.description }}{{ $site = merge $site (dict "description" .) }}{{ end -}}
+  {{- $data = dict "@context" "https://schema.org" "@graph" (slice $site $person) -}}
+{{- else if and $authorPage (eq .RelPermalink $authorPage.RelPermalink) -}}
+  {{- $data = dict "@context" "https://schema.org" "@type" "ProfilePage" "url" .Permalink "name" .Title "mainEntity" $person -}}
+{{- else if partial "breeze/is-post.html" . -}}
+  {{- $L := partial "breeze/lang.html" . -}}
+  {{- $post := dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" .Title
+      "url" .Permalink
+      "mainEntityOfPage" .Permalink
+      "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+      "inLanguage" $L.code
+      "author" $person
+  -}}
+  {{- with .Description }}{{ $post = merge $post (dict "description" .) }}{{ end -}}
+  {{- with .GetTerms "tags" }}{{ $kw := slice }}{{ range . }}{{ $kw = $kw | append .LinkTitle }}{{ end }}{{ $post = merge $post (dict "keywords" $kw) }}{{ end -}}
+  {{- with .Params.image | default site.Params.ogimage -}}
+    {{- with or ($.Resources.Get .) (resources.Get .) }}{{ $post = merge $post (dict "image" .Permalink) }}{{ else }}{{ $post = merge $post (dict "image" (absURL .)) }}{{ end -}}
+  {{- end -}}
+  {{- $data = $post -}}
+{{- end -}}
+{{- with $data }}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end -}}
+{{ partial "analytics.html" . }}

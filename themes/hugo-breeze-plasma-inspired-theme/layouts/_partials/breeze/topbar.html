@@ -1,0 +1,6 @@
+{{- $L := partial "breeze/lang.html" . -}}
+<header class="topbar"{{ if $L.foreign }} lang="{{ $L.site }}"{{ end }}>
+  {{ partial "breeze/identity.html" (dict "page" . "where" "top") }}
+  <button class="tool tool--plain" type="button" aria-controls="panel" aria-expanded="false" data-open>{{ partial "breeze/icon.html" "menu" }}{{ T "menu" }}</button>
+</header>
+<div class="scrim" data-close hidden></div>

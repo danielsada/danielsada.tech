@@ -1,6 +1,6 @@
 +++
 title = "COBOL Programmers Are the Original Vibe Coders"
-description = "COBOL programmers didn't care about elegance or technical correctness—they cared about getting stuff done. Sound familiar?"
+description = "COBOL programmers didn't care about elegance or technical correctness. They cared about getting stuff done. Sound familiar?"
 tags = [
     "cobol",
     "vibecoding",

@@ -1,0 +1,8 @@
+{{- /* Google Analytics (gtag.js), production builds only. ID: [services.googleAnalytics] id in hugo.toml;
+  [privacy.googleAnalytics] disable = true turns it off. Loaded async so it never blocks rendering. */ -}}
+{{- with site.Config.Services.GoogleAnalytics.ID -}}
+{{- if and hugo.IsProduction (not site.Config.Privacy.GoogleAnalytics.Disable) }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',{{ . }});</script>
+{{- end -}}
+{{- end -}}

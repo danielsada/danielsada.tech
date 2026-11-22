@@ -1,0 +1,93 @@
+{{- $L := partial "breeze/lang.html" . -}}
+{{- $scheme := site.Params.colorscheme | default "auto" -}}
+{{- $suffix := site.Params.titlesuffix | default site.Title -}}
+{{- $sep := partial "breeze/title-separator.html" . -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="{{ if eq $scheme "auto" }}light dark{{ else }}{{ $scheme }}{{ end }}">
+<title>{{ if .IsHome }}{{ site.Title }}{{ with site.Params.tagline }}{{ $sep }}{{ . }}{{ end }}{{ else }}{{ .Title }}{{ $sep }}{{ $suffix }}{{ end }}</title>
+{{- $desc := .Description -}}
+{{- if not $desc -}}
+  {{- if .IsPage -}}
+    {{- $desc = .Summary | plainify | strings.TrimSpace | truncate 160 -}}
+  {{- else -}}
+    {{- $desc = site.Params.description -}}
+  {{- end -}}
+{{- end }}
+{{ with $desc }}<meta name="description" content="{{ . | plainify }}">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ with site.Params.favicon }}<link rel="icon" href="{{ . | relURL }}">{{ else }}<link rel="icon" href="data:,">{{ end }}
+
+{{- /* Styles: theme CSS (+ optional assets/css/custom.css from your site), minified and fingerprinted */ -}}
+{{- $css := resources.Get "breeze/style.css" -}}
+{{- with resources.Get "css/custom.css" -}}
+  {{- $css = slice $css . | resources.Concat "breeze/bundle.css" -}}
+{{- end -}}
+{{- $css = $css | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{- /* Config-driven design tokens */ -}}
+{{- $vars := slice -}}
+{{- $colors := site.Params.colors | default (dict) -}}
+{{- $lt := $colors.light | default (dict) -}}
+{{- $dk := $colors.dark | default (dict) -}}
+{{- if or $lt.accent $dk.accent -}}
+  {{- $vars = $vars | append (printf "--accent:light-dark(%s,%s)" ($lt.accent | default "#8a5cd6") ($dk.accent | default "#a77bff")) -}}
+{{- end -}}
+{{- if or $lt.ink $dk.ink -}}
+  {{- $vars = $vars | append (printf "--accent-ink:light-dark(%s,%s)" ($lt.ink | default "#5e2ca5") ($dk.ink | default "#c6a8ff")) -}}
+{{- end -}}
+{{- with $colors.wall -}}
+  {{- $vars = $vars | append (printf "--wall:%s" .) -}}
+{{- end -}}
+{{- $wp := site.Params.wallpaper | default "breeze/wallpaper.svg" -}}
+{{- if ne $wp "none" -}}
+  {{- $url := "" -}}
+  {{- with resources.Get $wp -}}
+    {{- $url = (. | fingerprint).RelPermalink -}}
+  {{- else -}}
+    {{- $url = $wp | relURL -}}
+  {{- end -}}
+  {{- $vars = $vars | append (printf "--wallpaper:url(%q)" $url) -}}
+{{- end -}}
+{{- $fonts := site.Params.fonts | default (dict) -}}
+{{- range $k := slice "sans" "read" "mono" -}}
+  {{- with index $fonts $k -}}
+    {{- $vars = $vars | append (printf "--%s:%s" $k .) -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.Params.logowidth -}}
+  {{- $vars = $vars | append (printf "--logo-w:%vrem" (div (float .) 16)) -}}
+{{- end -}}
+{{- with $vars }}
+<style>:root{ {{- delimit . ";" | safeCSS -}} }</style>
+{{- end }}
+
+{{- with site.Home.OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+{{- end }}
+{{- if not .IsHome }}{{ with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $.Title }}{{ $sep }}{{ site.Title }}" href="{{ .Permalink }}">
+{{- end }}{{ end }}
+
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+{{ with $desc }}<meta property="og:description" content="{{ . | plainify }}">{{ end }}
+<meta property="og:type" content="{{ if partial "breeze/is-post.html" . }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:locale" content="{{ replace $L.code "-" "_" }}">
+{{- $img := "" -}}
+{{- with .Params.image | default site.Params.ogimage -}}
+  {{- with or ($.Resources.Get .) (resources.Get .) -}}
+    {{- $img = .Permalink -}}
+  {{- else -}}
+    {{- $img = . | absURL -}}
+  {{- end -}}
+{{- end }}
+{{ with $img }}<meta property="og:image" content="{{ . }}">
+<meta name="twitter:card" content="summary_large_image">{{ else }}<meta name="twitter:card" content="summary">{{ end }}
+{{- if partial "breeze/is-post.html" . }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+<script>document.documentElement.classList.add('js')</script>
+{{ partial "hooks/head-end.html" . }}

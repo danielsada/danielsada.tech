@@ -1,0 +1,133 @@
+{{- /* The archive window ("Dolphin" list), used for All posts, sections, tag terms and series terms.
+  Context dict:
+    page    the list page
+    pages   the posts to list
+    base    what this page lists: "all" | "s:<section>" | "series:<slug>" | "tag:<slug>"
+    local   "all" (every Show row filters in place) | "years" (only years do; other rows are links)
+    title, sub (HTML allowed), icon, crumbs (slice of dict title/url), asc (oldest first) */ -}}
+{{- $p := .page -}}
+{{- $pages := .pages -}}
+{{- $base := .base -}}
+{{- $L := partial "breeze/lang.html" $p -}}
+{{- $lang := $L.name -}}
+{{- $cfg := site.Params.archive | default (dict) -}}
+{{- $tax := $cfg.taxonomy | default "tags" -}}
+{{- $showtags := 8 }}{{ if isset $cfg "showtags" }}{{ $showtags = $cfg.showtags }}{{ end -}}
+{{- $rowtags := 2 }}{{ if isset $cfg "rowtags" }}{{ $rowtags = $cfg.rowtags }}{{ end -}}
+{{- $scfg := site.Params.series | default (dict) -}}
+{{- $stax := $scfg.taxonomy | default "series" -}}
+{{- $smin := $scfg.min | default 2 -}}
+{{- $dates := site.Params.dates | default (dict) -}}
+{{- $short := $dates.short | default "2 Jan 2006" -}}
+{{- $archive := partial "breeze/archive-page.html" $p -}}
+{{- $groups := $pages.GroupByDate "2006" -}}
+{{- if .asc }}{{ $groups = $pages.ByDate.GroupByDate "2006" "asc" }}{{ end -}}
+{{- $tr := dict "lang" $lang -}}
+
+{{- /* Show pane rows: All posts · each main section · each series (≥ min posts) */ -}}
+{{- $rows := slice -}}
+{{- with $archive -}}
+  {{- $rows = $rows | append (dict "f" "all" "url" .RelPermalink "label" .Title "icon" (.Params.icon | default "folder")) -}}
+{{- end -}}
+{{- range site.MainSections -}}
+  {{- $s := partialCached "breeze/section-info.html" . . -}}
+  {{- if $s.url -}}
+    {{- $rows = $rows | append (dict "f" (print "s:" .) "url" $s.url "label" $s.title "icon" $s.icon "badge" $s.badge "count" $s.count "lang" (cond $s.foreign $s.lang "")) -}}
+  {{- end -}}
+{{- end -}}
+{{- with index site.Taxonomies $stax -}}
+  {{- range $name, $wp := . -}}
+    {{- if ge (len $wp.Pages) $smin -}}
+      {{- $url := $wp.Page.RelPermalink -}}
+      {{- $rows = $rows | append (dict "f" (print "series:" (path.Base (strings.TrimSuffix "/" $url))) "url" $url "label" $wp.Page.LinkTitle "icon" "series" "count" (len $wp.Pages)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $tags := partial "breeze/term-counts.html" (dict "pages" $pages "taxonomy" $tax) -}}
+{{- $orderKey := cond .asc "oldest_first" "newest_first" -}}
+
+{{- $i18n := dict
+  "site" (site.Params.titlesuffix | default site.Title)
+  "sep" (partial "breeze/title-separator.html" $p)
+  "order" (partial "breeze/t.html" (dict "lang" $tr.lang "key" $orderKey))
+  "post" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_post"))
+  "posts" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_posts"))
+  "tagged" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_tagged"))
+  "taggedTitle" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_tagged_title"))
+  "from" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_from"))
+  "postsFrom" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_posts_from"))
+  "matching" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_matching"))
+-}}
+<section class="win" aria-labelledby="list-h" data-base="{{ $base }}" data-local="{{ .local | default "years" }}" data-i18n="{{ $i18n | jsonify | string }}">
+  <header class="win__bar">
+    {{ partial "breeze/icon.html" (.icon | default "folder") }}
+    <h1 id="list-h" tabindex="-1">{{ .title }}</h1>
+    <p class="win__sub" id="list-sub">{{ with .sub }}{{ . | safeHTML }}{{ end }}</p>
+  </header>
+  <div class="win__loc">
+    <nav class="crumbs" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "breadcrumb") }}"><ol>
+      <li><a href="{{ site.Home.RelPermalink }}">{{ site.Params.crumbroot | default site.Title }}</a></li>
+      {{- range .crumbs }}<li><a href="{{ .url }}">{{ .title }}</a></li>{{ end }}
+      <li><a href="{{ $p.RelPermalink }}" id="crumb-base" data-f="{{ $base }}" aria-current="page">{{ .title }}</a></li>
+      <li id="crumb-f" hidden><span aria-current="page"></span></li>
+    </ol></nav>
+    <label class="show-sel" for="show-sel"><span>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show") }}</span><select id="show-sel">
+      <optgroup label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show") }}">
+        {{- range $rows }}<option value="{{ .f }}" data-href="{{ .url }}"{{ if eq .f $base }} selected{{ end }}>{{ .label }}{{ with .badge }} · {{ . }}{{ end }}{{ with .count }} ({{ . }}){{ end }}</option>{{ end -}}
+      </optgroup>
+      {{- with $tags }}
+      <optgroup label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "tags") }}" id="sel-tags">
+        {{- range first $showtags . }}<option value="tag:{{ .slug }}" data-href="{{ .url }}"{{ if eq (print "tag:" .slug) $base }} selected{{ end }}>{{ .title }} ({{ .count }})</option>{{ end -}}
+      </optgroup>
+      {{- end }}
+      <optgroup label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "years") }}">
+        {{- range $groups }}<option value="year:{{ .Key }}" data-href="#y{{ .Key }}">{{ .Key }} ({{ len .Pages }})</option>{{ end -}}
+      </optgroup>
+    </select></label>
+    <a class="tool show-go" id="show-go" href="#" hidden>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "go") }}</a>
+    <div class="search" role="search"{{ if eq $cfg.search false }} hidden{{ end }}>{{ partial "breeze/icon.html" "search" }}<label class="sr-only" for="search">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "filter_posts") }}</label><input id="search" type="search" placeholder="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "filter_placeholder") }}" autocomplete="off"></div>
+  </div>
+  <div class="fm">
+    <nav class="show" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show_posts") }}"><div class="show__in">
+      <h2 class="ph">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show") }}</h2>
+      <ul>
+        {{- range $rows }}
+        <li><a href="{{ .url }}" data-f="{{ .f }}" data-label="{{ .label }}"{{ if eq .f $base }} aria-current="true"{{ end }}>{{ partial "breeze/icon.html" .icon }}<span{{ with .lang }} lang="{{ . }}"{{ end }}>{{ .label }}</span>{{ with .badge }} <span class="tag">{{ . }}</span>{{ end }}{{ with .count }}<span class="n">{{ . }}</span>{{ end }}</a></li>
+        {{- end }}
+      </ul>
+      {{- with $tags }}
+      <h2 class="ph">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "tags") }}</h2>
+      <ul class="tagl">
+        <li id="tagrow" hidden><a href="#" data-f="">{{ partial "breeze/icon.html" "tag" }}<span class="lbl"></span><span class="n"></span></a></li>
+        {{- range first $showtags . }}
+        <li><a href="{{ .url }}" data-f="tag:{{ .slug }}" data-label="{{ .title }}"{{ if eq (print "tag:" .slug) $base }} aria-current="true"{{ end }}>{{ partial "breeze/icon.html" "tag" }}{{ .title }}<span class="n">{{ .count }}</span></a></li>
+        {{- end }}
+      </ul>
+      {{- if gt (len .) $showtags }}{{ with site.GetPage (print "/" $tax) }}<a class="all" href="{{ .RelPermalink }}">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "all_tags") }}</a>{{ end }}{{ end }}
+      {{- end }}
+      {{- with $groups }}
+      <h2 class="ph">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "years") }}</h2>
+      <ul class="tagl">
+        {{- range . }}
+        <li><a href="#y{{ .Key }}" data-f="year:{{ .Key }}">{{ partial "breeze/icon.html" "cal" }}{{ .Key }}<span class="n">{{ len .Pages }}</span></a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </div></nav>
+    <div class="view">
+      <table class="posts">
+        <caption class="sr-only">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "caption_posts") }}</caption>
+        <thead><tr><th scope="col" class="nm">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_name") }}</th><th scope="col" class="dt">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_date") }}</th><th scope="col" class="tg">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_tags") }}</th></tr></thead>
+        {{- range $groups }}
+        <tbody id="y{{ .Key }}" data-year="{{ .Key }}"><tr class="yr"><th colspan="3" scope="rowgroup">{{ partial "breeze/icon.html" "folder" }}{{ .Key }}<small>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "posts_count" "ctx" (len .Pages)) }}</small></th></tr>
+        {{- range .Pages }}
+        {{ partial "breeze/archive-row.html" (dict "page" . "base" $base "lang" $lang "tax" $tax "stax" $stax "smin" $smin "rowtags" $rowtags "short" $short) }}
+        {{- end }}
+        </tbody>
+        {{- end }}
+      </table>
+      <p class="empty" id="empty" hidden>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "no_match") }} <button class="tool" type="button" data-reset>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show_all_posts") }}</button></p>
+    </div>
+  </div>
+  <footer class="win__status"><span id="status" role="status">{{ index $i18n "order" }}</span><button class="tool" type="button" id="clear" data-reset hidden>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "clear_filter") }}</button></footer>
+</section>
