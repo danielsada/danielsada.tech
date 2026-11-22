@@ -33,7 +33,7 @@
   --veil: linear-gradient(160deg, light-dark(transparent, rgba(10, 12, 30, .55)), light-dark(transparent, rgba(8, 8, 26, .75)));
   --wall: light-dark(#3d6fd6, #121631); /* the base under the wallpaper: also what overscroll and full-page captures show */
   --wallpaper: none;
-  --panel-w: 15.5rem;
+  --panel-w: 15.5rem; /* params.panel.width */
   --main-w: 73.75rem;
   --gap: 16px;
   --sticky-top: 16px;

@@ -216,6 +216,7 @@ All options live under `[params]`. Every one is optional.
 | `images.maxwidth`, `images.quality` | `960`, `75` | Settings for Markdown images, which are converted to WebP |
 | `rss.panel` | `true` | Shows the RSS icon in the panel |
 | `projects.page`, `projects.statuses` | `/projects`, `[Live, Beta, Paused, Archived]` | The projects page and the order of its status groups |
+| `panel.width` | `"15.5rem"` | Width of the left panel on desktop, as a CSS length in `rem`, `em` or `px` (e.g. `"17rem"` so longer project names fit). The layout, the centred reading card and the panel's truncation follow it; on phones the panel is a drawer and ignores it. Other values are ignored with a build warning. |
 | `panel.projects.enable`, `.limit`, `.title`, `.pages`, `.collapse`, `.live` | `false`, `5`, "Projects", `all`, `true`, first status | The panel's Projects box (see Navigation) |
 | `home.main`, `home.side` | intro, latest, recent / project, talk | The home widgets, in order (see below) |
 

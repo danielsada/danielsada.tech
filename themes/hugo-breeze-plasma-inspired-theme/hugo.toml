@@ -99,6 +99,10 @@
     page = "/projects"
     statuses = ["Live", "Beta", "Paused", "Archived"]
 
+  # Left panel width on desktop (rem, em or px). Wider fits longer project names; content keeps its width.
+  # [params.panel]
+  #   width = "15.5rem"
+
   # "Projects" box in the left panel (off by default). Compact rows from data/projects.yaml, featured first,
   # then newest. On posts it sits under "On this page", collapsed. pages = "all" | "nonpost".
   [params.panel.projects]

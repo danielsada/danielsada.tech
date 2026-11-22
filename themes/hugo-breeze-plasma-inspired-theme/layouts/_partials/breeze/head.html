@@ -70,6 +70,14 @@
 {{- with site.Params.logowidth -}}
   {{- $vars = $vars | append (printf "--logo-w:%vrem" (div (float .) 16)) -}}
 {{- end -}}
+{{- with (site.Params.panel | default (dict)).width -}}
+  {{- $pw := printf "%v" . | strings.TrimSpace -}}
+  {{- if findRE `^(\d+(\.\d+)?|\.\d+)(rem|em|px)$` $pw -}}
+    {{- $vars = $vars | append (printf "--panel-w:%s" $pw) -}}
+  {{- else -}}
+    {{- warnf "breeze: params.panel.width %q is not a CSS length such as \"17rem\"; using the default" $pw -}}
+  {{- end -}}
+{{- end -}}
 {{- with $vars }}
 <style>:root{ {{- delimit . ";" | safeCSS -}} }</style>
 {{- end }}
