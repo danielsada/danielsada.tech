@@ -49,7 +49,9 @@ html { -webkit-text-size-adjust: 100%; scroll-padding-top: 24px; background-colo
 /* Big screens (1920 → 2560 → ultrawide): everything sized in rem grows modestly, 16px → 20px max */
 @media (min-width: 1800px) { html { font-size: clamp(100%, calc(100% + (100vw - 1800px) * .004), 125%); } }
 [hidden] { display: none !important; }
-body { margin: 0; min-height: 100vh; font: 400 1rem/1.55 var(--sans); color: var(--text); background: var(--wall); }
+/* The base colour lives on <html> (canvas, overscroll); <body> must stay transparent, or it would cover the
+   wallpaper layer below (body::before, fixed, z-index -1). */
+body { margin: 0; min-height: 100vh; font: 400 1rem/1.55 var(--sans); color: var(--text); background: none; }
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -1;
   background: var(--veil), var(--wallpaper) center / cover no-repeat, var(--wall);
