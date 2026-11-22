@@ -5,7 +5,7 @@ aliases = [
 ]
 description = ""
 tags = [
-    "node_modules",
+    "node-modules",
     "rsync",  
     "javascript",  
 ]

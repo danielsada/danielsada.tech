@@ -51,7 +51,7 @@ These people are much closer to the ALGOL side of the table. They think deeply a
 
 For example, Richard detailed how, over the last 25 years of developing SQLite, the project reached 100% MC/DC coverage and adopted profile-guided fuzzing, query fuzzing, mutation testing, and now AI-assisted bug testing. MC/DC, or modified condition/decision coverage, verifies that each condition in a decision can independently affect its outcome. Thanks to the extraordinary care he put into this software, vibe coders can now enjoy a `.db` file powering their vibe-coded Claude dashboards.
 
-![](/images/blog/richard-hipp-pic.png)
+![SQLite project timeline: version 3.0.0 around 2004, 100% MC/DC test coverage around 2009, profile-guided fuzzing around 2014, query fuzzing around 2019 and AI-found bugs around 2025](/images/blog/richard-hipp-pic.png)
 
 **Every simple interface rests on an enormous amount of complexity that somebody else had to understand.** COBOL users could ignore machine instructions because compiler designers could not. A developer can ask an AI agent to create a database, but somebody still has to make SQLite reliable.
 

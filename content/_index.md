@@ -8,6 +8,6 @@ params:
     - ref: /about
       text: More about me
     - url: mailto:hello@danielsada.tech
-      text: hello@danielsada.tech
+      text: hello [at] danielsada.tech
 ---
 I love developer productivity, and I write here about engineering culture, AI, and the software that saves me 100+ hours. Mostly in English, sometimes [en español](/notas/).

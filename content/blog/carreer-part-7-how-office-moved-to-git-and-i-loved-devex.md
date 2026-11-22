@@ -16,7 +16,7 @@ After going in deep in product, I found myself drawn to a different challenge: *
 
 The project that really forged me was the **Office migration from Source Depot to Git**. 
 
-# Source Depot: A Journey to the Past
+## Source Depot: A Journey to the Past
 
 Come kids, gather around. Let me tell you youngsters about the ancient times of source control, back when dinosaurs roamed the Earth and before Git and GitHub were even a twinkle in Linus Torvalds' eye.
 
@@ -38,7 +38,7 @@ This, my children, is why when we finally moved to Git, it took me, plus **some 
 
 Most challenging of all, Source Depot was deeply integrated into Microsoft's build systems, release pipelines, and developer workflows. It wasn't just source control, it was the foundation for how software was built at Microsoft.
 
-## Migrating OneNote to Git
+### Migrating OneNote to Git
 
 At some point, the central developer experience organization (Office Engineering) decided that a migration to Git was needed. Not only was Source Depot a huge money sink, but patching it and maintaining it was a marathon job. They also had the grumbling of existing employees and new hires about not getting "*transferable job skills*". This is how Office started their multi-year journey to migrate to Git.
 
@@ -56,7 +56,7 @@ Example of Office versions and naming schemes today
 
 Which meant that any migration had to support the old and new system for months. Not only that, but Office versioning had to stay consistent between builds (which looked something like this 16.0.18730.20186, the latter part being the build number). This included triggering all the correct validation that happened in the previous system, keeping tests working (migrating the legacy test infra that only works on IE) and more.
 
-## The scale of Office
+### The scale of Office
 
 Today, as I type these words, I work at Snowflake. Snowflake has around **~2,000 engineers**. When I was in Office, Office alone was around **~4,000 engineers**. This required enormous coordination of the Office Engineering system with teams all around Office (*Word, Excel, Powerpoint, Sway, Publisher, Access, Project, OneNote, Shared Services (OSI), Shared UX, + everything in the we*b). Given these constraints, Office Engineering (OENG) created a "champion"/hub-spoke model. By designating one "Developer Satisfaction" champion per team, they would have an effective liaison per-team to not only migrate to Git, but to be able to have feedback channels for their entire org. 
 
@@ -66,7 +66,7 @@ Microsoft had to collaborate with GitHub to **invent the Virtual File System for
 
 The Windows team faced similar challenges and had already started down this path, but Office pushed the boundaries even further. When your codebase is so large that **you have to reinvent version control to migrate it**, you know you're operating at a different scale than most software projects.
 
-## Phase 1: The Parallel Universe
+### Phase 1: The Parallel Universe
 **The challenge**: *how do you migrate a live codebase used by thousands of developers without breaking anything?*
 
 Our solution was **"the parallel universe."** There was a Git-native codebase that continuously synced with Source Depot. Think massive, automated `git-svn` bridge, but for Source Depot.
@@ -86,7 +86,7 @@ onenote's private branch (sd)
 
 The machine churned developer's hopes and dreams, but ran effectively 24/7, ingesting every changelist and making its way through Git. When we had early testers, we asked them to make changes to parts of code that are not "high traffic."
 
-## Phase 2: Proving Equivalence
+### Phase 2: Proving Equivalence
 
 Having a Git mirror was only half the battle. We needed to prove **everything still worked exactly the same**.
 
@@ -98,7 +98,7 @@ To paint a picture, oasysnet/bb could only be loaded on IE 11. You submitted a s
 
 The breakthrough came when we achieved our first **"green across the board" day** where every test passed identically on both systems. That's when we knew the parallel universe was ready.
 
-## The Human Side: Overcommunication
+### The Human Side: Overcommunication
 
 **Technical migrations fail because of people, not technology.**
 
@@ -108,7 +108,7 @@ We communicated the same information through multiple channels: weekly emails, T
 
 When things went wrong *(frequently)*, we were **brutally honest**. "The sync failed overnight, builds are delayed 4 hours, here's exactly what happened and our timeline." This transparency built trust, even when we screwed up.
 
-## Training: Making Git Feel Native
+### Training: Making Git Feel Native
 
 You can't throw Git documentation at Windows developers **who've used Source Depot for a decade** and expect *magic*. A lot of people complained about how obtuse Git was. And they were right! There are many conventions that are not easy to grasp in Git. 
 
@@ -118,7 +118,7 @@ We built training environments that showed people the commands from Source Depot
 
 We created a video library covering common scenarios. Not polished marketing videos but screen recordings of real developers working through real problems. **Authenticity mattered more than production value.**
 
-## Rollback Strategy: Planning for Failure
+### Rollback Strategy: Planning for Failure
 
 The scariest question: "What if this goes wrong and we need to go back?"
 
@@ -126,14 +126,14 @@ Once we started to go live, we gave our Director/GEM a **"red button."** You can
 
 I'm not sure if Source Depot is still running, but I wouldn't be surprised if it has to be kept for years for the archives of old builds. So that every commit, branch, and piece of history can remain accessible, providing psychological safety even if rarely used.
 
-## Long-term Results
+### Long-term Results
 Six months later, we surveyed all OneNote developers. Results were **better than expected**, though not perfect.
 
 A lot of people felt refreshed by having better transferable skills to the industry. Our onboarding times were **slashed by half**. AFAIK, **89% preferred Git to Source Depot**. Build times improved with VFS. Developer productivity scores increased significantly. Code reviews became faster and more collaborative.
 
 On a personal side, I do think people worked faster in Git and were more productive, and new hires were productive immediately.
 
-## Lessons for Large-Scale Migrations
+### Lessons for Large-Scale Migrations
 **Invest way more in communication than you think you need.** Technical challenges are solvable with time and smart people, but people challenges kill projects faster than any bug.
 
 **Build the parallel universe first. Prove equivalence before switching.** "It should work" isn't good enough at this scale.

@@ -40,7 +40,7 @@ I struggled with understanding who the hell Project Server's customers were. The
 
 On my second internship, I wanted to explore the actual C++ implementation of the Project Client application. . At that time, Project was playing catch-up with competitors by adding Kanban board functionality. My internship project was implementing the sorting, searching, and UI enhancements for cards in the Kanban view.
 
-![](/images/blog/career/project-board.png)
+![Microsoft Project Professional's task board, with tasks in Not Started, Next up, Quality Assurance, In progress and Done columns](/images/blog/career/project-board.png)
 > **Look mom, I'm in Office!**
 
 I specifically made:
@@ -57,11 +57,11 @@ Also, I was not prepared for Office C++, for context, there was a lot of things 
 
 One of my mentors was specially happy that I got to use `std::shared_ptr` and `std::unique_ptr` here. There is a sense of respect and admiration you get from reading code that's 25 years old (and still working!). Some of Office's features and interactions are actually scripted in LUA. This is real digital archeology.
     
-## The Full Circle Moment: Learning About the Software I Helped Build
+### The Full Circle Moment: Learning About the Software I Helped Build
 
 When I returned to school after my Microsoft Project internships, I enrolled in a project management class. The software we used? Microsoft Project. Watching my professor demonstrate features I had helped develop created a surreal full-circle moment. I was simultaneously a student learning project management theory and a developer who had contributed to the tool being used to teach it.
 
-# Edgebound: Startup Life Between Classes
+## Edgebound: Startup Life Between Classes
 
 College was an intense time for me. While taking classes and doing Microsoft internships, I also joined Edgebound, a small e-commerce startup in Mexico City. They specialized in building regional online stores for major fashion brands like Tommy Hilfiger, Guess, and Coach.
 
@@ -73,7 +73,7 @@ His calm demeanor  yet helpful teaching style was particularly effective:
 
 At Edgebound, I also crossed paths with PhoneGap again.  There is an app I wrote for a school that [is still live today](https://play.google.com/store/apps/details?id=com.IberoApp&hl=en_US) using PhoneGap. I still shudder when I think about that code. I think it has a lot of users even today. 
 
-![](/images/blog/career/ibero.jpg)
+![The Ibero app's academic history screen, listing Spring 2016 courses with their credits and grades](/images/blog/career/ibero.jpg)
 *The Ibero app a PhoneGap creation that somehow still works years later*
 
 This was also when I really experienced Node's infamous callback hell. All the authentication systems for our e-commerce sites were built with Node, resulting in deeply nested callback structures:

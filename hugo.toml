@@ -106,7 +106,7 @@ ignoreLogs = ["warning-goldmark-raw-html"]
       button = "Subscribe"
       sending = "Subscribing…"
       thanks = "Thank you! You have successfully joined my subscriber list."
-      error = "Something went wrong. Please try again, or email hello@danielsada.tech."
+      error = "Something went wrong. Please try again, or email hello [at] danielsada.tech."
     [params.newsletter.es]
       form = "120755004644525121"
       title = "Pon tu correo aquí si quieres que te lleguen mis nuevos posts"
@@ -115,7 +115,7 @@ ignoreLogs = ["warning-goldmark-raw-html"]
       button = "Suscribirse"
       sending = "Enviando…"
       thanks = "¡Gracias! Ya estás en mi lista de suscriptores."
-      error = "Algo salió mal. Inténtalo de nuevo o escríbeme a hello@danielsada.tech."
+      error = "Algo salió mal. Inténtalo de nuevo o escríbeme a hello [at] danielsada.tech."
 
   [params.projects]
     page = "/projects"

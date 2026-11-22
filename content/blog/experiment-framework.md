@@ -18,13 +18,13 @@ The best manager I've ever had, **tricked us** with the **experiment framework**
 
 > Let's try standups, but only for a definite period of time, and at the end we can all vote it out. -Manager
 
-# The Experiment Framework
+## The Experiment Framework
 
 The experiment framework is a way for people to try out processes for a small period of time. For any given experiment, we'd wriet a hypothesis or goal, explain the "rules" of the experiment, and at the end of a **definite period of time** we would vote to **keep, stop, or tweak.**
 
 The key part of this approach is the **"definite period of time"** - this allowed us to have **psychological safety** when trying out new things, knowing that in the end, we had the **control to vote it out** or keep it in depending on the outcomes. The manager also shows that they understand they can be wrong, and open to people hating it and not mandating it.
 
-# Example
+## Example
 
 Here's how we applied the experiment framework to introduce async updates in a Slack channel:
 

@@ -15,10 +15,10 @@ Over my work in different scales of services, I've noticed that there is a commo
 
 This is not a comprehensive list, but the things I've seen that actually **help** or have helped me in the past.
 
-# Easy Level
+## Easy Level
 These steps are relatively easy to implement but yield high return on investment. If you aren't doing it, you'll be surprised how good quality of life is after you start adopting these.
 
-##  Infrastructure as Code.
+###  Infrastructure as Code.
 
 The first part of guranteeing sleep is having Infrastructure as Code. That means that you have a way of deploying your entire infrastructure. It sounds fancy, but in reality, we are saying in code:
 ```
@@ -33,54 +33,54 @@ And you can track changes to the infrastructure and revert quickly via source co
 Now, the modernist in me will say "We can use kubernetes/docker to do everything on this list!" You are correct, but for now, I'm going to err on the side of an easy explanation on this blog.
 
 If you are interested in this you can check out [Chef](https://www.chef.io/), [Puppet](https://puppet.com/), [Salt](https://www.saltstack.com/), [Ansible](https://www.ansible.com/), or [Terraform](https://www.terraform.io/)
-## Continuous Integration/Delivery
+### Continuous Integration/Delivery
 
 Having a build, and test pass run against each one of your pull requests is essential to building a scalable service. Even if the testpass is basic, it will at least guarantee that the code you are deploying compiles.
 
 What you have to answer everytime you do this step, relates to the question **Is my build going to compile, pass the tests I've set up, and it's valid?**, this might seem like a low bar, but this catches a myriad of issues you wouldn't imagine.
 
-![](/images/blog/cloud/all-passed.png)
+![GitHub pull request status: all checks have passed, the branch has no conflicts, and the Merge pull request button is enabled](/images/blog/cloud/all-passed.png)
 Nothing more beautiful than seeing those checkmarks.
 
 For this technology you can check out [Github](https://github.com/), [CircleCI](https://circleci.com/) or [Jenkins](https://jenkins.io/)
 
-## Load balancers
+### Load balancers
 
 Ok, so you have your machines, or endpoints, but you really want to have a load balancer to redirect traffic for having equal loads in all your nodes or redirect your traffic in case you have an outage.
 
-![](/images/blog/cloud/load-balancing.png)
+![Sketch: incoming traffic reaches a load balancer that spreads it across four servers, with a second, redundant load balancer behind it](/images/blog/cloud/load-balancing.png)
 
 Having load balancers at the start of your traffic is generally a good thing. A best practice is also having redundant load balancing so that you don't have a single point of failure.
 
 Usually, load balancers are configured in your own Cloud, but if you know some good ones, leave them below in the comments.
 
-## RayIDs, Correlations or UUIDs for requests.
+### RayIDs, Correlations or UUIDs for requests.
 
 Have you ever got an error in an application that tells you something along the lines of **Something wrong happened, save this id and send it to our support team**?
 
-![](/images/blog/cloud/ray-id.jpg)
+![Cloudflare 502 Bad Gateway error page with its Ray ID underlined; the browser and Cloudflare are working and the host is in error](/images/blog/cloud/ray-id.jpg)
 
 A **unique ID, correlation ID, RayID or any of its variations, is a unique identifier which allows you to trace a request through its lifecycle**, therefore allowing someone to see the entire path of the request in the logs.
 
-![](/images/blog/cloud/rays-1.png)
+![Sketch: a request tagged with ray x1 goes from A to B to C, C reads from database X, and the reply carries x1 back to A](/images/blog/cloud/rays-1.png)
 
 As you can see in the image above, the user makes a request to system A, A then talks to B, B talks to C, saves to X and then returns to A. 
 
 If you were to remote into the VMs and try to trace the path, (and manually correlate which calls belong), you'd go crazy. Having the unique identifier makes your life a lot easier, this is one of the easier things you can do in your service, that will save you a lot of time as your service grows.
 
-# Medium Level
+## Medium Level
 
 These are usually more complicated than the previous ones, but if you grab the right tools, it can be easy, the ROI for small to medium companies is easy to justify.
 
-## Centralized logging
+### Centralized logging
 
 Congratulations! You deployed 100 VMs. The next day, the CEO comes with an error he had while testing the service. He gives you the above correlation ID, but then you have to scramble to look in the 100 machines which one was the one that failed. And it has to be solved before the presentation tomorrow.
 
 While that sounds like a fun endeavor; make sure to get one place to search your logs from. The way I've centralized my logs before, is with [ELK stack](https://www.elastic.co/what-is/elk-stack). Having log collection and searchability is going to really improve your experience searching for that one unexpected log. Extra points if you can also generate charts and fun things like that.
 
-![](/images/blog/cloud/elk-stack.png)
+![Sketch: Apache, Nginx and error logs from many VMs flow into one ELK stack, where you can search all of them for a 500 error](/images/blog/cloud/elk-stack.png)
 
-## Monitoring Agents
+### Monitoring Agents
 
 Well, now that your service is deployed, you have to make sure it stays up! The best way to do that, is to have some **agents** running against your service and checking whether it's up, and that common operations can be done.
 
@@ -88,25 +88,25 @@ In this step you have to answer: **Is the build I deployed healthy and does it w
 
 I personally recommend [Postman](https://www.getpostman.com/) for small to medium projects that need to be monitored against and documented in their APIs. But in general, you want to make sure you have a way of knowing if your service is down and provide timely alerts.
 
-## Automatic Autoscaling based on load
+### Automatic Autoscaling based on load
 
 This one is simple. If you have 1 VM serving requests, and it's getting close to >80% memory, you might want to either grow the VM or add more VMs to your cluster. Having these operations done automatically is great for being elastic under load. But you always have to be careful in how much money you spend and set sensible limits. 
 
-![](/images/blog/cloud/auto-scaling.png)
+![Two throughput charts. With fixed provisioned throughput, traffic peaks above it become dropped requests; with auto-scaling, provisioned throughput rises and falls with traffic and nothing is dropped](/images/blog/cloud/auto-scaling.png)
 
 You can configure auto-scaling in most cloud services, via more machines, VM or more powerful machines.
 
-## Experiment system
+### Experiment system
 
 Having a way to test out things to 1% of your users for an hour is a good way to deploy changes safely. You've seen these kinds of systems in action. Facebook will give you a different color or change the size of a font to see if that is more pleasing. This is also called AB testing.
 
 Even releasing a new feature could be under an experiment, and then determine how it's released. What people don't realize is that you also get the ability to "recall" or change configuration on the fly, which given a feature that will take your service down, the ability to scale it back is amazing.
 
-# Hard Level
+## Hard Level
 
 These are actually hard, somewhat difficult to implement, you probably need a bit more resources to do these. So, for a small or medium company, it's going to be hard to push with these. 
 
-## Blue-Green deployments
+### Blue-Green deployments
 
 This is what I call the "Erlang" way of deploying. When Erlang started being used more widespread, back when telephone companies started communicating people together, there was a point where software switchboards were used to route phonecalls. The main concern about the software in these switchboards was not to ever drop calls while upgrading the system. Erlang has a beautiful way of loading a module without ever dropping the previous one.
 
@@ -114,25 +114,25 @@ This step depends on you having a load balancer. Let's imagine you have a specif
 
 If you really want to achieve that, you need to have two deployments at the same time, the one you have right now (N) and your next version (N+1). You point the load balancer to redirect a percentage of the traffic to the new version (N+1) while you actively monitor for regressions.
 
-![](/images/blog/cloud/nn1-1.png)
+![Sketch: the load balancer sends 100% of traffic to deployment N and 0% to the new deployment N+1; both show a 0% error rate](/images/blog/cloud/nn1-1.png)
 
 Here, we have our green deployment N, which is healthy! We are trying to move to the next version of this deployment. 
 
 We send out first a really small test to see whether our N+1 deployment is working with a bit of traffic.
 
-![](/images/blog/cloud/nn1-2.png)
+![Sketch: the load balancer sends 99% of traffic to N and 1% to N+1; if N+1's error rate stays at 0% the rollout continues, otherwise traffic returns to N](/images/blog/cloud/nn1-2.png)
 
 Finally, we have a set of automated checks that we end up verifying until our rollout is complete. If you want to be *really really* careful, you can also keep your N deployment "forever" for a quick rollback given a bad regression.
 
-![](/images/blog/cloud/nn1-3.png)
+![Sketch: the load balancer now sends 100% of traffic to N+1 and 0% to N, with the same error-rate check deciding whether to keep going or return to N](/images/blog/cloud/nn1-3.png)
 
 If you want to even go into a deeper level, have everything in the blue-green deployment execute automatically.
 
-## Anomaly Detection and automatic mitigations.
+### Anomaly Detection and automatic mitigations.
 
 Given that you have centralized logging, and some good log collection, flights all the elements above. We can now be proactive about catching failures. On our monitors, and on our logs, we feed our features and different charts and we are able to be proactive to when something is going to fail.
 
-![](/images/blog/cloud/anomaly-detection.png)
+![Sketch of a metric over time that creeps upward before a sharp spike, with the point where it starts rising marked as the early warning](/images/blog/cloud/anomaly-detection.png)
 
 With anomaly detection you start looking into some of the "tells" of the service, whether a spike in CPU will let you know when your hard drive is going to fail, or a spike in request # means you need to scale up. Those kinds of statistical insights will empower your service to be proactive.
 
@@ -140,7 +140,7 @@ Once you have those analytics, you can scale on any dimension, proactively and r
 
 This requires a really good system, or ML prowess, which then makes it more interesting in the sense that the investment is really high, and the return is high on a massive scale.
 
-# This is it!
+## This is it!
 
  I'm certainly not an expert in any of these, and I'm starting my career, but this list of priorities per stages would have saved me a lot of headaches in the past.
 

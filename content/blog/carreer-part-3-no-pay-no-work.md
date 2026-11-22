@@ -71,7 +71,7 @@ $('#project_type').on('change', function() {
 
 We also did nice calculators/calculations for the rebates people would get in JavaScript (oh god, the horror). At that time, JQuery was the boom, it was amazing for not having to manage the DOM directly. I still remember the `$.on( "click")` monster functions I'd used to do. They still haunt me till this day.
 
-![](/images/blog/career/firebug.png)
+![Firebug's script debugger in Firefox, paused on a breakpoint in harViewer.js with the Watch panel listing the object's properties](/images/blog/career/firebug.png)
 *Firebug: The developer's best friend in 2013. CSS debugging had never been so... adequate.*
 
 Maybe advanced for its time, but for a kid that only had pushed through FTP his websites using version control with SVN was state of the art. The wonky part is that we coordinated which files people had checked out by literally yelling across the office: "Hey, I'm going to check out the rebate calculator, please don't touch it, k thanks bye!" 

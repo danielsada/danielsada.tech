@@ -15,7 +15,7 @@ categories = [
 
 Five years ago (how time flies) [I made a blog post about programs that have saved me 100+ hours](https://danielsada.tech/blog/programs-saved-me-100-hours/), after uploading my article to [HackerNews](https://news.ycombinator.com/) [Thread 1](https://news.ycombinator.com/item?id=13887237) [Thread 2](https://news.ycombinator.com/item?id=22849208) a lot of people responded with their favorite programs that have saved them 100+ hours. I went out and took the best ones and compiled them into this list.
 
-# AutoHotKey
+## AutoHotKey
 
 AutoHotKey is a free, open-source scripting language for Windows that allows users to easily create small to complex scripts for all kinds of tasks such as: form fillers, auto-clicking, macros, etc. 
 
@@ -42,7 +42,7 @@ return
 
 AutoHotKey is seriously nuts, the amount of things you can do, automate and test with it is incredible, [a quick glance to their docs](https://www.autohotkey.com/docs/Hotkeys.htm), can make you dream of the possibilities of automation, but always remember the rule of thumb XKCD:
 
-![](/images/blog/programs-hn/xkcd-is-it-worth-the-time.png)
+![xkcd 1205, Is It Worth the Time?: a table of how long you can spend making a routine task more efficient, by how often you do it and how much time you shave off, before you spend more time than you save over five years](/images/blog/programs-hn/xkcd-is-it-worth-the-time.png)
 Randall Munroe ([xkcd.com](https://xkcd.com/1205/))
 
 [Roisoyok, from the HN comments](https://news.ycombinator.com/item?id=13889315) mentions:
@@ -60,7 +60,7 @@ A curated list of awesome AutoHotkey libraries, library distributions, scripts, 
 
 They also mention: "It's also really practical for programs that don't even support custom keybinds or when running multiple instances at the same time like multiple firefox profiles. No need to set the new shortcuts in every profile, they just always work on every running firefox instance."
 
-# Standard Unix Utils
+## Standard Unix Utils
 
 Most of the comments on HN, mentioned at least one Unix util. And I agree, having a good repertoire of Unix magic spells to become the ultimate Unix wizard can save you (or lose you!) hundreds of hours. 
 > I'd have to throw most of the standard Unix utils in there: grep, awk, cut, sed, sort, uniq, and of course, vim. Outside of the tech world, people seem to think that grabbing some columns out of a file and rearranging them or pasting them somewhere else is some kind of sorcery.
@@ -68,7 +68,7 @@ Most of the comments on HN, mentioned at least one Unix util. And I agree, havin
 
 I'm definitely not qualified to give you an explanation of each tool, [which is a good moment to remind my audience that this blog post is under GNU GPL 3.0 and I accept PRs to correct me](https://github.com/danielsada/danielsada.tech) Let's go into it then.
 
-## Grep
+### Grep
 
 Grep will let you search for text in a given input pipe, i.e. Search all the instances of thy in [Shakespeare entire work](https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt) instantly.
 
@@ -78,7 +78,7 @@ shakespeare.txt | grep "thy"
 
 By the way, there are 1732.
 
-## Awk
+### Awk
 
 The way I see awk, is a tool that allows you to handle CSV or TSV or even space separated tables, and have them match regex patterns, transform, and summarize them; given a table of paper sales like this (paper.txt):
 
@@ -108,11 +108,11 @@ Peter has sold Paper in 100 quantity
 Peter has sold Paper in 400 quantity
 ```
 
-![](/images/blog/programs-hn/xkcd-regular-expressions.png)
+![xkcd 208, Regular Expressions: faced with searching 200 MB of emails for an address, someone says "I know regular expressions", swings in on a rope and types Perl to save the day](/images/blog/programs-hn/xkcd-regular-expressions.png)
 Randall Munroe ([xkcd.com](https://xkcd.com/208/))
 
 
-## Sed
+### Sed
 Sed is a really versatile utility, My Favorite [Sed guide](https://www.grymoire.com/Unix/Sed.html#uh-0) explains has a beautiful explanation on all the power of sed. The most popular command for sed is the substitution command. 
 
 If you have a file like lorem.txt:
@@ -155,25 +155,25 @@ will print
 
 As a last comment on Unix utilities, [gshakir recommends](https://news.ycombinator.com/user?id=gshakir) [commandlinefu.com](https://commandlinefu.com) to search for some popular command line fu and have saved him 100s of hours.
 
-# Perl
+## Perl
 
 I'm not doing a section on Perl, but funnily enough, a lot of my tools in my work in Microsoft OneNote are built in Perl. *(Who are you Perl wizard who wrote these?)*
 
-![](/images/blog/programs-hn/xkcd-lisp.jpg)
+![xkcd 224, Lisp: a dream of discovering that Lisp is the language the universe was written in, until God admits most of it was hacked together with Perl](/images/blog/programs-hn/xkcd-lisp.jpg)
 Randall Munroe ([xkcd.com](https://xkcd.com/224/))
 
-# Beyond Compare
+## Beyond Compare
 
 Some [HNers like peapicker](https://news.ycombinator.com/item?id=13896374) and friends of mine (Hi Arturo!) swear by [Beyond Compare](https://www.scootersoftware.com/) which lets you compare [tables, pictures, files, folders, folder structures, hex files, mp3s, and executables](https://www.scootersoftware.com/features.php?zz=features_multifaceted). It's power seems truly limitless.
 
-# Charles Proxy or Fiddler
+## Charles Proxy or Fiddler
 For people who don't know about them, [Charles Proxy (macOS)](https://www.charlesproxy.com/) and [Fiddler (Windows)](https://www.telerik.com/download/fiddler)/[Fiddler Everywhere (macOS/etc)](https://www.telerik.com/download/fiddler-everywhere) intercept all of your local traffic and allows you to debug it, similar to the Network tab on the browser dev tools. (But even for things that don't have electron!)
 
 As [lintuxvi comments](https://news.ycombinator.com/item?id=22861695): *" Charles Proxy (paid version) No need to insert logging into legacy codebases with frontend, service, and monolithic backend apps while on local. Just load up Charles and reconfigure provider URLs to route through the proxy, add a filter or two, and boom, all comms are visible in one place, easily searchable, exportable, replayable."*
 
 Most of my work would crumble without Fiddler.
 
-# Emmet
+## Emmet
 [Emmet](https://emmet.io/) is a plugin for most popular text editors for HTML and CSS developers that lets you speed your workflow.
 
 You can type the following into your editor:
@@ -195,7 +195,7 @@ And hit tab, and Emmet will expand it to:
 ```
 And save you hours of typing that pesky HTML.
 
-# Winget/Chocolately (Windows) Homebrew (OSX)
+## Winget/Chocolately (Windows) Homebrew (OSX)
 When you come from linux, sometimes you might give apt or pacman for granted. Where would we be without our trusty package managers? [Winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) and [Chocolately](https://chocolatey.org/) (Windows) and [Homebrew](https://brew.sh/) (OSX) let you install packages for your system way faster than trying to find them on the internet.
 
 It's as easy as:
@@ -212,32 +212,32 @@ winget install nodejs
 
 To get Node.Js installed in your system and getting started on your task.
 
-# Some extra software of mine
+## Some extra software of mine
 
 Finally, I wanted to list some of the new ones that are saving me hundreds of hours on specific platforms:
 
-# Rectangle on OSX
+## Rectangle on OSX
 
 One of the **most jarring things missing in OSX** is being able to snap windows to the sides or in quarters, similar to what Win + arrow keys does in Windows. [Rectangle](https://rectangleapp.com/) ~~[Spectacle](https://www.spectacleapp.com/)~~ (Edit: Seems like Spectacle is no longer being developed, [as mentioned by lioeters](https://news.ycombinator.com/item?id=30317246))does this by providing you shortcuts on OSX to do this.
 
-# Power Toys on Windows.
+## Power Toys on Windows.
 
 [Power Toys on Windows](https://docs.microsoft.com/en-us/windows/powertoys/install) has a lot of utilities that were missing on windows. My favorites in any order are:
 
 
-## Power Toys Run
+### Power Toys Run
 Similar to Spotlight for OSX, but for Windows, fully customizable.
-![](/images/blog/programs-hn/powertoys-run.gif)
+![PowerToys Run: typing "Visual" lists Visual Studio and Visual Studio Code, with quick actions next to the selected result](/images/blog/programs-hn/powertoys-run.gif)
 
-## Color picker
+### Color picker
 You can now find colors you used in your screen! OSX also has a color picker included under Utilities.
-![](/images/blog/programs-hn/powertoys-color-picker.png)
+![PowerToys Color Picker showing the picked color as HEX, RGB, HSL and HSV values, with a row of recently picked colors](/images/blog/programs-hn/powertoys-color-picker.png)
 
-## Image Resizer
+### Image Resizer
 Resize images with right click.
-![](/images/blog/programs-hn/powertoys-image-resizer.gif)
+![Right-clicking an image in File Explorer and choosing Resize with Image Resizer, which opens a dialog with size presets and options](/images/blog/programs-hn/powertoys-image-resizer.gif)
 
-## Power Rename
+### Power Rename
 Bulk rename files
-![](/images/blog/programs-hn/powertoys-power-rename.png)
+![PowerRename replacing "foo" with "foobar" and previewing the new names for foo1.txt to foo14.txt before applying](/images/blog/programs-hn/powertoys-power-rename.png)
 

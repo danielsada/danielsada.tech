@@ -7,3 +7,7 @@ https://danielsada.mx/* https://danielsada.tech/:splat 301!
 
 # Optional: Redirect default Netlify subdomain to primary domain
 https://thirsty-cori-60d1f4.netlify.com/* https://danielsada.tech/:splat 301!
+
+# Cloudflare Pages doesn't upload node_modules directories, so this tag lives at /tags/node-modules/.
+/tags/node_modules /tags/node-modules/ 301
+/tags/node_modules/* /tags/node-modules/:splat 301
