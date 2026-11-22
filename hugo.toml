@@ -120,7 +120,6 @@ ignoreLogs = ["warning-goldmark-raw-html"]
 
   [params.projects]
     page = "/projects"
-    statuses = ["Live", "Beta", "Paused", "Archived"]
 
   # Projects box in the panel (data/projects.yaml), below Places; theme defaults: 5 rows, collapsed on posts.
   # Wider panel so project names fit (theme default 15.5rem).

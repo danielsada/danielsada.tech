@@ -1,8 +1,8 @@
 # Projects page (content/projects.md) and the home "Side projects" card (the featured entry).
 # Fields: see the theme README → Content model.
+# Leave status unset to list projects without status groups or badges.
 
 - name: WATolls
-  status: Live
   since: 2026
   featured: true
   icon: chart
@@ -14,7 +14,6 @@
   writeup: /blog/watolls-washington-toll-visualizer
 
 - name: Plasma Hugo Theme
-  status: Live
   since: 2026
   icon: apps
   summary: The Hugo theme this site runs on.
@@ -25,3 +24,24 @@
   links:
     - text: Demo
       url: https://danielsada.github.io/hugo-breeze-plasma-inspired-theme/
+
+- name: go-kusto-cli
+  since: 2026
+  icon: terminal
+  summary: A lightweight Go CLI for querying Azure Data Explorer.
+  description: Queries Kusto through its REST API with no SDK dependencies, using Azure CLI authentication. Accepts inline queries, script files or stdin and exports tables, CSV or JSON.
+  stack: [Go, KQL]
+  url: https://github.com/danielsada/go-kusto-cli
+  urllabel: Source
+  links:
+    - text: Releases
+      url: https://github.com/danielsada/go-kusto-cli/releases
+
+- name: awesome-reviewers
+  since: 2026
+  icon: search
+  summary: Six focused AI code reviewers, with evals.
+  description: Review prompts inspired by Ousterhout, Nygard, Google SRE, TLA+, DO-178B and Richard Hipp. Available as skills and read-only agents for Copilot CLI and Claude Code, with evals that measure defect detection and false positives.
+  stack: [Markdown, Python]
+  url: https://github.com/danielsada/awesome-reviewers
+  urllabel: Source
