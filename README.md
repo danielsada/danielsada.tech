@@ -13,7 +13,7 @@ hugo               # build into public/
 ## Theme
 
 The site uses **Breeze Plasma** ([hugo-breeze-plasma-inspired-theme](https://github.com/danielsada/hugo-breeze-plasma-inspired-theme)),
-vendored as plain files in `themes/hugo-breeze-plasma-inspired-theme/` (no submodule, no Hugo Module download).
+vendored as plain files in `themes/hugo-breeze-plasma-inspired-theme/`.
 To update it, replace that folder with a newer copy of the theme repository, without its repo-only folders (`exampleSite/`, `docs/`, `images/`, `scripts/`, `.github/`).
 Don't edit files in the vendored theme. Customise the site with the theme's configuration and extension points instead:
 
