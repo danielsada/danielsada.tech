@@ -13,7 +13,7 @@
   {{- $crumbs := slice -}}
   {{- if and (not $all) $archive (ne $archive.RelPermalink .RelPermalink) }}{{ $crumbs = slice (dict "title" $archive.Title "url" $archive.RelPermalink) }}{{ end -}}
   {{- $sub := .Params.subtitle -}}
-  {{- if not $all -}}
+  {{- if and (not $all) (partial "breeze/header-count.html" .) -}}
     {{- $n := partial "breeze/t.html" (dict "key" "posts_count" "lang" $L.name "ctx" (len $pages)) -}}
     {{- if $sub }}{{ $sub = printf "%s · %s" $n $sub }}{{ else }}{{ $sub = $n }}{{ end -}}
   {{- end -}}

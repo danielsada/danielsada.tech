@@ -5,6 +5,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="{{ if eq $scheme "auto" }}light dark{{ else }}{{ $scheme }}{{ end }}">
+{{- /* Browser chrome colour (address bar, overscroll) per scheme: params.colors.light.chrome / dark.chrome */}}
+{{- $cc := site.Params.colors | default (dict) }}
+{{- $tcl := ($cc.light | default (dict)).chrome | default "#eef0f4" }}
+{{- $tcd := ($cc.dark | default (dict)).chrome | default "#1c1f24" }}
+{{- if eq $scheme "auto" }}
+<meta name="theme-color" content="{{ $tcl }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{ $tcd }}" media="(prefers-color-scheme: dark)">
+{{- else }}
+<meta name="theme-color" content="{{ cond (eq $scheme "dark") $tcd $tcl }}">
+{{- end }}
 <title>{{ if .IsHome }}{{ site.Title }}{{ with site.Params.tagline }}{{ $sep }}{{ . }}{{ end }}{{ else }}{{ .Title }}{{ $sep }}{{ $suffix }}{{ end }}</title>
 {{- $desc := .Description -}}
 {{- if not $desc -}}
@@ -37,8 +47,9 @@
 {{- if or $lt.ink $dk.ink -}}
   {{- $vars = $vars | append (printf "--accent-ink:light-dark(%s,%s)" ($lt.ink | default "#5e2ca5") ($dk.ink | default "#c6a8ff")) -}}
 {{- end -}}
-{{- with $colors.wall -}}
-  {{- $vars = $vars | append (printf "--wall:%s" .) -}}
+{{- $wallL := $lt.wall | default $colors.wall -}}
+{{- if or $wallL $dk.wall -}}
+  {{- $vars = $vars | append (printf "--wall:light-dark(%s,%s)" ($wallL | default "#3d6fd6") ($dk.wall | default "#121631")) -}}
 {{- end -}}
 {{- $wp := site.Params.wallpaper | default "breeze/wallpaper.svg" -}}
 {{- if ne $wp "none" -}}

@@ -22,16 +22,16 @@
   --edge: light-dark(rgba(255, 255, 255, .7), rgba(255, 255, 255, .07));
   --panel: light-dark(rgba(244, 245, 247, .86), rgba(28, 31, 35, .82));
   --chip: light-dark(rgba(35, 38, 41, .07), rgba(255, 255, 255, .09));
-  --note: light-dark(#fbf3d2, #2a2820);
-  --note-ink: light-dark(#3b3000, #f0e6b8);
-  --note-edge: light-dark(rgba(120, 95, 0, .14), rgba(253, 188, 75, .16));
+  --note: light-dark(#fbf3d2, #2a2925);
+  --note-ink: light-dark(#3b3000, #ede4c8);
+  --note-edge: light-dark(rgba(120, 95, 0, .14), rgba(253, 188, 75, .12));
   --logo-plate: light-dark(#fff, #d3d7db);
   --code-bg: light-dark(#232629, #141618);
   --code-fg: #eff0f1;
   --code-edge: light-dark(transparent, rgba(255, 255, 255, .1));
   --shadow: 0 1px 2px light-dark(rgba(20, 22, 60, .1), rgba(0, 0, 0, .4)), 0 12px 32px -12px light-dark(rgba(20, 22, 60, .38), rgba(0, 0, 0, .7));
   --veil: linear-gradient(160deg, light-dark(transparent, rgba(10, 12, 30, .55)), light-dark(transparent, rgba(8, 8, 26, .75)));
-  --wall: #3d6fd6;
+  --wall: light-dark(#3d6fd6, #121631); /* the base under the wallpaper: also what overscroll and full-page captures show */
   --wallpaper: none;
   --panel-w: 15.5rem;
   --main-w: 73.75rem;
@@ -45,7 +45,7 @@
 :root[data-scheme="dark"] { color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 24px; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 24px; background-color: var(--wall); }
 /* Big screens (1920 → 2560 → ultrawide): everything sized in rem grows modestly, 16px → 20px max */
 @media (min-width: 1800px) { html { font-size: clamp(100%, calc(100% + (100vw - 1800px) * .004), 125%); } }
 [hidden] { display: none !important; }
@@ -125,24 +125,35 @@ h1, h2, h3 { line-height: 1.2; text-wrap: balance; }
 .nav a[aria-current="true"] { font-weight: 600; }
 
 /* "On this page" (posts): sits under Places and scrolls on its own, so Places never moves.
-   Markup = Hugo's {{ .TableOfContents }}: nav#TableOfContents > ul > li (> ul for h3) */
+   Markup (breeze/toc.html): nav#TableOfContents > ul > li.d0|d1|d2, indented from the shallowest heading present.
+   When the list is longer than its area, its edges fade (script.js sets .fade-t / .fade-b) and the active entry
+   is kept in view. */
 .panel > * { flex: none; }
 .panel > .outline { flex: 0 1 auto; min-height: calc(1.75rem + 4.5em); display: flex; flex-direction: column; }
-.outline nav { min-height: 4.5em; max-height: min(50vh, 420px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.outline nav {
+  --ft: #000; --fb: #000;
+  min-height: 4.5em; max-height: min(50vh, 420px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  -webkit-mask-image: linear-gradient(var(--ft), #000 1.75rem, #000 calc(100% - 1.75rem), var(--fb));
+  mask-image: linear-gradient(var(--ft), #000 1.75rem, #000 calc(100% - 1.75rem), var(--fb));
+}
+.outline.fade-t nav { --ft: transparent; }
+.outline.fade-b nav { --fb: transparent; }
 .outline ul ul { padding-left: 12px; }
 .outline a { display: block; padding: 5px 10px; font-size: .875rem; line-height: 1.35; color: var(--muted); }
-.outline ul ul a { font-size: .8125rem; }
+.outline ul ul a, .outline .d1 a, .outline .d2 a { font-size: .8125rem; }
+.outline .d1 a, .toc .d1 a { padding-left: 22px; }
+.outline .d2 a, .toc .d2 a { padding-left: 34px; }
 .outline a.on, .toc a.on { color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); border-radius: 0 8px 8px 0; }
 
 /* Projects box (params.panel.projects): a collapsible section with its own scroll area, so 10–20 projects
    never push Places or the outline away. Starts collapsed on posts (the outline owns the space there). */
 .pproj summary { display: flex; align-items: center; gap: 6px; padding: 4px 10px 4px 0; border-radius: 8px; cursor: pointer; list-style: none; }
 .pproj summary::-webkit-details-marker { display: none; }
-.pproj summary::after { content: "▾"; margin-left: auto; font-size: .75rem; color: var(--muted); }
+.pproj summary::after { content: "▾"; margin-left: 2px; font-size: .75rem; color: var(--muted); }
 .pproj:not([open]) summary::after { content: "▸"; }
 .pproj summary:hover { background: var(--accent-soft); }
-.pproj summary .ph { display: flex; flex: 1; margin: 0 0 0 10px; }
-.pproj summary .n { margin-left: auto; font-weight: 400; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.pproj summary .ph { flex: 1; margin: 0 0 0 10px; }
+.pproj summary .n { margin-left: auto; font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .pproj ul { max-height: min(40vh, 18rem); margin-top: 4px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 .outline ~ .pproj ul { max-height: min(25vh, 12rem); } /* on posts the outline keeps most of the room */
 .pproj li a { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 8px; color: var(--text); text-decoration: none; font-size: .875rem; line-height: 1.3; }
@@ -442,6 +453,19 @@ html:not(.js) .search { display: none; }
   .win { border-radius: 12px; }
 }
 
+/* Lists where no post has tags drop the Tags column */
+.posts.notags .tg { display: none; }
+/* Taxonomy pages (/tags/): name and count stay on one line at every width */
+@container win (max-width: 959px) {
+  .posts.terms tr { grid-template-columns: minmax(0, 1fr) auto; }
+  .posts.terms td.dt { grid-row: 1; text-align: right; }
+}
+@container win (max-width: 679px) {
+  .posts.terms tbody tr:not(.yr) { padding: 9px 14px 9px 42px; }
+  .posts.terms td.nm { grid-column: 1; grid-row: 1; }
+  .posts.terms td.dt { grid-column: 2; grid-row: 1; padding: 0 0 0 12px; font-size: .875rem; }
+}
+
 /* ---------- Projects: the same Dolphin window; one details row per project ---------- */
 .projs td.nm::before { content: none; }
 .projs .pi { position: absolute; left: 14px; top: 11px; width: 34px; height: 34px; padding: 5px; border: 1px solid var(--line); border-radius: 9px; background: var(--card-2); color: var(--text); }
@@ -474,8 +498,8 @@ html:not(.js) .search { display: none; }
 }
 
 /* ---------- Plain pages (About, 404): one card ---------- */
-.page { max-width: 48.75rem; margin: 0 auto; padding: 36px 48px 40px; }
-.page h1 { margin: 0 0 16px; font-size: clamp(1.75rem, 1.3rem + 1.3vw, 2.375rem); letter-spacing: -.015em; }
+.page { --card-w: 48.75rem; max-width: var(--card-w); margin: 0 auto; padding: 36px 48px 40px; }
+.page > h1:first-child { margin: 0 0 16px; font-size: clamp(1.75rem, 1.3rem + 1.3vw, 2.375rem); letter-spacing: -.015em; }
 .page h2 { margin: 30px 0 10px; font-size: .8125rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
 .page p, .page li { font-size: 1.0625rem; line-height: 1.65; max-width: 62ch; }
 .page p { margin: 0 0 14px; }
@@ -484,10 +508,22 @@ html:not(.js) .search { display: none; }
 
 /* ---------- Post ---------- */
 .progress { position: fixed; top: 0; left: 0; z-index: 70; height: 3px; width: 0; background: var(--accent); }
-.paper { max-width: 47.5rem; margin: 0 auto; padding: 2.75rem 4rem 3rem; }
+.paper { --card-w: 47.5rem; max-width: var(--card-w); margin: 0 auto; padding: 2.75rem 4rem 3rem; }
+/* Reading pages on wide screens: the panel keeps its x on every page, and the reading card is centred on the
+   screen (not inside the wide content column), so there is no wallpaper canyon between the panel and the card.
+   It never moves left of the usual 28px gutter, nor past the right edge of the content column. */
+@media (min-width: 1000px) {
+  .paper, .page {
+    margin-right: auto;
+    margin-left: clamp(0px,
+      calc(50vw - var(--gap) - max(0px, (100vw - 2 * var(--gap) - var(--panel-w) - 28px - var(--main-w)) / 2)
+        - var(--panel-w) - 28px - min(var(--card-w), 100%) / 2),
+      calc(100% - min(var(--card-w), 100%)));
+  }
+}
 .back { display: inline-block; margin-bottom: 22px; font-size: .9375rem; font-weight: 600; text-decoration: none; }
 .back:hover { text-decoration: underline; }
-.paper h1 { margin: 0 0 14px; font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.625rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.paper > header h1 { margin: 0 0 14px; font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.625rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
 .meta { margin: 0 0 18px; font-size: .9375rem; color: var(--muted); }
 .meta a { color: inherit; }
 .lead { margin: 0; padding-bottom: 26px; border-bottom: 1px solid var(--line); font-family: var(--read); font-size: 1.3125rem; line-height: 1.5; color: var(--muted); }
@@ -497,11 +533,13 @@ html:not(.js) .search { display: none; }
 .prose > :first-child { margin-top: 0; }
 .prose p, .prose ul, .prose ol, .prose figure, .prose pre, .prose table, .prose .highlight, .prose .yt { margin: 0 0 1.15em; }
 .prose .highlight pre { margin: 0; }
+/* A content "# heading" (when headings aren't shifted, see params.post.shiftheadings) stays in proportion */
+.prose h1 { margin: 2.1em 0 .6em; font-family: var(--sans); font-size: 1.75rem; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
 .prose h2 { position: relative; margin: 2.1em 0 .6em; font-family: var(--sans); font-size: 1.5rem; letter-spacing: -.01em; }
 .prose h3 { margin: 1.8em 0 .5em; font-family: var(--sans); font-size: 1.1875rem; }
 .prose h4 { margin: 1.6em 0 .4em; font-family: var(--sans); font-size: 1rem; }
 .prose .anchor { margin-left: .35em; color: var(--muted); text-decoration: none; opacity: 0; }
-.prose :is(h2, h3, h4):hover .anchor, .prose .anchor:focus-visible { opacity: 1; }
+.prose :is(h1, h2, h3, h4):hover .anchor, .prose .anchor:focus-visible { opacity: 1; }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li { margin: .35em 0; padding-left: .2em; }
 .prose li > ul, .prose li > ol { margin: .35em 0 0; }
@@ -514,6 +552,13 @@ html:not(.js) .search { display: none; }
 .prose pre code { padding: 0; background: none; font-size: inherit; }
 .prose hr { width: 30%; height: 1px; margin: 2.4em auto; border: 0; background: var(--line); }
 .prose img, .page img { max-width: 100%; height: auto; border-radius: 10px; }
+/* a bare Markdown image (not a figure, not inside a paragraph) keeps the same rhythm as figures */
+.prose > img, .page > img, .prose > a:has(> img:only-child), .page > a:has(> img:only-child) { display: block; width: fit-content; max-width: 100%; margin: 0 0 1.15em; }
+.prose > a > img { display: block; }
+/* long URLs, paths and identifiers wrap instead of widening the page on phones */
+.prose a, .prose :not(pre) > code, .page a, .page :not(pre) > code, .lead, .meta { overflow-wrap: anywhere; }
+/* inside tables only break what doesn't fit, so wide tables still scroll sideways instead of splitting words */
+.prose :is(td, th), .prose :is(td, th) :is(a, code) { overflow-wrap: break-word; }
 .page figure { margin: 0 0 14px; }
 .prose figure img, .page figure img { border: 1px solid var(--line); }
 .prose figcaption, .page figcaption { margin-top: 8px; font-family: var(--sans); font-size: .875rem; color: var(--muted); }
@@ -533,7 +578,11 @@ html:not(.js) .search { display: none; }
 
 .tags { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .35em; margin: 32px 0 0; padding: 0; list-style: none; font-size: .9375rem; color: var(--muted); }
 .tags li:not(:first-child):not(:last-child)::after { content: ","; color: var(--muted); }
-.post-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 36px; }
+/* Older / previous on the left with ←, newer / next on the right with →, whichever of them exist */
+.post-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row dense; gap: 12px; margin-top: 36px; }
+.post-nav a[rel="prev"] { grid-column: 1; }
+.post-nav a[rel="next"] { grid-column: 2; }
+@media (max-width: 559px) { .post-nav { grid-template-columns: minmax(0, 1fr); } .post-nav a[rel] { grid-column: 1; } }
 .post-nav a { display: block; padding: 14px 18px; border: 1px solid var(--line); border-radius: 10px; color: var(--text); text-decoration: none; }
 .post-nav a:hover { border-color: var(--accent); background: var(--accent-soft); }
 .post-nav a[rel="next"] { text-align: right; }
@@ -552,7 +601,7 @@ html:not(.js) .search { display: none; }
   .toc summary svg { color: var(--muted); }
   .toc summary::after { content: "▾"; margin-left: auto; color: var(--muted); }
   .toc[open] summary::after { content: "▴"; }
-  .toc nav > ul { margin: 0; padding: 0 10px 10px 34px; list-style: none; }
+  .toc nav > ul { margin: 0; padding: 0 10px 10px 24px; list-style: none; }
   .toc ul ul { padding-left: 12px; list-style: none; }
   .toc a { display: block; padding: 5px 10px; color: var(--text); text-decoration: none; line-height: 1.35; }
   .toc a:hover { background: var(--accent-soft); border-radius: 8px; }

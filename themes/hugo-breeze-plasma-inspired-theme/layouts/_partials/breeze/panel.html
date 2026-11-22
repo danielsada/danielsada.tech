@@ -55,7 +55,9 @@
       {{- if and (not $any) $underArchive (eq $e.url $archiveURL) }}{{ $st = "true" }}{{ end }}
       <li><a href="{{ $e.url }}"{{ with $st }} aria-current="{{ . }}"{{ end }}>
         {{- partial "breeze/icon.html" $e.icon -}}
-        {{- if and $e.lang (ne $e.lang $L.site) (ne $e.lang site.Language.Name) }}<span lang="{{ $e.lang }}">{{ $e.name }}</span>{{ else }}{{ $e.name }}{{ end -}}
+        {{- $name := $e.name -}}
+        {{- if and (strings.HasPrefix (string $e.url) "mailto:") (eq (strings.TrimPrefix "mailto:" (string $e.url)) $name) }}{{ $name = partial "breeze/email-label.html" $name }}{{ end -}}
+        {{- if and $e.lang (ne $e.lang $L.site) (ne $e.lang site.Language.Name) }}<span lang="{{ $e.lang }}">{{ $name }}</span>{{ else }}{{ $name }}{{ end -}}
         {{- with $e.badge }} <span class="tag">{{ . }}</span>{{ end -}}
         {{- if and $e.count $e.page -}}
           {{- $n := len $e.page.RegularPagesRecursive -}}

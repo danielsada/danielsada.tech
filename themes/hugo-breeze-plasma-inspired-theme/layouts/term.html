@@ -21,7 +21,7 @@
     "base" (printf "%s:%s" $kind $slug)
     "local" "years"
     "title" .Title
-    "sub" (partial "breeze/t.html" (dict "key" "posts_count" "lang" $L.name "ctx" (len $pages)))
+    "sub" (cond (partial "breeze/header-count.html" .) (partial "breeze/t.html" (dict "key" "posts_count" "lang" $L.name "ctx" (len $pages))) "")
     "icon" (cond $isSeries "series" "tag")
     "crumbs" $crumbs
     "asc" $isSeries

@@ -7,11 +7,14 @@
 {{- end -}}
 {{- if $terms }}{{ $terms = sort (sort $terms "title") "count" "desc" }}{{ end -}}
 {{- $archive := partial "breeze/archive-page.html" . -}}
+{{- $count := partial "breeze/header-count.html" . -}}
 <section class="win" aria-labelledby="list-h">
   <header class="win__bar">
     {{ partial "breeze/icon.html" "tag" }}
     <h1 id="list-h">{{ .Title }}</h1>
+    {{- if $count }}
     <p class="win__sub">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "terms_count" "ctx" (len $terms)) }}</p>
+    {{- end }}
   </header>
   <div class="win__loc">
     <nav class="crumbs" aria-label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "breadcrumb") }}"><ol>
@@ -31,5 +34,5 @@
     </tbody>
   </table>
   </div>
-  <footer class="win__status"><span>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "terms_count" "ctx" (len $terms)) }}</span></footer>
+  <footer class="win__status"><span>{{ if $count }}{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "terms_count" "ctx" (len $terms)) }}{{ else }}{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "most_used_first") }}{{ end }}</span></footer>
 </section>

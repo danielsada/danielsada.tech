@@ -1,0 +1,8 @@
+{{- /* Visible text for an e-mail address: params.author.emaillabel (e.g. "hello [at] example.org") when the address
+  is the author's and a label is set, else the address itself. The mailto: link always keeps the real address.
+  Context: the address (with or without "mailto:"). */ -}}
+{{- $addr := strings.TrimPrefix "mailto:" (string .) -}}
+{{- $author := site.Params.author | default (dict) -}}
+{{- $out := $addr -}}
+{{- if and $author.emaillabel (eq (lower $addr) (lower ($author.email | default ""))) }}{{ $out = $author.emaillabel }}{{ end -}}
+{{- return $out -}}

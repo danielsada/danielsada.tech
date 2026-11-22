@@ -40,6 +40,7 @@
     name = ""
     email = ""
     page = "/about"              # page linked from bylines
+    # emaillabel = "you [at] example.org"   # visible text for the address (byline, About, Places, intro); links keep mailto:
 
   # Colours / look (unset = theme defaults) ----------------------------------
   [params.colors]
@@ -47,9 +48,13 @@
     [params.colors.light]
       # accent = "#8a5cd6"
       # ink = "#5e2ca5"          # accent for text and focus rings: keep ≥ 4.5:1 on #fcfcfc
+      # wall = "#3d6fd6"         # base colour under the wallpaper (overscroll, while it loads)
+      # chrome = "#eef0f4"       # browser UI colour (<meta name="theme-color">)
     [params.colors.dark]
       # accent = "#a77bff"
       # ink = "#c6a8ff"          # keep ≥ 4.5:1 on #1f2226
+      # wall = "#121631"
+      # chrome = "#1c1f24"
   [params.fonts]
     # sans = '"Inter", system-ui, sans-serif'
     # read = 'Georgia, serif'    # long-form reading face
@@ -62,6 +67,7 @@
     showtags = 8                 # tags listed in the Show pane
     rowtags = 2                  # tags visible per row (the rest appear when they match)
     search = true
+    headercount = false          # show "N posts" / "N terms" in list title bars
 
   [params.series]
     taxonomy = "series"
@@ -79,6 +85,8 @@
     anchors = true               # "#" links on headings
     postnav = true               # series / older / newer links
     byline = true
+    shiftheadings = false        # false | true | "auto": render content "# " headings as <h2> (auto: only on pages that use them)
+    toclevels = [2, 3]           # heading levels shown in "On this page" (after shifting)
 
   [params.images]
     maxwidth = 960

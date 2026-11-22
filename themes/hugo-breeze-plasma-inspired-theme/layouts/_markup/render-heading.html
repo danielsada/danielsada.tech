@@ -1,9 +1,13 @@
-{{- /* Headings get a stable id and (params.post.anchors) a quiet "#" self-link, labelled in the page's language. */ -}}
+{{- /* Headings get a stable id and (params.post.anchors) a quiet "#" self-link, labelled in the page's language.
+  With params.post.shiftheadings, content headings move one level down ("# " renders as <h2>), so a post written
+  with "#" headings keeps the page title as its only <h1> and its sections appear in "On this page". */ -}}
 {{- $cfg := site.Params.post | default (dict) -}}
-<h{{ .Level }} id="{{ .Anchor }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>{{ .Text }}
-{{- if and (ge .Level 2) (ne $cfg.anchors false) -}}
+{{- $lvl := add .Level (partialCached "breeze/heading-shift.html" .Page (printf "%s|%s" .Page.Path .Page.Language.Name)) -}}
+{{- if gt $lvl 6 }}{{ $lvl = 6 }}{{ end -}}
+<h{{ $lvl }} id="{{ .Anchor }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>{{ .Text }}
+{{- if and (ge $lvl 2) (ne $cfg.anchors false) -}}
   {{- $L := partial "breeze/lang.html" .Page -}}
   <a class="anchor" href="#{{ .Anchor }}" aria-label="{{ partial "breeze/t.html" (dict "key" "link_to_section" "lang" $L.name) }}">#</a>
 {{- end -}}
-</h{{ .Level }}>
+</h{{ $lvl }}>
 {{- /* trim */ -}}

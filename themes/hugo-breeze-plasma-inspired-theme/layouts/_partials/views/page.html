@@ -9,7 +9,7 @@
   <h2>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "say_hi") }}</h2>
   <ul class="golinks">
     {{- with $author.email }}
-    <li><a class="go" href="mailto:{{ . }}">{{ partial "breeze/icon.html" "mail" }}{{ . }}</a></li>
+    <li><a class="go" href="mailto:{{ . }}">{{ partial "breeze/icon.html" "mail" }}{{ partial "breeze/email-label.html" . }}</a></li>
     {{- end }}
     {{- range site.Menus.social }}
     <li><a class="go" href="{{ .URL }}"{{ if strings.HasPrefix .URL "http" }} rel="me"{{ end }}>{{ partial "breeze/icon.html" (.Params.icon | default "link") }}{{ .Name }}</a></li>

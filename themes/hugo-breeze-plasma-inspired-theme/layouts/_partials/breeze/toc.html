@@ -1,10 +1,30 @@
-{{- /* The page's table of contents (HTML) when it has headings and TOC is enabled; else "". */ -}}
+{{- /* "On this page" for a page, as HTML (or "" when there is nothing to show).
+  Built from the page's headings rather than Hugo's .TableOfContents, so it follows params.post.shiftheadings and
+  is indented from the shallowest level present (a post that starts at "###" isn't indented).
+  Levels shown (after shifting): params.post.toclevels, default [2, 3]. Markup:
+  nav#TableOfContents > ul > li.d0|d1|d2 > a. */ -}}
 {{- $cfg := site.Params.post | default (dict) -}}
 {{- $out := "" -}}
 {{- if and (ne $cfg.toc false) (ne .Params.toc false) -}}
-  {{- $t := string .TableOfContents -}}
-  {{- if strings.Contains $t "<a " -}}
-    {{- $out = $t -}}
+  {{- $range := $cfg.toclevels | default (slice 2 3) -}}
+  {{- $lo := index $range 0 -}}
+  {{- $hi := index $range (sub (len $range) 1) -}}
+  {{- $shift := partialCached "breeze/heading-shift.html" . (printf "%s|%s" .Path .Language.Name) -}}
+  {{- $items := slice -}}
+  {{- range partial "breeze/headings.html" .Fragments.Headings -}}
+    {{- $lvl := add .level $shift -}}
+    {{- if and (ge $lvl $lo) (le $lvl $hi) -}}
+      {{- $items = $items | append (merge . (dict "level" $lvl)) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $items -}}
+    {{- $min := 6 -}}
+    {{- range . }}{{ if lt .level $min }}{{ $min = .level }}{{ end }}{{ end -}}
+    {{- $lis := "" -}}
+    {{- range . -}}
+      {{- $lis = printf `%s<li class="d%d"><a href="#%s">%s</a></li>` $lis (sub .level $min) (.id | htmlEscape) (.title | plainify | htmlUnescape | htmlEscape) -}}
+    {{- end -}}
+    {{- $out = printf `<nav id="TableOfContents"><ul>%s</ul></nav>` $lis -}}
   {{- end -}}
 {{- end -}}
 {{- return $out -}}

@@ -44,6 +44,20 @@
     if (pproj && mq.matches) pproj.open = true;
   }
 
+  /* Panel Projects box: a project name cut off with an ellipsis gets its full name as a tooltip */
+  var pp = $('.pproj');
+  if (pp) {
+    var tips = function () {
+      $$('li a', pp).forEach(function (a) {
+        var nm = $('.nm', a);
+        if (nm && nm.scrollWidth > nm.clientWidth + 1) a.title = nm.textContent; else a.removeAttribute('title');
+      });
+    };
+    pp.addEventListener('toggle', tips);
+    addEventListener('resize', tips);
+    tips();
+  }
+
   /* Archive window. Filters: all · s:<section> · series:<slug> · tag:<slug> · year:<yyyy>.
      data-base is what the page itself lists (the archive lists "all"; a section, series or tag page lists itself).
      data-local="all": every Show row filters in place, with state in the URL hash (#s=blog, #series=x, #tag=x, #y2025),
@@ -61,7 +75,16 @@
     var baseLabel = head.textContent, siteTitle = I.site || '', sep = I.sep || ' \u00b7 ';
     var label = {};
     links.forEach(function (a) { if (a.dataset.label) label[a.dataset.f] = a.dataset.label; });
-    var hay = rows.map(function (r) { return (r.textContent + ' ' + (r.dataset.tags || '')).toLowerCase(); });
+    /* Search matches at the start of words (in the title, description, marks and tags), never inside a word:
+       "ai" finds "AI tools" but not "against". Accents are ignored: "espanol" finds "español". */
+    var fold = function (s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC').toLowerCase(); };
+    var words = function (s) { return fold(s).split(/[^\p{L}\p{M}\p{N}]+/u).filter(Boolean); };
+    var hay = rows.map(function (r) {
+      var nm = $('td.nm', r), tg = $('td.tg', r);
+      return words((nm ? nm.textContent : '') + ' ' + (tg ? tg.textContent : '') + ' ' + (r.dataset.tags || '').replace(/-/g, ' '));
+    });
+    var hits = function (list, t) { return list.some(function (w) { return w.indexOf(t) === 0; }); };
+    var showCount = win.getAttribute('data-count') !== 'false';
     var filter = base;
     var kind = function (f) { return f.slice(0, f.indexOf(':')); };
     var val = function (f) { return f.slice(f.indexOf(':') + 1); };
@@ -95,15 +118,15 @@
       return k === 'year' ? 'y' + v : k + '=' + encodeURIComponent(v);
     };
     var apply = function () {
-      var q = input.value.trim(), terms = q.toLowerCase().split(/\s+/).filter(Boolean), n = 0;
+      var q = input.value.trim(), terms = words(q), n = 0;
       var tag = kind(filter) === 'tag' ? val(filter) : '';
       rows.forEach(function (r, i) {
-        var ok = match(r) && terms.every(function (t) { return hay[i].indexOf(t) > -1; });
+        var ok = match(r) && terms.every(function (t) { return hits(hay[i], t); });
         r.hidden = !ok; if (ok) n++;
         /* reveal a tucked-away tag when it is the reason the row matches */
         $$('td.tg .x', r).forEach(function (x) {
-          var a = $('a', x), t = a ? a.dataset.f.slice(4) : '', txt = x.textContent.toLowerCase();
-          x.classList.toggle('hit', !!ok && (t === tag || terms.some(function (w) { return txt.indexOf(w) > -1; })));
+          var a = $('a', x), t = a ? a.dataset.f.slice(4) : '', tw = words(x.textContent);
+          x.classList.toggle('hit', !!ok && (t === tag || terms.some(function (w) { return hits(tw, w); })));
         });
       });
       groups.forEach(function (g) {
@@ -116,11 +139,32 @@
       if (terms.length) parts.push(fill(I.matching, q));
       /* a count only when something narrows the list */
       status.textContent = parts.length ? plural(n) + ' \u00b7 ' + parts.join(' \u00b7 ') : I.order;
-      if (sub) sub.innerHTML = parts.length ? plural(n) : subBase;
+      if (sub) sub.innerHTML = parts.length && showCount ? plural(n) : subBase;
       win.classList.toggle('is-filtered', parts.length > 0);
       clearBtn.hidden = !parts.length;
       empty.hidden = n > 0;
+      saveSoon();
     };
+    /* The search text lives in the URL (?q=…, replaced, not pushed), next to the filter in the hash, so Back
+       from a result, reload and shared links all bring the same view back. */
+    var urlFor = function (f, q) {
+      var p = new URLSearchParams(location.search), h = hashFor(f);
+      if (q) p.set('q', q); else p.delete('q');
+      var s = p.toString();
+      return location.pathname + (s ? '?' + s : '') + (h ? '#' + h : '');
+    };
+    /* Browsers cap history updates (Safari: 100 per 30 s), so the URL follows the search box after a pause,
+       and right away when the reader clicks something or leaves the page. */
+    var timer = 0;
+    var history_ = function (method, u) { try { history[method](method === 'pushState' ? null : history.state, '', u); } catch (e) { /* rate-limited */ } };
+    var saveQuery = function () {
+      clearTimeout(timer); timer = 0;
+      var u = urlFor(filter, input.value.trim());
+      if (u !== location.pathname + location.search + location.hash) history_('replaceState', u);
+    };
+    var saveSoon = function () { clearTimeout(timer); timer = setTimeout(saveQuery, 400); };
+    document.addEventListener('click', function () { if (timer) saveQuery(); }, true);
+    addEventListener('pagehide', function () { if (timer) saveQuery(); });
     var setFilter = function (f, push) {
       filter = f;
       var k = kind(f), v = val(f), known = links.some(function (a) { return a !== tagLink && a.dataset.f === f; });
@@ -141,7 +185,9 @@
           if (!dyn) { dyn = document.createElement('option'); dyn.id = 'opt-dyn'; var g = $('#sel-tags', win); if (g) g.prepend(dyn); }
           dyn.value = f; dyn.textContent = tagName(v);
         } else if (dyn) dyn.remove();
+        /* never leave the select blank: fall back to the option for this page itself */
         sel.value = f;
+        if (sel.selectedIndex < 0) sel.value = base;
       }
       var text = labelFor(f);
       head.textContent = text;
@@ -151,11 +197,8 @@
         $('span', crumb).textContent = k === 'year' ? v : k === 'tag' ? tagName(v) : text;
         if (crumbBase) { if (f === base) crumbBase.setAttribute('aria-current', 'page'); else crumbBase.removeAttribute('aria-current'); }
       }
-      if (push) {
-        var h = hashFor(f);
-        history.pushState(null, '', h ? '#' + h : location.pathname + location.search);
-      }
       apply();
+      if (push) { clearTimeout(timer); timer = 0; history_('pushState', urlFor(f, input.value.trim())); }
     };
     var reset = function () { input.value = ''; setFilter(base, filter !== base); };
     document.addEventListener('click', function (e) {
@@ -196,8 +239,9 @@
       if (/^y\d{4}$/.test(h) && document.getElementById(h)) setFilter('year:' + h.slice(1));
       else if (m && allLocal) setFilter(m[1] + ':' + m[2]);
       else if (!h) setFilter(base);
-      else return;
+      else return false;
       if (scroll && win.getBoundingClientRect().top < 0) win.scrollIntoView();
+      return true;
     };
     input.addEventListener('input', apply);
     input.addEventListener('keydown', function (e) { if (e.key === 'Escape') { input.value = ''; apply(); } });
@@ -207,10 +251,16 @@
       if (input.closest('[inert]')) return; /* e.g. the mobile drawer is open */
       e.preventDefault(); input.focus();
     });
+    /* Restore the whole view (search + filter) from the URL. Runs on load and again on pageshow, so it also wins
+       over a browser that refills the search box itself on Back, and over a page restored from the bfcache. */
+    var restore = function () {
+      input.value = new URLSearchParams(location.search).get('q') || '';
+      if (!readHash(false)) setFilter(filter);
+    };
     addEventListener('hashchange', function () { readHash(true); });
-    addEventListener('popstate', function () { readHash(false); });
-    setFilter(base);
-    readHash(false);
+    addEventListener('popstate', restore);
+    addEventListener('pageshow', restore);
+    restore();
     /* #y2025 is also an element id: after the browser's own jump, show the filtered list from its top */
     addEventListener('load', function () { if (kind(filter) === 'year' && win.getBoundingClientRect().top < 0) win.scrollIntoView(); });
   }
@@ -236,12 +286,29 @@
   });
 
   /* Post: thin progress bar + active section in "On this page" (panel and inline copies).
-     Nothing is current while the reader is still in the intro; the last heading wins at the very end. */
+     The active heading is the last one that has reached the reading line just below the top (the scroll-padding
+     offset). After a jump from the outline the clicked heading stays active until the reader scrolls away, so a
+     short section followed by another heading can't steal it. Nothing is active in the intro. */
   var prose = $('.paper .prose'), bar = $('.progress'), tocLinks = $$('.outline a, .toc a');
   if (prose && (bar || tocLinks.length)) {
-    var first = $('.outline nav, .toc nav');
+    var first = $('.outline nav, .toc nav'), outlineNav = $('.panel .outline nav');
     var heads = first ? $$('a', first).map(function (a) { return document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))); }) : [];
-    var ticking = false;
+    var ticking = false, pinned = '', pinY = 0, lastId = null;
+    var lineY = function () { return (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) + Math.min(innerHeight * 0.2, 120); };
+    /* keep the active entry visible inside the outline's own scroll area (never scrolls the page) */
+    var reveal = function (a) {
+      if (!outlineNav || !a || !outlineNav.contains(a)) return;
+      var n = outlineNav.getBoundingClientRect(), r = a.getBoundingClientRect(), pad = 24;
+      if (r.top < n.top + pad) outlineNav.scrollTop -= n.top + pad - r.top;
+      else if (r.bottom > n.bottom - pad) outlineNav.scrollTop += r.bottom - (n.bottom - pad);
+    };
+    /* fade the outline's edges when there is more to scroll */
+    var edges = function () {
+      if (!outlineNav) return;
+      var o = outlineNav.parentNode, more = outlineNav.scrollHeight - outlineNav.clientHeight > 2;
+      o.classList.toggle('fade-t', more && outlineNav.scrollTop > 2);
+      o.classList.toggle('fade-b', more && outlineNav.scrollTop < outlineNav.scrollHeight - outlineNav.clientHeight - 2);
+    };
     var onScroll = function () {
       ticking = false;
       var r = prose.getBoundingClientRect();
@@ -250,18 +317,31 @@
         bar.style.width = (Math.max(0, Math.min(1, -r.top / (total > 0 ? total : 1))) * 100).toFixed(1) + '%';
       }
       if (!tocLinks.length) return;
-      var cur = -1;
-      heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top < innerHeight * 0.3) cur = i; });
-      if (cur > -1 && r.bottom <= innerHeight + 4) cur = heads.length - 1;
-      var id = cur > -1 && heads[cur] ? '#' + heads[cur].id : '';
+      if (pinned && Math.abs(scrollY - pinY) > 4) pinned = '';
+      var id = pinned;
+      if (!id) {
+        var cur = -1, y = lineY();
+        heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top <= y) cur = i; });
+        if (cur > -1 && r.bottom <= innerHeight + 4) cur = heads.length - 1;
+        id = cur > -1 && heads[cur] ? '#' + heads[cur].id : '';
+      }
+      if (id === lastId) return;
+      lastId = id;
       tocLinks.forEach(function (a) {
         var on = decodeURIComponent(a.getAttribute('href')) === id;
         a.classList.toggle('on', on);
-        if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+        if (on) { a.setAttribute('aria-current', 'location'); reveal(a); } else a.removeAttribute('aria-current');
       });
     };
+    var pin = function (h) { pinned = h; pinY = scrollY; lastId = null; onScroll(); };
     addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    addEventListener('resize', edges);
+    if (outlineNav) outlineNav.addEventListener('scroll', edges, { passive: true });
+    edges();
     onScroll();
+    /* arriving on a #heading link: that heading is the current one */
+    var arrived = decodeURIComponent(location.hash);
+    if (arrived && heads.some(function (h) { return h && '#' + h.id === arrived; })) addEventListener('load', function () { pin(arrived); });
     tocLinks.forEach(function (a) {
       a.addEventListener('click', function (e) {
         var h = a.getAttribute('href'), target = document.getElementById(decodeURIComponent(h.slice(1)));
@@ -271,6 +351,7 @@
         if (d) d.open = false;
         history.replaceState(null, '', h);
         focusTarget(target);
+        pin(decodeURIComponent(h));
       });
     });
   }

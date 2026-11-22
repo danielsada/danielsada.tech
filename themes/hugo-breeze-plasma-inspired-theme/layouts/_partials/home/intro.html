@@ -19,6 +19,7 @@
       {{- if .latest -}}
         {{- range first 1 (partial "breeze/primary-posts.html" (dict)) }}{{ $url = .RelPermalink }}{{ $text = $text | default .LinkTitle }}{{ end -}}
       {{- end -}}
+      {{- if and (strings.HasPrefix (string $url) "mailto:") (or (not $text) (eq $text (strings.TrimPrefix "mailto:" (string $url)))) }}{{ $text = partial "breeze/email-label.html" $url }}{{ end -}}
       {{- with $url }}<a href="{{ . }}">{{ $text }}</a>{{ end -}}
     {{- end -}}
   </p>

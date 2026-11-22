@@ -86,6 +86,8 @@ other = "{{ .Title }} ({{ .Count }} parts)"
 other = "{{ .Title }} ({{ .Count }})"
 
 # Taxonomy pages
+[most_used_first]
+other = "Most used first"
 [col_term]
 other = "Name"
 [col_count]

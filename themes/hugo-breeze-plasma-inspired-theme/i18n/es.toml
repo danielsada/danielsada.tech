@@ -84,6 +84,8 @@ other = "{{ .Title }} ({{ .Count }} partes)"
 [section_count]
 other = "{{ .Title }} ({{ .Count }})"
 
+[most_used_first]
+other = "Más usadas primero"
 [col_term]
 other = "Nombre"
 [col_count]

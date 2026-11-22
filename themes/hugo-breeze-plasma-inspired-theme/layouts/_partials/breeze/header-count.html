@@ -1,0 +1,4 @@
+{{- /* Whether list windows show a post / term count in their title bar (params.archive.headercount, default false). */ -}}
+{{- $cfg := site.Params.archive | default (dict) -}}
+{{- $on := eq $cfg.headercount true -}}
+{{- return $on -}}

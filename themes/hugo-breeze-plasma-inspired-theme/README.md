@@ -12,12 +12,12 @@ A calm, KDE Plasma / Breeze-inspired blog theme. The wallpaper sits behind one t
 
 **Reading**
 - Posts are set in a serif reading face at about 66 characters per line. Dark mode uses softened ink to avoid halation.
-- "On this page" sits in the panel on desktop and highlights the section you're reading. On phones it becomes a collapsible table of contents above the post.
+- "On this page" sits in the panel on desktop and highlights the section you're reading. A long outline scrolls in its own area, fades at its edges and keeps the current entry in view. On phones it becomes a collapsible table of contents above the post.
 - A thin reading-progress bar, quiet `#` heading links, reading time, and "Part n of m" with previous/next links for series.
 - Syntax highlighting through Hugo's class-based highlighter, so the colours live in the stylesheet. Markdown images are resized to WebP, lazy-loaded and get captions from their titles.
 
 **Finding things**
-- A Dolphin-style archive window. A *Show* pane lists sections, series, tags and years with counts, and there's an instant filter box (press <kbd>/</kbd>). Filters are kept in the URL, so back/forward, reload and shared links work.
+- A Dolphin-style archive window. A *Show* pane lists sections, series, tags and years with counts, and there's an instant filter box (press <kbd>/</kbd>) that matches the start of words in titles, descriptions and tags. The filter and the search are kept in the URL, so Back from a post, reload and shared links bring the same view back.
 - Every section, series and tag is a real page, so the theme works without JavaScript.
 - Places (your menu), an optional Projects box and your social links live in one translucent panel that stays put on every page. On phones it becomes a drawer.
 
@@ -199,15 +199,20 @@ All options live under `[params]`. Every one is optional.
 | `favicon`, `ogimage`, `titlesuffix`, `crumbroot` | none | Head and breadcrumb details |
 | `titleseparator` | `" · "` | Goes between the page title and the site title in `<title>` and feed titles, e.g. "Projects · Your Name" |
 | `author.name`, `author.email`, `author.page` | none | Byline, contact and the About link |
+| `author.emaillabel` | none | Visible text for your address, e.g. `"you [at] example.org"`. Used wherever the theme prints it (byline, About "say hi", a Places entry or intro link whose text is the address); links still use `mailto:` with the real address. |
 | `colors.light.accent` / `.ink`, `colors.dark.accent` / `.ink` | Purple | Accent colours. `ink` is the text and focus-ring colour; keep it at least 4.5:1 against the card. |
-| `colors.wall` | `#3d6fd6` | Wallpaper base colour |
+| `colors.light.wall`, `colors.dark.wall` (or `colors.wall` for light) | `#3d6fd6`, `#121631` | Base colour under the wallpaper, also shown on overscroll |
+| `colors.light.chrome`, `colors.dark.chrome` | `#eef0f4`, `#1c1f24` | Browser UI colour (`<meta name="theme-color">`) per scheme |
 | `wallpaper` | `breeze/wallpaper.svg` | An `assets/` path, a static path, or `"none"` |
 | `fonts.sans`, `fonts.read`, `fonts.mono` | System stacks | CSS font stacks. `read` is the long-form reading face. |
 | `archive.path`, `archive.taxonomy` | `/posts`, `tags` | The All-posts page and the taxonomy shown in rows |
 | `archive.showtags`, `archive.rowtags`, `archive.search` | `8`, `2`, `true` | Tags in the Show pane, tags visible per row, and the search box |
+| `archive.headercount` | `false` | Show "N posts" / "N terms" in the title bar of section, tag, series and taxonomy pages |
 | `series.taxonomy`, `series.min` | `series`, `2` | Series behaviour |
 | `dates.short`, `dates.long` | `2 Jan 2006`, `2 January 2006` | Go date layouts for lists and for posts |
 | `post.toc`, `post.progress`, `post.readingtime`, `post.anchors`, `post.postnav`, `post.byline` | All `true` | Post features. You can also turn the TOC off per page with `params.toc: false`. |
+| `post.shiftheadings` | `false` | `true` renders content headings one level down (`# ` becomes `<h2>`), so the page title stays the only `<h1>` and the sections appear in "On this page". `"auto"` does this only on pages that use `# ` headings. |
+| `post.toclevels` | `[2, 3]` | Heading levels listed in "On this page" (after shifting). The outline is indented from the shallowest level present. |
 | `images.maxwidth`, `images.quality` | `960`, `75` | Settings for Markdown images, which are converted to WebP |
 | `rss.panel` | `true` | Shows the RSS icon in the panel |
 | `projects.page`, `projects.statuses` | `/projects`, `[Live, Beta, Paused, Archived]` | The projects page and the order of its status groups |

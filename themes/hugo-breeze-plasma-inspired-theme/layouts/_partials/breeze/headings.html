@@ -1,0 +1,12 @@
+{{- /* Flattens a page's heading tree (.Fragments.Headings) into a list of dict level, id, title, in document order.
+  Hugo inserts empty placeholder entries for skipped levels; those are dropped. */ -}}
+{{- $out := slice -}}
+{{- range . -}}
+  {{- if .ID -}}
+    {{- $out = $out | append (dict "level" .Level "id" .ID "title" .Title) -}}
+  {{- end -}}
+  {{- with .Headings -}}
+    {{- $out = $out | append (partial "breeze/headings.html" .) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

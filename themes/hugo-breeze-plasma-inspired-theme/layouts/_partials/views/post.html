@@ -109,7 +109,7 @@
       {{- with site.GetPage ($author.page | default "/about") }}{{ $who = printf `<a href="%s">%s</a>` .RelPermalink $who }}{{ end -}}
       {{- $line := partial "breeze/t.html" (dict "lang" $tr.lang "key" "written_by" "ctx" (dict "Name" "@@NAME@@")) -}}
       {{ replace (htmlEscape $line) "@@NAME@@" $who | safeHTML }}
-      {{- with $author.email }} {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "say_hi_at") }} <a href="mailto:{{ . }}">{{ . }}</a>.{{ end -}}
+      {{- with $author.email }} {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "say_hi_at") }} <a href="mailto:{{ . }}">{{ partial "breeze/email-label.html" . }}</a>.{{ end -}}
     </p>
   </footer>
   {{- end }}

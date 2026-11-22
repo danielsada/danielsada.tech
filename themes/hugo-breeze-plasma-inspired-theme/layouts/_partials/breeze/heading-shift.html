@@ -1,0 +1,14 @@
+{{- /* How many levels content headings move down (params.post.shiftheadings):
+  false (default) = 0; true = 1 ("# Title" renders as <h2>); "auto" = 1 only on pages whose Markdown has a "# "
+  heading outside code fences. Read from the raw Markdown, so it is safe to call from the heading render hook.
+  Context: the page. */ -}}
+{{- $cfg := site.Params.post | default (dict) -}}
+{{- $mode := $cfg.shiftheadings -}}
+{{- $shift := 0 -}}
+{{- if eq $mode true -}}
+  {{- $shift = 1 -}}
+{{- else if eq $mode "auto" -}}
+  {{- $md := .RawContent | replaceRE "(?ms)^ {0,3}(```|~~~).*?^ {0,3}(```|~~~)[ \t]*$" "" -}}
+  {{- if findRE `(?m)^ {0,3}#[ \t]+\S` $md 1 }}{{ $shift = 1 }}{{ end -}}
+{{- end -}}
+{{- return $shift -}}

@@ -26,7 +26,8 @@
   {{- $title := $cfg.title | default (T "projects") -}}
   {{- $collapsed := and .isPost (ne $cfg.collapse false) }}
   <details class="pproj"{{ if not $collapsed }} open{{ end }}>
-    <summary><h2 class="ph" id="pproj-h">{{ $title }}<span class="n">{{ len $all }}</span></h2></summary>
+    {{- /* the heading names the box ("Projects"); the count is shown visually and announced as "12 projects" */}}
+    <summary><h2 class="ph" id="pproj-h">{{ $title }}</h2><span class="n" aria-hidden="true">{{ len $all }}</span><span class="sr-only">{{ T "projects_count" (len $all) }}</span></summary>
     <nav aria-labelledby="pproj-h">
       <ul>
         {{- range first $limit $rows }}

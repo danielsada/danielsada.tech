@@ -45,6 +45,21 @@
 {{- end -}}
 {{- $tags := partial "breeze/term-counts.html" (dict "pages" $pages "taxonomy" $tax) -}}
 {{- $orderKey := cond .asc "oldest_first" "newest_first" -}}
+{{- $headCount := partial "breeze/header-count.html" . -}}
+
+{{- /* Every value the narrow-window <select> offers; if this page itself isn't one of them (a tag outside the
+  top tags, a series below series.min), it gets its own option so the select never shows blank. */ -}}
+{{- $vals := slice -}}
+{{- range $rows }}{{ $vals = $vals | append .f }}{{ end -}}
+{{- range first $showtags $tags }}{{ $vals = $vals | append (print "tag:" .slug) }}{{ end -}}
+{{- range $groups }}{{ $vals = $vals | append (print "year:" .Key) }}{{ end -}}
+{{- $self := not (in $vals $base) -}}
+{{- $choices := len $vals -}}
+{{- if in $vals $base }}{{ $choices = sub $choices 1 }}{{ end -}}
+
+{{- /* Drop the Tags column when no listed post has tags */ -}}
+{{- $anyTags := false -}}
+{{- range $pages }}{{ if .GetTerms $tax }}{{ $anyTags = true }}{{ break }}{{ end }}{{ end -}}
 
 {{- $i18n := dict
   "site" (site.Params.titlesuffix | default site.Title)
@@ -58,7 +73,7 @@
   "postsFrom" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_posts_from"))
   "matching" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_matching"))
 -}}
-<section class="win" aria-labelledby="list-h" data-base="{{ $base }}" data-local="{{ .local | default "years" }}" data-i18n="{{ $i18n | jsonify | string }}">
+<section class="win" aria-labelledby="list-h" data-base="{{ $base }}" data-local="{{ .local | default "years" }}" data-count="{{ $headCount }}" data-i18n="{{ $i18n | jsonify | string }}">
   <header class="win__bar">
     {{ partial "breeze/icon.html" (.icon | default "folder") }}
     <h1 id="list-h" tabindex="-1">{{ .title }}</h1>
@@ -71,8 +86,10 @@
       <li><a href="{{ $p.RelPermalink }}" id="crumb-base" data-f="{{ $base }}" aria-current="page">{{ .title }}</a></li>
       <li id="crumb-f" hidden><span aria-current="page"></span></li>
     </ol></nav>
+    {{- if gt $choices 0 }}
     <label class="show-sel" for="show-sel"><span>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show") }}</span><select id="show-sel">
       <optgroup label="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "show") }}">
+        {{- if $self }}<option value="{{ $base }}" data-href="{{ $p.RelPermalink }}" selected>{{ .title }}</option>{{ end -}}
         {{- range $rows }}<option value="{{ .f }}" data-href="{{ .url }}"{{ if eq .f $base }} selected{{ end }}>{{ .label }}{{ with .badge }} · {{ . }}{{ end }}{{ with .count }} ({{ . }}){{ end }}</option>{{ end -}}
       </optgroup>
       {{- with $tags }}
@@ -85,6 +102,7 @@
       </optgroup>
     </select></label>
     <a class="tool show-go" id="show-go" href="#" hidden>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "go") }}</a>
+    {{- end }}
     <div class="search" role="search"{{ if eq $cfg.search false }} hidden{{ end }}>{{ partial "breeze/icon.html" "search" }}<label class="sr-only" for="search">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "filter_posts") }}</label><input id="search" type="search" placeholder="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "filter_placeholder") }}" autocomplete="off"></div>
   </div>
   <div class="fm">
@@ -115,7 +133,7 @@
       {{- end }}
     </div></nav>
     <div class="view">
-      <table class="posts">
+      <table class="posts{{ if not $anyTags }} notags{{ end }}">
         <caption class="sr-only">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "caption_posts") }}</caption>
         <thead><tr><th scope="col" class="nm">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_name") }}</th><th scope="col" class="dt">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_date") }}</th><th scope="col" class="tg">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "col_tags") }}</th></tr></thead>
         {{- range $groups }}

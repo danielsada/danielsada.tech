@@ -66,6 +66,7 @@ ignoreLogs = ["warning-goldmark-raw-html"]
   [params.author]
     name = "Daniel Sada"
     email = "hello@danielsada.tech"
+    emaillabel = "hello [at] danielsada.tech"   # visible text; links stay mailto:
     page = "/about"
 
   # Logo purple (the middle of the DanielSadaLogo.png gradient); these are also the theme's defaults.
