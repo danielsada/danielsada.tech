@@ -14,9 +14,9 @@ categories = [
 
 If you do not write for other people, stop reading this now.
 
-When I started my job at Snowflake, one of the coolest things that everybody did was this etiquette thing. The first sentence of each email would be "If you don't develop in this specific part of the code, you can stop reading." or "If you're not part of the finance org, you can stop reading." 
+When I was at Snowflake, one of the coolest things that everybody did was this etiquette thing. The first sentence of each email would be "If you don't develop in this specific part of the code, you can stop reading." or "If you're not part of the finance org, you can stop reading." 
 
-This made me think a lot about what it means to write for other people. You need to be subservient to your audience. Similarly, thinking about how much space you take is very important. For Slack threads, you would start with a 3- to 5-line introduction to your topic, and then people could find more details inside the threads. 
+This made me think a lot about what it means to write for other people. You need to be subservient to your audience. Similarly, thinking about how much space you take is very important. For Slack/Teams threads, you would start with a 3- to 5-line introduction to your topic, and then people could find more details inside the threads. 
 
 ![A short Slack message: "If you develop in our java codebase, you should look at this thread. TLDR: I've added a new logger that allows you to do cool stuff and save time. More details on the thread." with one reply](/images/blog/assume-people/simple-thread.png)
 
