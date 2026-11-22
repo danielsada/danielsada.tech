@@ -1,5 +1,5 @@
 # danielsada.tech: Hugo site config. Theme: themes/hugo-breeze-plasma-inspired-theme (vendored copy, see README.md).
-# Requires Hugo >= 0.158 (built and deployed with 0.170.1, see netlify.toml).
+# Requires Hugo >= 0.158 (built and deployed with 0.170.1; see README.md > Deploy).
 baseURL = "https://danielsada.tech/"
 title = "Daniel Sada"
 theme = "hugo-breeze-plasma-inspired-theme"

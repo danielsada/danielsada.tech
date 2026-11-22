@@ -3,12 +3,24 @@
 
 ## Running the project
 
-Requires **Hugo 0.170.1** (any edition; the theme needs ≥ 0.158). Netlify pins the same version in `netlify.toml`.
+Requires **Hugo 0.170.1** (any edition; the theme needs ≥ 0.158). Use the same version locally and in the deploy (see below).
 
 ```sh
 hugo server        # http://localhost:1313/
 hugo               # build into public/
 ```
+
+## Deploy
+
+The site is deployed by **Cloudflare Pages** from the `master` branch (build system v2):
+
+| Setting | Value |
+|---|---|
+| Build command | `hugo` |
+| Build output directory | `public` |
+| Environment variable (Production and Preview) | `HUGO_VERSION` = `0.170.1` |
+
+Keep `HUGO_VERSION` in the Pages settings in sync with the Hugo version you use locally (minimum 0.158). Redirects live in `static/_redirects`, which Hugo copies to `public/_redirects` where Pages reads it.
 
 ## Theme
 
