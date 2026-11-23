@@ -30,6 +30,8 @@
   logowidth = 64                 # CSS px at 16px root size
   logoplate = true               # draw the logo on a small light plate (good for dark-on-transparent logos)
   logoname = true                # show the name next to the logo
+  # homeurl = "https://example.org/"   # absolute URL the logo + name link to instead of this site's home
+  # hometitle = ""                     # tooltip for that link; defaults to the URL's host
   colorscheme = "auto"           # auto | light | dark
   titleseparator = " · "         # between the page title and the site title (in <title>, feeds)
   # favicon = "favicon.svg"

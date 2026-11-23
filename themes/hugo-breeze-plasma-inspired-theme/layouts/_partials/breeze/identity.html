@@ -25,7 +25,12 @@
     {{- $logo = . | relURL -}}
   {{- end -}}
 {{- end -}}
+{{- /* params.homeurl points the lockup at another site (e.g. a main site above this one); it is then never the current page. */ -}}
+{{- with site.Params.homeurl -}}
+<a class="me" href="{{ . }}" title="{{ site.Params.hometitle | default (urls.Parse .).Host }}">
+{{- else -}}
 <a class="me" href="{{ site.Home.RelPermalink }}"{{ if and $panel $p.IsHome }} aria-current="page"{{ end }}{{ if $panel }} title="{{ T "home" }}"{{ end }}>
+{{- end -}}
   {{- if $logo -}}
     <span class="logo{{ if eq site.Params.logoplate false }} logo--bare{{ end }}"><img src="{{ $logo }}" alt="{{ if not $showName }}{{ $name }}{{ end }}"{{ if $lh }} width="{{ $lw }}" height="{{ $lh }}"{{ end }}></span>
   {{- else -}}

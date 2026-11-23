@@ -195,7 +195,7 @@ All options live under `[params]`. Every one is optional.
 | `description`, `tagline` | none | Meta description; the subtitle under your name and the home kicker |
 | `logo` | monogram | An `assets/` path (processed) or a `static/` path |
 | `logowidth`, `logoplate`, `logoname` | `64`, `true`, `true` | Logo width in px, whether it sits on a light plate, and whether your name is shown beside it |
-| `colorscheme` | `auto` | `auto`, `light` or `dark` |
+| `homeurl`, `hometitle` | none, the URL's host | An absolute URL the logo and name link to instead of this site's home, e.g. a main site above a subdomain site, and the link's tooltip. Breadcrumbs still start at this site's home. || `colorscheme` | `auto` | `auto`, `light` or `dark` |
 | `favicon`, `ogimage`, `titlesuffix`, `crumbroot` | none | Head and breadcrumb details |
 | `titleseparator` | `" · "` | Goes between the page title and the site title in `<title>` and feed titles, e.g. "Projects · Your Name" |
 | `author.name`, `author.email`, `author.page` | none | Byline, contact and the About link |
