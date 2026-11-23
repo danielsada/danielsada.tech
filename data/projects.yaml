@@ -4,7 +4,7 @@
 
 - name: adolint
   since: 2026
-  icon: search
+  icon: github
   summary: A CLI for linting Azure DevOps pipeline YAML.
   description: A Cobra-based Go CLI for parsing and linting Azure DevOps pipeline definitions.
   stack: [Go, YAML]
@@ -13,7 +13,7 @@
 
 - name: awesome-reviewers
   since: 2026
-  icon: search
+  icon: github
   summary: Six focused AI code reviewers, with evals.
   description: Review prompts inspired by Ousterhout, Nygard, Google SRE, TLA+, DO-178B and Richard Hipp. Available as skills and read-only agents for Copilot CLI and Claude Code, with evals that measure defect detection and false positives.
   stack: [Markdown, Python]
@@ -22,7 +22,7 @@
 
 - name: go-kusto-cli
   since: 2026
-  icon: terminal
+  icon: github
   summary: A lightweight Go CLI for querying Azure Data Explorer.
   description: Queries Kusto through its REST API with no SDK dependencies, using Azure CLI authentication. Accepts inline queries, script files or stdin and exports tables, CSV or JSON.
   stack: [Go, KQL]
@@ -45,7 +45,7 @@
 
 - name: Plasma Hugo Theme
   since: 2026
-  icon: apps
+  icon: github
   summary: The Hugo theme this site runs on.
   description: A calm, KDE Plasma/Breeze-inspired Hugo blog theme with one translucent navigation panel, opaque reading cards, a Dolphin-style archive, light/dark and no external requests. MIT licensed; this site uses it.
   stack: [Hugo, CSS, JS]
@@ -57,7 +57,7 @@
 
 - name: tree-commit
   since: 2025
-  icon: terminal
+  icon: github
   summary: Directory-scoped Git hooks for monorepos.
   description: Put a hook config in any directory and run checks only on files within its scope. Compatible with pre-commit configs and hooks, so backend and frontend checks can live alongside their code.
   stack: [Go, YAML]
