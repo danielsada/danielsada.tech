@@ -67,6 +67,9 @@ and copies the menus into its `hugo.toml`, so they drift. To check them against 
 ./audit-side-projects-for-consistency.sh --site http://localhost:1313/ --no-parent   # a local `hugo server`
 ```
 
+For a local server, pass the exact base URL it prints (`hugo server` uses `http://localhost:1313/` by default); with
+another host name the canonical, sitemap and WebSite checks fail.
+
 It compares the **live** sites with the live blog, so deploy before re-running (or audit a local `hugo server`, where the
 https checks don't apply). Needs bash and Python 3.8+ (standard
 library only), plus an authenticated `gh` for the theme checks (`--no-repo` skips them). It exits 1 on any FAIL.
