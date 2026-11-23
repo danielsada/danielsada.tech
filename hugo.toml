@@ -198,8 +198,8 @@ ignoreLogs = ["warning-goldmark-raw-html"]
     [menus.social.params]
       icon = "linkedin"
   [[menus.social]]
-    name = "X (Twitter)"
-    url = "https://x.com/danielsadac"
+    name = "Fediverse"
+    url = "https://infosec.exchange/@dsada"
     weight = 30
     [menus.social.params]
-      icon = "x"
+      icon = "globe"
