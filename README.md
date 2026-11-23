@@ -54,6 +54,31 @@ How are you doing? This is some larger text that needs more space.
 {.bubble .p .right}
 ```
 
+## Auditing side projects
+
+The side projects on `*.danielsada.tech` (WATolls, Voltra, Ninja…) look like pages of this site: the same panel,
+colours, logo and Places/Elsewhere menus, with absolute links back here. Each one vendors its own copy of the theme
+and copies the menus into its `hugo.toml`, so they drift. To check them against this site:
+
+```sh
+./audit-side-projects-for-consistency.sh             # every known side project
+./audit-side-projects-for-consistency.sh -q          # only WARN and FAIL lines
+./audit-side-projects-for-consistency.sh --site https://new.danielsada.tech/=danielsada/new-repo
+```
+
+It compares the **live** sites with the live blog, so deploy before re-running. Needs bash and Python 3.8+ (standard
+library only), plus an authenticated `gh` for the theme checks (`--no-repo` skips them). It exits 1 on any FAIL.
+
+| Area | Checks |
+|---|---|
+| sidebar | Places and Elsewhere (names, links, icons, badges; post counts and the current item are ignored) on every sampled page; the logo links to danielsada.tech; logo, favicon and wallpaper are the same files; accent/ink/wall colours, panel and logo width, `color-scheme`, `theme-color` |
+| theme | the vendored theme on the repo's default branch is the blog's and the latest upstream commit (lists newer ones); theme files the site overrides, other than hooks, `panel-projects.html` and i18n |
+| seo | `lang`, `<title>`, meta description (50–160 chars), canonical, `noindex`, viewport, favicon, Open Graph (the image loads), `twitter:card`, duplicate titles/descriptions; `robots.txt` and its `Sitemap:` line, sitemap URLs return 200, missing pages return 404, http→https; listed in `data/projects.yaml` |
+| json-ld | blocks parse with a schema.org `@context`; home has a `WebSite` with the site's URL and a `Person` "Daniel Sada" with url https://danielsada.tech/ and the same `sameAs` as this site's; other pages have a WebPage/Article node and a `BreadcrumbList` |
+
+The sites it audits by default are `KNOWN_SITES` at the top of the script plus every `*.danielsada.tech` URL in
+`data/projects.yaml`.
+
 ## URLs
 
 Posts live at `/blog/<file>/` and `/notas/<file>/`, and taxonomies at `/tags/`, `/categories/`, `/etiquetas/`, `/categorias/` and `/series/`. These are Hugo's defaults, so there's no `[permalinks]` block. If you change a URL, add an `aliases` entry to the post's front matter or a rule to `static/_redirects`.
