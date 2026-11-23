@@ -2,27 +2,26 @@
 # Fields: see the theme README → Content model.
 # Leave status unset to list projects without status groups or badges.
 
-- name: WATolls
+- name: awesome-reviewers
   since: 2026
-  featured: true
-  icon: chart
-  summary: Washington highway toll rate visualizer.
-  pitch: Collects, serves and charts dynamic toll prices so you can find the cheapest time to cross. Go + Python + Hugo.
-  description: The state only shows what a dynamic toll lane costs right now. WATolls records every rate about every 15 minutes, charts the last 7, 30 and 60 days, and finds the cheapest 15-minute window to cross on your commute.
-  stack: [Python, Postgres, Go, Hugo, ECharts]
-  url: https://watolls.danielsada.tech/
-  writeup: /blog/watolls-washington-toll-visualizer
+  icon: search
+  summary: Six focused AI code reviewers, with evals.
+  description: Review prompts inspired by Ousterhout, Nygard, Google SRE, TLA+, DO-178B and Richard Hipp. Available as skills and read-only agents for Copilot CLI and Claude Code, with evals that measure defect detection and false positives.
+  stack: [Markdown, Python]
+  url: https://github.com/danielsada/awesome-reviewers
+  urllabel: Source
 
-- name: Voltra Exercise Maker
+- name: go-kusto-cli
   since: 2026
-  icon: timer
-  summary: Workout timers and an exercise composer for the Voltra.
-  description: Tabata, interval and workout timers, plus a composer that builds exercises around the gear you have. Covers one or two Beyond Power Voltras, the Travel Platform, handles and anchor points.
-  stack: [Hugo, JS, CSS]
-  url: https://voltra.danielsada.tech/
+  icon: terminal
+  summary: A lightweight Go CLI for querying Azure Data Explorer.
+  description: Queries Kusto through its REST API with no SDK dependencies, using Azure CLI authentication. Accepts inline queries, script files or stdin and exports tables, CSV or JSON.
+  stack: [Go, KQL]
+  url: https://github.com/danielsada/go-kusto-cli
+  urllabel: Source
   links:
-    - text: Source
-      url: https://github.com/danielsada/voltra-exercise-maker
+    - text: Releases
+      url: https://github.com/danielsada/go-kusto-cli/releases
 
 - name: Ninja Air Fry Recipes
   since: 2026
@@ -47,23 +46,24 @@
     - text: Demo
       url: https://danielsada.github.io/hugo-breeze-plasma-inspired-theme/
 
-- name: go-kusto-cli
+- name: Voltra Exercise Maker
   since: 2026
-  icon: terminal
-  summary: A lightweight Go CLI for querying Azure Data Explorer.
-  description: Queries Kusto through its REST API with no SDK dependencies, using Azure CLI authentication. Accepts inline queries, script files or stdin and exports tables, CSV or JSON.
-  stack: [Go, KQL]
-  url: https://github.com/danielsada/go-kusto-cli
-  urllabel: Source
+  icon: timer
+  summary: Workout timers and an exercise composer for the Voltra.
+  description: Tabata, interval and workout timers, plus a composer that builds exercises around the gear you have. Covers one or two Beyond Power Voltras, the Travel Platform, handles and anchor points.
+  stack: [Hugo, JS, CSS]
+  url: https://voltra.danielsada.tech/
   links:
-    - text: Releases
-      url: https://github.com/danielsada/go-kusto-cli/releases
+    - text: Source
+      url: https://github.com/danielsada/voltra-exercise-maker
 
-- name: awesome-reviewers
+- name: WATolls
   since: 2026
-  icon: search
-  summary: Six focused AI code reviewers, with evals.
-  description: Review prompts inspired by Ousterhout, Nygard, Google SRE, TLA+, DO-178B and Richard Hipp. Available as skills and read-only agents for Copilot CLI and Claude Code, with evals that measure defect detection and false positives.
-  stack: [Markdown, Python]
-  url: https://github.com/danielsada/awesome-reviewers
-  urllabel: Source
+  featured: true
+  icon: chart
+  summary: Washington highway toll rate visualizer.
+  pitch: Collects, serves and charts dynamic toll prices so you can find the cheapest time to cross. Go + Python + Hugo.
+  description: The state only shows what a dynamic toll lane costs right now. WATolls records every rate about every 15 minutes, charts the last 7, 30 and 60 days, and finds the cheapest 15-minute window to cross on your commute.
+  stack: [Python, Postgres, Go, Hugo, ECharts]
+  url: https://watolls.danielsada.tech/
+  writeup: /blog/watolls-washington-toll-visualizer
