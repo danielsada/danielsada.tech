@@ -13,6 +13,28 @@
   url: https://watolls.danielsada.tech/
   writeup: /blog/watolls-washington-toll-visualizer
 
+- name: Voltra Exercise Maker
+  since: 2026
+  icon: timer
+  summary: Workout timers and an exercise composer for the Voltra.
+  description: Tabata, interval and workout timers, plus a composer that builds exercises around the gear you have. Covers one or two Beyond Power Voltras, the Travel Platform, handles and anchor points.
+  stack: [Hugo, JS, CSS]
+  url: https://voltra.danielsada.tech/
+  links:
+    - text: Source
+      url: https://github.com/danielsada/voltra-exercise-maker
+
+- name: Ninja Air Fry Recipes
+  since: 2026
+  icon: pot
+  summary: Cook times and recipes for Ninja air fryers.
+  description: Cook charts, temperatures and recipes for the Ninja Speedi, a Speedi Meal builder, and Double Stack times for one layer or two.
+  stack: [Hugo, JS, CSS]
+  url: https://ninja.danielsada.tech/
+  links:
+    - text: Source
+      url: https://github.com/danielsada/ninja-airfry-recipes
+
 - name: Plasma Hugo Theme
   since: 2026
   icon: apps

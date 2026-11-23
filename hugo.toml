@@ -121,12 +121,13 @@ ignoreLogs = ["warning-goldmark-raw-html"]
   [params.projects]
     page = "/projects"
 
-  # Projects box in the panel (data/projects.yaml), below Places; theme defaults: 5 rows, collapsed on posts.
-  # Wider panel so project names fit (theme default 15.5rem).
+  # Projects box in the panel (data/projects.yaml), below Places; collapsed on posts (theme default).
+  # limit = 20 lists every project (theme default 5). Wider panel so project names fit (theme default 15.5rem).
   [params.panel]
     width = "17rem"
   [params.panel.projects]
     enable = true
+    limit = 20
 
   [params.home]
     [[params.home.main]]
