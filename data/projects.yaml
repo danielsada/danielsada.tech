@@ -2,6 +2,15 @@
 # Fields: see the theme README → Content model.
 # Leave status unset to list projects without status groups or badges.
 
+- name: adolint
+  since: 2026
+  icon: search
+  summary: A CLI for linting Azure DevOps pipeline YAML.
+  description: A Cobra-based Go CLI for parsing and linting Azure DevOps pipeline definitions.
+  stack: [Go, YAML]
+  url: https://github.com/danielsada/go-ado-pipelines-lint
+  urllabel: Source
+
 - name: awesome-reviewers
   since: 2026
   icon: search
@@ -45,6 +54,15 @@
   links:
     - text: Demo
       url: https://danielsada.github.io/hugo-breeze-plasma-inspired-theme/
+
+- name: tree-commit
+  since: 2025
+  icon: terminal
+  summary: Directory-scoped Git hooks for monorepos.
+  description: Put a hook config in any directory and run checks only on files within its scope. Compatible with pre-commit configs and hooks, so backend and frontend checks can live alongside their code.
+  stack: [Go, YAML]
+  url: https://github.com/danielsada/tree-commit
+  urllabel: Source
 
 - name: Voltra Exercise Maker
   since: 2026
