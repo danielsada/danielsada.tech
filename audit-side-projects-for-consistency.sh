@@ -414,15 +414,15 @@ def check_seo_page(rep, page, home_url):
     else:
         add("PASS", "meta description 50-160 chars")
     canon = (page.links.get("canonical") or [""])[0]
-    host = urllib.parse.urlsplit(home_url).netloc
+    home = urllib.parse.urlsplit(home_url)
     if not canon:
         add("FAIL", "canonical link missing")
-    elif not canon.startswith("https://") or urllib.parse.urlsplit(canon).netloc != host:
-        add("FAIL", f"canonical {canon} isn't an https URL on {host}")
+    elif urllib.parse.urlsplit(canon)[:2] != home[:2]:
+        add("FAIL", f"canonical {canon} isn't a {home.scheme} URL on {home.netloc}")
     elif norm(canon) != norm(r.final):
         add("FAIL", f"canonical {canon} isn't this page ({r.final})")
     else:
-        add("PASS", "canonical is this page's https URL")
+        add("PASS", "canonical is this page's URL")
     robots = " ".join(page.meta.get("robots", []) + page.meta.get("googlebot", [])).lower()
     xrobots = (r.headers.get("X-Robots-Tag", "") if r.headers else "").lower()
     if "noindex" in robots or "noindex" in xrobots:
@@ -497,7 +497,9 @@ def check_seo_site(rep, home_url, pages, locs, is_parent, listed):
     add("PASS" if nf.status == 404 else "FAIL", f"a missing page returns {nf.status or nf.err}" + ("" if nf.status == 404 else " (want 404)"))
     hr = fetch("http://" + urllib.parse.urlsplit(home_url).netloc + "/", follow=False)
     loc = hr.headers.get("Location", "") if hr.headers else ""
-    if hr.status in (301, 302, 307, 308) and loc.startswith("https://"):
+    if home_url.startswith("http://"):
+        add("WARN", "served over http (a local build?): the https checks don't apply")
+    elif hr.status in (301, 302, 307, 308) and loc.startswith("https://"):
         add("PASS" if hr.status in (301, 308) else "WARN", f"http:// redirects to https ({hr.status})")
     else:
         add("FAIL", f"http:// doesn't redirect to https (got {hr.status or hr.err})")
@@ -795,11 +797,11 @@ def main():
         for s in args.site:
             url, _, repo = s.partition("=")
             url = norm(url if "://" in url else "https://" + url)
-            host = urllib.parse.urlsplit(url).netloc
-            sites[host] = repo or KNOWN_SITES.get(host)
+            p = urllib.parse.urlsplit(url)
+            sites[p.netloc] = (f"{p.scheme}://{p.netloc}/", repo or KNOWN_SITES.get(p.netloc))
     else:
         for host in sorted(set(KNOWN_SITES) | listed):
-            sites[host] = KNOWN_SITES.get(host)
+            sites[host] = (f"https://{host}/", KNOWN_SITES.get(host))
 
     upstream = None
     if not args.no_repo:
@@ -824,8 +826,8 @@ def main():
             pass
     person = ref_person(parent_home)
     reports = [] if args.no_parent else [parent_rep]
-    for host, repo in sites.items():
-        rep, _ = audit_site(f"{host}  ({repo or 'repo unknown'})", f"https://{host}/", repo, parent_home, person,
+    for host, (url, repo) in sites.items():
+        rep, _ = audit_site(f"{host}  ({repo or 'repo unknown'})", url, repo, parent_home, person,
                             args, upstream, parent_sha, host in listed)
         reports.append(rep)
     for rep in reports:

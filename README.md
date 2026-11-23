@@ -64,9 +64,11 @@ and copies the menus into its `hugo.toml`, so they drift. To check them against 
 ./audit-side-projects-for-consistency.sh             # every known side project
 ./audit-side-projects-for-consistency.sh -q          # only WARN and FAIL lines
 ./audit-side-projects-for-consistency.sh --site https://new.danielsada.tech/=danielsada/new-repo
+./audit-side-projects-for-consistency.sh --site http://localhost:1313/ --no-parent   # a local `hugo server`
 ```
 
-It compares the **live** sites with the live blog, so deploy before re-running. Needs bash and Python 3.8+ (standard
+It compares the **live** sites with the live blog, so deploy before re-running (or audit a local `hugo server`, where the
+https checks don't apply). Needs bash and Python 3.8+ (standard
 library only), plus an authenticated `gh` for the theme checks (`--no-repo` skips them). It exits 1 on any FAIL.
 
 | Area | Checks |
@@ -78,6 +80,12 @@ library only), plus an authenticated `gh` for the theme checks (`--no-repo` skip
 
 The sites it audits by default are `KNOWN_SITES` at the top of the script plus every `*.danielsada.tech` URL in
 `data/projects.yaml`.
+
+New side projects start from the private template repo
+[danielsada/side-project-template](https://github.com/danielsada/side-project-template) (shared `hugo.toml` blocks,
+panel sections, JSON-LD, `AGENTS.md`, a checklist and a weekly run of this audit). If you change Places, Elsewhere,
+the colours or the panel width here, change them in the template and in each side project too; the audit flags
+the ones you miss.
 
 ## URLs
 
