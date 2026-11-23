@@ -51,7 +51,7 @@ VENDOR_EXCLUDE = {"exampleSite", "docs", "images", "scripts", ".github"}
 KNOWN_SITES = {
     "watolls.danielsada.tech": "danielsada/watollsweb",
     "voltra.danielsada.tech": "danielsada/voltra-exercise-maker",
-    "ninja.danielsada.tech": "danielsada/ninja-speedi",
+    "ninja.danielsada.tech": "danielsada/ninja-airfry-recipes",
 }
 # Theme files a site may override: the hooks are made for it, panel-projects.html is the slot for a site's own
 # panel sections, and i18n files merge with the theme's strings.
